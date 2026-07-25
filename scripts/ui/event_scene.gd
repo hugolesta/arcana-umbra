@@ -102,11 +102,20 @@ func _build_ui() -> void:
 	meaning_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	meaning_margin.add_child(meaning_scroll)
 
+	# VBoxContainer con ALIGNMENT_CENTER: a diferencia de CenterContainer,
+	# respeta el ancho disponible del padre (el texto envuelve dentro del
+	# marco) mientras centra el bloque verticalmente si sobra espacio.
+	var meaning_center := VBoxContainer.new()
+	meaning_center.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	meaning_center.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	meaning_center.alignment = BoxContainer.ALIGNMENT_CENTER
+	meaning_scroll.add_child(meaning_center)
+
 	var meaning := Label.new()
 	meaning.text = _card.reversed_meaning if _reversed else _card.upright_meaning
 	meaning.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	meaning.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	meaning_scroll.add_child(meaning)
+	meaning.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	meaning_center.add_child(meaning)
 
 	var question_label := Label.new()
 	question_label.text = _question

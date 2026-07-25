@@ -13,6 +13,7 @@ const ESENCIA_COMBATE := 12
 const ESENCIA_ELITE := 25
 const ESENCIA_JEFE := 50
 const MIN_DECK_SIZE := 5
+const DEFAULT_NICK := "Viajero"
 
 const STARTER_DECK_NAMES: Array[String] = [
 	"As de Espadas", "2 de Espadas", "3 de Espadas",
@@ -29,6 +30,7 @@ var cartas_integradas: Array[String] = []
 var player_max_claridad: int = 50
 var player_claridad: int = 50
 var esencia: int = 0
+var player_nick: String = DEFAULT_NICK
 
 var map_grid: Array = []  # Array de pisos; cada piso es Array[MapNode]
 var current_node_coord: Vector2i = Vector2i(-1, -1)
@@ -103,6 +105,12 @@ func esencia_reward_for(node_type: MapNode.NodeType) -> int:
 
 func add_esencia(amount: int) -> void:
 	esencia += amount
+	save_progress()
+
+
+func set_player_nick(nick: String) -> void:
+	var trimmed := nick.strip_edges()
+	player_nick = trimmed if not trimmed.is_empty() else DEFAULT_NICK
 	save_progress()
 
 
@@ -195,6 +203,7 @@ func save_progress() -> void:
 		"claridad": player_claridad,
 		"max_claridad": player_max_claridad,
 		"esencia": esencia,
+		"nick": player_nick,
 		"map": map_data,
 		"current_node": [current_node_coord.x, current_node_coord.y],
 	}
@@ -226,6 +235,8 @@ func load_progress() -> bool:
 	player_max_claridad = int(data.get("max_claridad", 50))
 	player_claridad = int(data.get("claridad", player_max_claridad))
 	esencia = int(data.get("esencia", 0))
+	var nick := str(data.get("nick", DEFAULT_NICK)).strip_edges()
+	player_nick = nick if not nick.is_empty() else DEFAULT_NICK
 	map_grid.clear()
 	for floor_dicts in data.get("map", []):
 		var floor_nodes: Array = []

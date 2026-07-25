@@ -4,6 +4,7 @@ extends Control
 
 signal node_selected(node: MapNode)
 signal deck_requested
+signal profile_requested
 
 const FLOOR_HEIGHT := 150.0
 const NODE_SIZE := Vector2(96, 96)
@@ -23,7 +24,12 @@ func _build_top_bar() -> void:
 	var bar := HBoxContainer.new()
 	bar.set_anchors_preset(Control.PRESET_TOP_WIDE)
 	bar.custom_minimum_size.y = TOP_BAR_HEIGHT
+	bar.add_theme_constant_override("separation", 8)
 	add_child(bar)
+
+	var profile := ProfileButton.new()
+	profile.profile_requested.connect(func(): profile_requested.emit())
+	bar.add_child(profile)
 
 	var claridad := Label.new()
 	claridad.text = "  Claridad: %d/%d · Esencia: %d" % [

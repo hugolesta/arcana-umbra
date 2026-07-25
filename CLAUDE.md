@@ -29,10 +29,11 @@ ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . r
 # (Menor >=85%, Élite >=50%, Jefe 30-95%)
 ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SimBalance.tscn
 
-# 7. Capturas reales de 9 pantallas (título, mapa, combate + su diálogo de fin,
-#    mazo + su diálogo de detalle de carta, evento, tienda, diario). OBLIGATORIO
-#    tras cualquier cambio de UI: el headless NO detecta texto desbordado,
-#    sprites diminutos, temas que no se aplican ni diálogos mal encuadrados.
+# 7. Capturas reales de 10 pantallas (título, mapa, combate + su diálogo de fin,
+#    mazo + su diálogo de detalle de carta, evento, tienda, diario, perfil).
+#    OBLIGATORIO tras cualquier cambio de UI: el headless NO detecta texto
+#    desbordado, sprites diminutos, temas que no se aplican ni diálogos mal
+#    encuadrados.
 ARCANA_TEST=1 ARCANA_SHOT_DIR=/tmp/shots /Applications/Godot.app/Contents/MacOS/Godot \
   --path . res://tools/Screenshot.tscn --resolution 720x1280
 ```
@@ -66,6 +67,8 @@ scripts/map/map_generator.gd       DAG: 15 pisos, 3-6 nodos (anchura varía ±1 
                                    conexiones solo a columnas adyacentes, jefe final único
 scripts/map/map_node.gd            Nodo del mapa (Resource serializable to_dict/from_dict)
 scripts/ui/*.gd                    Escenas de UI: construyen sus nodos por código en _ready()
+scripts/ui/profile_button.gd       Avatar circular del Viajero (título/mapa) -> abre ProfileScene
+scripts/ui/profile_scene.gd        Perfil: retrato, nick editable (persistido), resumen de progreso
 resources/cards/*.tres             78 cartas GENERADAS (no editar a mano)
 assets/cards/*.webp                78 imágenes copiadas de Kabbalah
 ```
@@ -108,6 +111,8 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
   - `Main` es un `Node`, así que las escenas `Control` mostraban el gris por defecto de Godot: hay un `ColorRect` de fondo global en `CanvasLayer` layer −10 (`_build_background`).
   - Los lienzos de PixelLab dejan mucho aire alrededor del arte: `sprite_strip.gd` escala y centra por `get_used_rect()`, no por el tamaño del frame, o los personajes salen diminutos y descentrados.
   - `CenterContainer` **no expande a su hijo horizontalmente** (siempre le da su tamaño mínimo natural): un `Label` con `autowrap_mode` dentro calcula un ancho descontrolado y el panel se desborda del viewport. Para centrar texto dentro de un marco, usar `VBoxContainer` con `alignment = ALIGNMENT_CENTER` (respeta el ancho del padre, el texto envuelve) — no `CenterContainer`.
+  - `Button.flat = true` pisa el `StyleBoxTexture`/`StyleBoxFlat` del estado `normal` aunque se asigne después con `add_theme_stylebox_override`: el anillo dorado de `ProfileButton` no se pintaba. No usar `flat` en botones tematizados; si se necesita "sin relleno visible", definir un stylebox con `bg_color` transparente pero borde opaco (como hace `ProfileButton`).
+  - Un `VBoxContainer` de pantalla completa con `alignment = ALIGNMENT_CENTER` deja hueco muerto cuando el contenido es poco (se reparte igual arriba y abajo). En pantallas con contenido variable (perfil, mazo, diario) seguir el patrón de `deck_builder_scene.gd`: el layout fluye de arriba hacia abajo sin `ALIGNMENT_CENTER`, con el botón "← Volver" como primer hijo del mismo `VBoxContainer` (no en un `HBoxContainer` anclado aparte).
 - **Estilo fijado**: 64×64 px, paleta oscura mística (violeta/dorado), coherente con `icon.svg` (tarot/ocultismo/sombras). Vista "side", contorno "single color outline". Renderizar con `TEXTURE_FILTER_NEAREST` en la UI.
 - **Qué herramienta usar por tipo de asset** (plan Tier 1 activo, pero seguir siendo frugal):
   - Iconos, emblemas e ilustraciones estáticas (cartas): `create_map_object` básico — 1 generación.

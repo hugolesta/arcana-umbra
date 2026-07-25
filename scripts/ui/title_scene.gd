@@ -7,6 +7,7 @@ signal continue_requested
 signal new_run_requested
 signal deck_requested
 signal journal_requested
+signal profile_requested
 
 const EMBLEM_PATH := "res://assets/ui/titulo_emblema.png"
 
@@ -18,6 +19,12 @@ const COLOR_GOLD := Color("c9a227")
 
 func _ready() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
+
+	var profile := ProfileButton.new()
+	profile.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	profile.position = Vector2(20, 20)
+	profile.profile_requested.connect(func(): profile_requested.emit())
+	add_child(profile)
 
 	var layout := VBoxContainer.new()
 	layout.set_anchors_preset(Control.PRESET_FULL_RECT)

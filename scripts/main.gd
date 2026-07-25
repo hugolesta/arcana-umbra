@@ -8,6 +8,7 @@ const DECK_SCENE := "res://scenes/DeckBuilderScene.tscn"
 const EVENT_SCENE := "res://scenes/EventScene.tscn"
 const JOURNAL_SCENE := "res://scenes/JournalScene.tscn"
 const SHOP_SCENE := "res://scenes/ShopScene.tscn"
+const PROFILE_SCENE := "res://scenes/ProfileScene.tscn"
 
 var _current: Node
 var _fade: ColorRect
@@ -52,6 +53,7 @@ func show_title() -> void:
 		show_map())
 	title.deck_requested.connect(show_deck_builder.bind(true))
 	title.journal_requested.connect(show_journal)
+	title.profile_requested.connect(show_profile.bind(show_title))
 
 
 func show_journal() -> void:
@@ -63,6 +65,12 @@ func show_map() -> void:
 	var map: Node = _swap_to(MAP_SCENE)
 	map.node_selected.connect(_on_map_node_selected)
 	map.deck_requested.connect(show_deck_builder)
+	map.profile_requested.connect(show_profile.bind(show_map))
+
+
+func show_profile(return_to: Callable) -> void:
+	var profile: Node = _swap_to(PROFILE_SCENE)
+	profile.back_requested.connect(return_to)
 
 
 func show_deck_builder(from_title: bool = false) -> void:

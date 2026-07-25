@@ -43,7 +43,9 @@ func _run() -> void:
 	await _shot("06_tienda")
 	_main.show_journal()
 	await _shot("07_diario")
-	print("CAPTURAS: 9 guardadas en ", _dir)
+	_main.show_profile(_main.show_title)
+	await _shot("08_perfil")
+	print("CAPTURAS: 10 guardadas en ", _dir)
 	get_tree().quit()
 
 

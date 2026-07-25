@@ -29,11 +29,11 @@ ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . r
 # (Menor >=85%, Élite >=50%, Jefe 30-95%)
 ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SimBalance.tscn
 
-# 7. Capturas reales de 10 pantallas (título, mapa, combate + su diálogo de fin,
-#    mazo + su diálogo de detalle de carta, evento, tienda, diario, perfil).
-#    OBLIGATORIO tras cualquier cambio de UI: el headless NO detecta texto
-#    desbordado, sprites diminutos, temas que no se aplican ni diálogos mal
-#    encuadrados.
+# 7. Capturas reales de 11 pantallas (título, identidad, mapa, combate + su
+#    diálogo de fin, mazo + su diálogo de detalle de carta, evento, tienda,
+#    diario, perfil). OBLIGATORIO tras cualquier cambio de UI: el headless NO
+#    detecta texto desbordado, sprites diminutos, temas que no se aplican,
+#    diálogos mal encuadrados ni widgets que no pintan su texto.
 ARCANA_TEST=1 ARCANA_SHOT_DIR=/tmp/shots /Applications/Godot.app/Contents/MacOS/Godot \
   --path . res://tools/Screenshot.tscn --resolution 720x1280
 ```
@@ -68,7 +68,10 @@ scripts/map/map_generator.gd       DAG: 15 pisos, 3-6 nodos (anchura varía ±1 
 scripts/map/map_node.gd            Nodo del mapa (Resource serializable to_dict/from_dict)
 scripts/ui/*.gd                    Escenas de UI: construyen sus nodos por código en _ready()
 scripts/ui/profile_button.gd       Avatar circular del Viajero (título/mapa) -> abre ProfileScene
-scripts/ui/profile_scene.gd        Perfil: retrato, nick editable (persistido), resumen de progreso
+scripts/ui/profile_scene.gd        Perfil: retrato, nombre y signo (fijos), resumen de progreso
+scripts/ui/identity_scene.gd       Primer "nuevo viaje": nombre + fecha de nacimiento (una sola vez)
+scripts/autoload/zodiac.gd         Zodiac.sign_for(mes,día): signo occidental (sin autoloads,
+                                   testeable desde verify.gd)
 resources/cards/*.tres             78 cartas GENERADAS (no editar a mano)
 assets/cards/*.webp                78 imágenes copiadas de Kabbalah
 ```
@@ -91,6 +94,7 @@ Patrones a respetar:
 - **Tienda ("El Mercader de Umbrales")**: en un nodo TIENDA (`shop_scene.gd`) se ofrecen 3 cartas al azar (menores 25, mayores 50, **mitad de precio si está integrada** — el journaling paga) y quitar una carta del mazo por 30 (una por visita, nunca por debajo de `MIN_DECK_SIZE`).
 - **Eventos/journaling ("El Espejo del Viajero")**: en un nodo EVENTO se roba una carta del mazo propio (50% invertida), se muestra su significado real (derecho o reverso, datos de Kabbalah) y una pregunta introspectiva según su elemento (`event_scene.gd`). Escribir y guardar la reflexión da `+EVENT_CLARIDAD_REWARD` de claridad e integra la carta; saltar no da nada. El diario persiste **entre runs** en `user://journal.save` (separado de `progress.save`, que se resetea con cada run) y se consulta desde el botón "Diario" del título (`journal_scene.gd`).
 - Palos → efectos: Espadas=daño, Oros=escudo, Copas=curación, Bastos=disonancia, Arcanos Mayores=dos efectos según su elemento.
+- **Identidad del jugador**: en el PRIMER "nuevo viaje" (`identity_defined == false`), `main.gd` desvía a `IdentityScene` en vez de arrancar el run directamente. Ahí se define nombre (**fijo de por vida**, sin UI de edición — a diferencia de la esencia/mazo, sobrevive a `start_new_run()`) y fecha de nacimiento, que calcula el signo zodiacal vía `Zodiac.sign_for()`. `GameState.define_identity()` solo tiene efecto la primera vez; llamadas posteriores no hacen nada. El signo se muestra en `ProfileScene` junto al nombre.
 
 ## Assets de pixel art (PixelLab MCP)
 
@@ -99,6 +103,7 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
 - **Iconos de nodos del mapa**: `assets/map_icons/<tipo>.png` — un PNG 64×64 por valor del enum `MapNode.NodeType` en minúscula (`combate.png`, `elite.png`, `descanso.png`, `tienda.png`, `evento.png`, `jefe_sombra.png`). `map_scene.gd` los carga por convención de nombre (`_icon_for`); si falta un icono, el botón cae a solo texto.
 - **Personajes animados (combate)**: `assets/personajes/<clave>/{idle_south,attack_south}/<n>.png` — carpetas de frames cuadrados numerados desde 0 (el 0 es el frame de referencia; ver `scripts/ui/sprite_strip.gd`). Claves: `viajero`, `sombra_menor`, `sombra_elite`, `jefe_sombra`. `combat_scene.gd` reproduce idle en bucle y dispara attack con las señales (`card_played` → Viajero, `TURNO_ENEMIGO` → Sombra). Personajes creados con `create_character` v3; los `character_id` NO se guardan (los personajes viven en la cuenta PixelLab, listables con `list_characters`).
 - **Sprites estáticos legacy (fallback)**: `assets/sombras/<tipo>.png` y `assets/viajero/viajero.png` (128×128) — se usan si faltan las tiras animadas. No borrarlos: son el fallback de `combat_scene.gd`.
+- **Iconos zodiacales**: `assets/zodiaco/<signo>.png` — 12 PNG 64×64, uno por signo occidental (`Zodiac.sign_key()` da la clave en minúsculas sin acentos: `geminis`, `cancer`, etc.). Mismos 12 nombres que `SIGNS` en `tools/extract_cards.py`, coherencia entre el perfil del jugador y el vocabulario de las cartas.
 - **Cartas pixel art**: `assets/cartas_pixel/<NN>-<slug>.png` — PNG 128×192 (formato carta), mismo nombre base que el `.webp` de `assets/cards/`. Las **78 cartas completas** (mayores y menores) tienen pixel art con iconografía Rider-Waite. `generate_tres.py` usa el pixel art como `icon` del CardData **si el PNG existe**; si no, cae al `.webp` de Kabbalah — tras añadir/quitar pixel art hay que regenerar los `.tres`.
 - **UI de título**: `assets/ui/titulo_emblema.png` — emblema 256×256 usado por `title_scene.gd`. Ojo: este PNG tiene **fondo opaco** `#13173a`; `COLOR_BG` de `title_scene.gd` usa ese mismo color para fundirlo. Si se regenera el emblema, revisar el color de fondo real del PNG y ajustar la constante.
 - **Tema global (UI final)**: `scripts/ui/ui_theme.gd` construye un `Theme` en runtime desde `assets/ui/` y se aplica en `main.gd` (`get_window().theme`). Piezas de `create_ui_asset` (aprobadas por Hugo, 40 gen c/u): `panel_arcano.png` (9-slice de Panel/PanelContainer; su centro transparente se rellenó de violeta a mano), `boton_arcano.png` (estados por modulación; región útil `Rect2(76,68,152,63)`, el texto "Button" horneado se borró del PNG) y `barra_claridad.png` (ProgressBar; la barra fina vive en `Rect2(107,249,298,30)`). Tipografía: `arcana_umbra.ttf` (pixel font Bold de `create_font`, 20 gen), fuente por defecto del tema. **Si se regenera un asset de UI hay que recalcular sus regiones/rellenos** (los PNG commiteados están post-procesados). Cada pieza tiene fallback si falta el archivo.
@@ -113,6 +118,7 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
   - `CenterContainer` **no expande a su hijo horizontalmente** (siempre le da su tamaño mínimo natural): un `Label` con `autowrap_mode` dentro calcula un ancho descontrolado y el panel se desborda del viewport. Para centrar texto dentro de un marco, usar `VBoxContainer` con `alignment = ALIGNMENT_CENTER` (respeta el ancho del padre, el texto envuelve) — no `CenterContainer`.
   - `Button.flat = true` pisa el `StyleBoxTexture`/`StyleBoxFlat` del estado `normal` aunque se asigne después con `add_theme_stylebox_override`: el anillo dorado de `ProfileButton` no se pintaba. No usar `flat` en botones tematizados; si se necesita "sin relleno visible", definir un stylebox con `bg_color` transparente pero borde opaco (como hace `ProfileButton`).
   - Un `VBoxContainer` de pantalla completa con `alignment = ALIGNMENT_CENTER` deja hueco muerto cuando el contenido es poco (se reparte igual arriba y abajo). En pantallas con contenido variable (perfil, mazo, diario) seguir el patrón de `deck_builder_scene.gd`: el layout fluye de arriba hacia abajo sin `ALIGNMENT_CENTER`, con el botón "← Volver" como primer hijo del mismo `VBoxContainer` (no en un `HBoxContainer` anclado aparte).
+  - **No usar `OptionButton` con el tema arcano para listas de números cortos** (ej. días 1-31): se comprobó por consola que `text`, `font_color` y `size` son correctos, pero el glifo no se pinta en el frame capturado cuando el ítem es un texto corto tipo dígito, mientras que textos más largos (nombres de mes) sí se renderizan con el mismo código. No se identificó la causa exacta (posible interacción entre el `StyleBoxTexture` del botón y el layout interno del `OptionButton`); en vez de perseguir el bug, `identity_scene.gd` usa `SpinBox` para el día — más robusto para rangos numéricos y sin el defecto.
 - **Estilo fijado**: 64×64 px, paleta oscura mística (violeta/dorado), coherente con `icon.svg` (tarot/ocultismo/sombras). Vista "side", contorno "single color outline". Renderizar con `TEXTURE_FILTER_NEAREST` en la UI.
 - **Qué herramienta usar por tipo de asset** (plan Tier 1 activo, pero seguir siendo frugal):
   - Iconos, emblemas e ilustraciones estáticas (cartas): `create_map_object` básico — 1 generación.

@@ -1,16 +1,14 @@
 extends Control
-## Pantalla de perfil: retrato animado del Viajero, nick editable y un
-## resumen del progreso del jugador (cartas integradas, entradas del diario).
+## Pantalla de perfil: retrato animado del Viajero, nombre y signo zodiacal
+## (fijos de por vida, definidos en IdentityScene) y un resumen del progreso
+## del jugador (cartas integradas, entradas del diario).
 
 signal back_requested
 
 const PORTRAIT_SIZE := 200.0
 const VIAJERO_IDLE_DIR := "res://assets/personajes/viajero/idle_south"
 const VIAJERO_SPRITE := "res://assets/viajero/viajero.png"
-
-var _nick_edit: LineEdit
-var _nick_label: Label
-var _editing := false
+const ZODIAC_DIR := "res://assets/zodiaco"
 
 
 func _ready() -> void:
@@ -55,7 +53,7 @@ func _build_ui() -> void:
 	if portrait:
 		portrait_slot.add_child(portrait)
 
-	_build_nick_row(layout)
+	_build_identity_row(layout)
 
 	var stats_panel := PanelContainer.new()
 	layout.add_child(stats_panel)
@@ -75,49 +73,34 @@ func _build_ui() -> void:
 		"%d/%d" % [GameState.player_claridad, GameState.player_max_claridad])
 
 
-func _build_nick_row(layout: VBoxContainer) -> void:
+func _build_identity_row(layout: VBoxContainer) -> void:
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
-	row.add_theme_constant_override("separation", 8)
+	row.add_theme_constant_override("separation", 10)
 	layout.add_child(row)
 
-	_nick_label = Label.new()
-	_nick_label.text = GameState.player_nick
-	_nick_label.add_theme_font_size_override("font_size", 22)
-	row.add_child(_nick_label)
+	var nick_label := Label.new()
+	nick_label.text = GameState.player_nick
+	nick_label.add_theme_font_size_override("font_size", 22)
+	row.add_child(nick_label)
 
-	_nick_edit = LineEdit.new()
-	_nick_edit.text = GameState.player_nick
-	_nick_edit.max_length = 20
-	_nick_edit.custom_minimum_size.x = 220
-	_nick_edit.visible = false
-	_nick_edit.text_submitted.connect(func(_t): _confirm_nick())
-	_nick_edit.focus_exited.connect(_confirm_nick)
-	row.add_child(_nick_edit)
+	if not GameState.zodiac_sign.is_empty():
+		var icon_path := ZODIAC_DIR.path_join(
+			Zodiac.sign_key(GameState.zodiac_sign) + ".png")
+		if ResourceLoader.exists(icon_path):
+			var icon := TextureRect.new()
+			icon.texture = load(icon_path)
+			icon.custom_minimum_size = Vector2(28, 28)
+			icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			row.add_child(icon)
 
-	var edit_button := Button.new()
-	edit_button.text = "Editar"
-	edit_button.pressed.connect(_start_editing)
-	row.add_child(edit_button)
-
-
-func _start_editing() -> void:
-	_editing = true
-	_nick_label.visible = false
-	_nick_edit.visible = true
-	_nick_edit.text = GameState.player_nick
-	_nick_edit.grab_focus()
-	_nick_edit.select_all()
-
-
-func _confirm_nick() -> void:
-	if not _editing:
-		return
-	_editing = false
-	GameState.set_player_nick(_nick_edit.text)
-	_nick_label.text = GameState.player_nick
-	_nick_label.visible = true
-	_nick_edit.visible = false
+		var sign_label := Label.new()
+		sign_label.text = GameState.zodiac_sign
+		sign_label.add_theme_font_size_override("font_size", 16)
+		sign_label.add_theme_color_override("font_color", UITheme.COLOR_GOLD)
+		row.add_child(sign_label)
 
 
 func _add_stat_row(container: VBoxContainer, label_text: String, value_text: String) -> void:

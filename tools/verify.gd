@@ -163,6 +163,53 @@ func _initialize() -> void:
 	if missing_strips == 0:
 		print("OK: 8 animaciones de personaje presentes en assets/personajes/")
 
+	# 10. Los 12 iconos zodiacales existen (assets/zodiaco/<signo>.png).
+	var missing_zodiac := 0
+	const ZODIAC_SIGNS := [
+		"Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra",
+		"Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis",
+	]
+	for sign_name in ZODIAC_SIGNS:
+		var key := Zodiac.sign_key(sign_name)
+		if key.is_empty():
+			print("FALLO: Zodiac.sign_key() no reconoce ", sign_name)
+			failures += 1
+			missing_zodiac += 1
+			continue
+		var icon_path := "res://assets/zodiaco/%s.png" % key
+		if not FileAccess.file_exists(icon_path):
+			print("FALLO: falta el icono zodiacal ", icon_path)
+			failures += 1
+			missing_zodiac += 1
+	if missing_zodiac == 0:
+		print("OK: 12 iconos zodiacales presentes en assets/zodiaco/")
+
+	# 11. Zodiac.sign_for() cubre las 26 fechas límite sin off-by-one.
+	var zodiac_failures := 0
+	const BOUNDARY_CASES := [
+		[1, 1, "Capricornio"], [1, 19, "Capricornio"], [1, 20, "Acuario"],
+		[2, 18, "Acuario"], [2, 19, "Piscis"],
+		[3, 20, "Piscis"], [3, 21, "Aries"],
+		[4, 19, "Aries"], [4, 20, "Tauro"],
+		[5, 20, "Tauro"], [5, 21, "Géminis"],
+		[6, 20, "Géminis"], [6, 21, "Cáncer"],
+		[7, 22, "Cáncer"], [7, 23, "Leo"],
+		[8, 22, "Leo"], [8, 23, "Virgo"],
+		[9, 22, "Virgo"], [9, 23, "Libra"],
+		[10, 22, "Libra"], [10, 23, "Escorpio"],
+		[11, 21, "Escorpio"], [11, 22, "Sagitario"],
+		[12, 21, "Sagitario"], [12, 22, "Capricornio"], [12, 31, "Capricornio"],
+	]
+	for case in BOUNDARY_CASES:
+		var got := Zodiac.sign_for(case[0], case[1])
+		if got != case[2]:
+			print("FALLO: Zodiac.sign_for(%d,%d) = %s, esperado %s" % [
+				case[0], case[1], got, case[2]])
+			failures += 1
+			zodiac_failures += 1
+	if zodiac_failures == 0:
+		print("OK: Zodiac.sign_for() correcto en las 26 fechas límite")
+
 	print("RESULTADO: %s (%d fallos)" % ["PASA" if failures == 0 else "FALLA", failures])
 	quit(1 if failures > 0 else 0)
 

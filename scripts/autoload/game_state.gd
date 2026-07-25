@@ -30,7 +30,14 @@ var cartas_integradas: Array[String] = []
 var player_max_claridad: int = 50
 var player_claridad: int = 50
 var esencia: int = 0
+
+# Identidad del jugador: se define UNA VEZ en el primer "nuevo viaje" y
+# queda fija de por vida (identity_defined = true bloquea define_identity()).
 var player_nick: String = DEFAULT_NICK
+var birth_month: int = 0
+var birth_day: int = 0
+var zodiac_sign: String = ""
+var identity_defined: bool = false
 
 var map_grid: Array = []  # Array de pisos; cada piso es Array[MapNode]
 var current_node_coord: Vector2i = Vector2i(-1, -1)
@@ -108,10 +115,30 @@ func add_esencia(amount: int) -> void:
 	save_progress()
 
 
-func set_player_nick(nick: String) -> void:
+## Define nombre y fecha de nacimiento UNA SOLA VEZ (primer "nuevo viaje").
+## Llamadas posteriores no hacen nada: la identidad queda fija de por vida.
+## Devuelve false si ya estaba definida o si la fecha es inválida.
+func define_identity(nick: String, month: int, day: int) -> bool:
+	if identity_defined:
+		return false
 	var trimmed := nick.strip_edges()
-	player_nick = trimmed if not trimmed.is_empty() else DEFAULT_NICK
+	if trimmed.is_empty() or not _is_valid_birth_date(month, day):
+		return false
+	player_nick = trimmed
+	birth_month = month
+	birth_day = day
+	zodiac_sign = Zodiac.sign_for(month, day)
+	identity_defined = true
 	save_progress()
+	return true
+
+
+# 2024 es bisiesto: valida el caso límite del 29 de febrero.
+static func _is_valid_birth_date(month: int, day: int) -> bool:
+	if month < 1 or month > 12 or day < 1:
+		return false
+	const DAYS_IN_MONTH := [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	return day <= DAYS_IN_MONTH[month - 1]
 
 
 func card_price(card: CardData) -> int:
@@ -204,6 +231,10 @@ func save_progress() -> void:
 		"max_claridad": player_max_claridad,
 		"esencia": esencia,
 		"nick": player_nick,
+		"birth_month": birth_month,
+		"birth_day": birth_day,
+		"zodiac_sign": zodiac_sign,
+		"identity_defined": identity_defined,
 		"map": map_data,
 		"current_node": [current_node_coord.x, current_node_coord.y],
 	}
@@ -237,6 +268,10 @@ func load_progress() -> bool:
 	esencia = int(data.get("esencia", 0))
 	var nick := str(data.get("nick", DEFAULT_NICK)).strip_edges()
 	player_nick = nick if not nick.is_empty() else DEFAULT_NICK
+	birth_month = int(data.get("birth_month", 0))
+	birth_day = int(data.get("birth_day", 0))
+	zodiac_sign = str(data.get("zodiac_sign", ""))
+	identity_defined = bool(data.get("identity_defined", false))
 	map_grid.clear()
 	for floor_dicts in data.get("map", []):
 		var floor_nodes: Array = []

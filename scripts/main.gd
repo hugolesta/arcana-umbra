@@ -9,6 +9,7 @@ const EVENT_SCENE := "res://scenes/EventScene.tscn"
 const JOURNAL_SCENE := "res://scenes/JournalScene.tscn"
 const SHOP_SCENE := "res://scenes/ShopScene.tscn"
 const PROFILE_SCENE := "res://scenes/ProfileScene.tscn"
+const IDENTITY_SCENE := "res://scenes/IdentityScene.tscn"
 
 var _current: Node
 var _fade: ColorRect
@@ -48,12 +49,25 @@ func _build_fade_overlay() -> void:
 func show_title() -> void:
 	var title: Node = _swap_to(TITLE_SCENE)
 	title.continue_requested.connect(show_map)
-	title.new_run_requested.connect(func():
-		GameState.start_new_run()
-		show_map())
+	title.new_run_requested.connect(_on_new_run_requested)
 	title.deck_requested.connect(show_deck_builder.bind(true))
 	title.journal_requested.connect(show_journal)
 	title.profile_requested.connect(show_profile.bind(show_title))
+
+
+func _on_new_run_requested() -> void:
+	if GameState.identity_defined:
+		GameState.start_new_run()
+		show_map()
+	else:
+		show_identity()
+
+
+func show_identity() -> void:
+	var identity: Node = _swap_to(IDENTITY_SCENE)
+	identity.confirmed.connect(func():
+		GameState.start_new_run()
+		show_map())
 
 
 func show_journal() -> void:

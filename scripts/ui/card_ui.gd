@@ -7,7 +7,7 @@ var card: CardData
 
 func _init(p_card: CardData) -> void:
 	card = p_card
-	custom_minimum_size = Vector2(140, 210)
+	custom_minimum_size = Vector2(150, 230)
 	clip_text = true
 	_build_content()
 	# Juice: la carta responde al tacto con un pequeño pop.
@@ -25,15 +25,24 @@ func _pop(target: float) -> void:
 
 
 func _build_content() -> void:
+	# Margen interior: el marco del botón arcano es ornamentado y el
+	# contenido debe quedar dentro, no encima de la filigrana.
+	var margin := MarginContainer.new()
+	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for side in ["left", "right", "top", "bottom"]:
+		margin.add_theme_constant_override("margin_" + side, 14)
+	add_child(margin)
+
 	var box := VBoxContainer.new()
-	box.set_anchors_preset(Control.PRESET_FULL_RECT)
 	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(box)
+	margin.add_child(box)
 
 	var name_label := Label.new()
 	name_label.text = card.card_name
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	name_label.add_theme_font_size_override("font_size", 12)
 	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	box.add_child(name_label)
 
@@ -48,14 +57,17 @@ func _build_content() -> void:
 		box.add_child(image)
 
 	var info := Label.new()
-	info.text = "%s · Coste %d" % [card.type_name(), card.cost]
+	info.text = "%s · %d" % [card.type_name(), card.cost]
 	info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	info.add_theme_font_size_override("font_size", 11)
+	info.add_theme_color_override("font_color", UITheme.COLOR_GOLD)
 	info.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	box.add_child(info)
 
 	var plays := Label.new()
 	plays.text = card.possible_plays
 	plays.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	plays.add_theme_font_size_override("font_size", 11)
+	plays.add_theme_font_size_override("font_size", 9)
+	plays.clip_text = true
 	plays.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	box.add_child(plays)

@@ -14,9 +14,23 @@ var _fade: ColorRect
 
 
 func _ready() -> void:
-	get_window().theme = UITheme.build()
+	get_window().theme = UITheme.get_cached()
+	_build_background()
 	_build_fade_overlay()
 	show_title()
+
+
+func _build_background() -> void:
+	# Fondo global del juego: sin él, las escenas Control muestran el gris
+	# por defecto de Godot entre sus elementos.
+	var background := ColorRect.new()
+	background.color = UITheme.COLOR_BG
+	background.set_anchors_preset(Control.PRESET_FULL_RECT)
+	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var layer := CanvasLayer.new()
+	layer.layer = -10
+	add_child(layer)
+	layer.add_child(background)
 
 
 func _build_fade_overlay() -> void:
@@ -108,6 +122,9 @@ func _swap_to(scene_path: String) -> Node:
 	if _current:
 		_current.queue_free()
 	_current = load(scene_path).instantiate()
+	# La herencia de temas se corta en Main (Node plano): aplicar por escena.
+	if _current is Control:
+		_current.theme = UITheme.get_cached()
 	add_child(_current)
 	# Transición: la escena nueva entra con un fundido desde el color de fondo.
 	if _fade:

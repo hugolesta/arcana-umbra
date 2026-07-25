@@ -38,12 +38,29 @@ static func make_animated_control(idle_dir: String, display_size: float) -> Cont
 	sprite.name = "Sprite"
 	sprite.sprite_frames = idle
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var frame_size: float = idle.get_frame_texture("default", 0).get_width()
-	sprite.scale = Vector2.ONE * (display_size / frame_size)
-	sprite.position = Vector2(display_size, display_size) / 2.0
+	# El lienzo de PixelLab deja mucho aire alrededor del personaje: escalar
+	# por el alto real del arte (no del frame) para que llene el hueco.
+	var first := idle.get_frame_texture("default", 0)
+	var frame_size: float = first.get_width()
+	var art := _art_rect(first)
+	var reference: float = art.size.y if art.size.y > 0.0 else frame_size
+	var factor := display_size / reference
+	sprite.scale = Vector2.ONE * factor
+	# Centrar por el arte visible, no por el lienzo (PixelLab deja aire).
+	var art_center := art.position + art.size / 2.0 if art.size.y > 0.0 \
+			else Vector2(frame_size, frame_size) / 2.0
+	sprite.position = Vector2(display_size, display_size) / 2.0 \
+			+ (Vector2(frame_size, frame_size) / 2.0 - art_center) * factor
 	sprite.play("default")
 	holder.add_child(sprite)
 	return holder
+
+
+## Rectángulo del arte visible dentro del lienzo (ignora el aire transparente).
+static func _art_rect(texture: Texture2D) -> Rect2:
+	var image := texture.get_image()
+	var used := image.get_used_rect()
+	return Rect2(used.position, used.size)
 
 
 ## Reproduce una animación una vez sobre el AnimatedSprite2D de un holder

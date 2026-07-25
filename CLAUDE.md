@@ -28,6 +28,12 @@ ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . r
 # SimBalance: 200 combates/arquetipo, semilla fija, bandas de win-rate con mazo inicial
 # (Menor >=85%, Élite >=50%, Jefe 30-95%)
 ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SimBalance.tscn
+
+# 7. Capturas reales de las 7 pantallas (título, mapa, combate, mazo, evento,
+#    tienda, diario). OBLIGATORIO tras cualquier cambio de UI: el headless NO
+#    detecta texto desbordado, sprites diminutos ni temas que no se aplican.
+ARCANA_TEST=1 ARCANA_SHOT_DIR=/tmp/shots /Applications/Godot.app/Contents/MacOS/Godot \
+  --path . res://tools/Screenshot.tscn --resolution 720x1280
 ```
 
 Nota: los scripts `-s` no pueden tocar código que use el autoload `GameState` (no compila fuera del juego); para tests que lo necesiten, usar una escena como `SmokeCombat.tscn`.
@@ -93,6 +99,12 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
 - **UI de título**: `assets/ui/titulo_emblema.png` — emblema 256×256 usado por `title_scene.gd`. Ojo: este PNG tiene **fondo opaco** `#13173a`; `COLOR_BG` de `title_scene.gd` usa ese mismo color para fundirlo. Si se regenera el emblema, revisar el color de fondo real del PNG y ajustar la constante.
 - **Tema global (UI final)**: `scripts/ui/ui_theme.gd` construye un `Theme` en runtime desde `assets/ui/` y se aplica en `main.gd` (`get_window().theme`). Piezas de `create_ui_asset` (aprobadas por Hugo, 40 gen c/u): `panel_arcano.png` (9-slice de Panel/PanelContainer; su centro transparente se rellenó de violeta a mano), `boton_arcano.png` (estados por modulación; región útil `Rect2(76,68,152,63)`, el texto "Button" horneado se borró del PNG) y `barra_claridad.png` (ProgressBar; la barra fina vive en `Rect2(107,249,298,30)`). Tipografía: `arcana_umbra.ttf` (pixel font Bold de `create_font`, 20 gen), fuente por defecto del tema. **Si se regenera un asset de UI hay que recalcular sus regiones/rellenos** (los PNG commiteados están post-procesados). Cada pieza tiene fallback si falta el archivo.
 - **Transiciones y juice**: fundido de 0.35s entre escenas (overlay en `main.gd`), pop de cartas al tocarlas (`card_ui.gd`), sacudida al recibir daño y barra de claridad animada con flash (`combat_scene.gd`). Todo con `create_tween()`, sin AnimationPlayer.
+- **Trampas de UI ya pisadas** (no repetirlas):
+  - El tema **debe aplicarse por escena** en `_swap_to()`: la herencia de temas se corta en `Main`, que es un `Node` plano, así que `get_window().theme` por sí solo no viste nada.
+  - **Nada de overrides `StyleBoxFlat`** en botones (`add_theme_stylebox_override`): pisan el botón arcano del tema. Si un botón debe verse distinto, cambiar el tema.
+  - El `content_margin` de un `StyleBoxTexture` **no desplaza** a los hijos de un `PanelContainer`; hace falta un `MarginContainer` explícito (~60px, el ancho de la filigrana) o el texto se dibuja encima del marco.
+  - `Main` es un `Node`, así que las escenas `Control` mostraban el gris por defecto de Godot: hay un `ColorRect` de fondo global en `CanvasLayer` layer −10 (`_build_background`).
+  - Los lienzos de PixelLab dejan mucho aire alrededor del arte: `sprite_strip.gd` escala y centra por `get_used_rect()`, no por el tamaño del frame, o los personajes salen diminutos y descentrados.
 - **Estilo fijado**: 64×64 px, paleta oscura mística (violeta/dorado), coherente con `icon.svg` (tarot/ocultismo/sombras). Vista "side", contorno "single color outline". Renderizar con `TEXTURE_FILTER_NEAREST` en la UI.
 - **Qué herramienta usar por tipo de asset** (plan Tier 1 activo, pero seguir siendo frugal):
   - Iconos, emblemas e ilustraciones estáticas (cartas): `create_map_object` básico — 1 generación.

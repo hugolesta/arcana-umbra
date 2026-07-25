@@ -19,11 +19,6 @@ const COLOR_GOLD := Color("c9a227")
 func _ready() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 
-	var background := ColorRect.new()
-	background.color = COLOR_BG
-	background.set_anchors_preset(Control.PRESET_FULL_RECT)
-	add_child(background)
-
 	var layout := VBoxContainer.new()
 	layout.set_anchors_preset(Control.PRESET_FULL_RECT)
 	layout.offset_left = 60
@@ -73,24 +68,11 @@ func _ready() -> void:
 
 
 func _make_button(text: String, on_pressed: Callable) -> Button:
+	# Sin overrides de estilo: el botón arcano del tema global (ui_theme.gd)
+	# es quien viste estos botones.
 	var button := Button.new()
 	button.text = text
 	button.custom_minimum_size.y = 64
 	button.add_theme_font_size_override("font_size", 24)
 	button.pressed.connect(on_pressed)
-
-	var style := StyleBoxFlat.new()
-	style.bg_color = COLOR_PANEL
-	style.border_color = COLOR_GOLD
-	style.set_border_width_all(2)
-	style.set_corner_radius_all(10)
-	button.add_theme_stylebox_override("normal", style)
-
-	var hover := style.duplicate()
-	hover.bg_color = COLOR_PANEL.lightened(0.15)
-	button.add_theme_stylebox_override("hover", hover)
-
-	var pressed_style := style.duplicate()
-	pressed_style.bg_color = COLOR_BG
-	button.add_theme_stylebox_override("pressed", pressed_style)
 	return button

@@ -69,7 +69,7 @@ func _build_ui() -> void:
 	if _card.icon:
 		var image := TextureRect.new()
 		image.texture = _card.icon
-		image.custom_minimum_size = Vector2(160, 240)
+		image.custom_minimum_size = Vector2(140, 210)
 		image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		image.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -84,16 +84,28 @@ func _build_ui() -> void:
 	card_label.add_theme_font_size_override("font_size", 22)
 	layout.add_child(card_label)
 
+	# El significado va dentro del panel arcano del tema (marco PixelLab).
+	var meaning_panel := PanelContainer.new()
+	meaning_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	meaning_panel.custom_minimum_size.y = 260
+	layout.add_child(meaning_panel)
+
+	# MarginContainer explícito: el content_margin del StyleBoxTexture no
+	# desplaza a los hijos de un PanelContainer con scroll dentro.
+	var meaning_margin := MarginContainer.new()
+	# 60px: la filigrana del marco arcano ocupa ~56px por lado.
+	for side in ["left", "right", "top", "bottom"]:
+		meaning_margin.add_theme_constant_override("margin_" + side, 60)
+	meaning_panel.add_child(meaning_margin)
+
 	var meaning_scroll := ScrollContainer.new()
-	meaning_scroll.custom_minimum_size.y = 200
-	meaning_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	layout.add_child(meaning_scroll)
+	meaning_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	meaning_margin.add_child(meaning_scroll)
 
 	var meaning := Label.new()
 	meaning.text = _card.reversed_meaning if _reversed else _card.upright_meaning
 	meaning.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	meaning.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	meaning.custom_minimum_size.x = 620
 	meaning_scroll.add_child(meaning)
 
 	var question_label := Label.new()

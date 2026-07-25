@@ -97,15 +97,14 @@ func _build_ui() -> void:
 	layout.add_child(_intent_label)
 
 	# Hueco para la Sombra: animación de personaje o imagen estática (setup()).
+	# Expande para ocupar el espacio libre entre la cabecera y la zona del
+	# jugador, en vez de dejar un vacío muerto en el centro de la pantalla.
 	_enemy_slot = CenterContainer.new()
 	_enemy_slot.custom_minimum_size = Vector2(256, 256)
+	_enemy_slot.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	layout.add_child(_enemy_slot)
 
 	layout.add_child(HSeparator.new())
-
-	var spacer := Control.new()
-	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	layout.add_child(spacer)
 
 	# Zona del jugador: sprite del Viajero a la izquierda, stats a la derecha.
 	var player_row := HBoxContainer.new()
@@ -137,7 +136,7 @@ func _build_ui() -> void:
 	stats.add_child(_energy_label)
 
 	var hand_scroll := ScrollContainer.new()
-	hand_scroll.custom_minimum_size.y = 240
+	hand_scroll.custom_minimum_size.y = 250
 	hand_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
 	hand_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	layout.add_child(hand_scroll)

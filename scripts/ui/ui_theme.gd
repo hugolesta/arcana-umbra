@@ -13,6 +13,16 @@ const BAR_PATH := "res://assets/ui/barra_claridad.png"
 const COLOR_GOLD := Color("c9a227")
 const COLOR_BG := Color("13173a")
 
+static var _cached: Theme
+
+
+## El tema se aplica POR ESCENA en main.gd (_swap_to): la cadena de herencia
+## de temas se rompe en nodos que no son Control/Window, y Main es un Node.
+static func get_cached() -> Theme:
+	if _cached == null:
+		_cached = build()
+	return _cached
+
 
 static func build() -> Theme:
 	var theme := Theme.new()
@@ -39,8 +49,11 @@ static func build() -> Theme:
 		theme.set_color("font_hover_color", "Button", Color(1.0, 0.9, 0.5))
 
 	if ResourceLoader.exists(PANEL_PATH):
-		theme.set_stylebox("panel", "Panel", _nine_slice(PANEL_PATH, 56))
-		theme.set_stylebox("panel", "PanelContainer", _nine_slice(PANEL_PATH, 56))
+		# content_margin generoso: el marco es ornamentado y el contenido
+		# debe quedar DENTRO del filigrana, no encima.
+		theme.set_stylebox("panel", "Panel", _nine_slice(PANEL_PATH, 56, Rect2(), 46))
+		theme.set_stylebox("panel", "PanelContainer", _nine_slice(PANEL_PATH, 56, Rect2(), 46))
+		theme.set_stylebox("panel", "AcceptDialog", _nine_slice(PANEL_PATH, 56, Rect2(), 46))
 
 	if ResourceLoader.exists(BAR_PATH):
 		# El asset trae dos piezas; la barra fina vive en esta región del PNG.
@@ -55,11 +68,12 @@ static func build() -> Theme:
 	return theme
 
 
-static func _nine_slice(path: String, margin: int, region := Rect2()) -> StyleBoxTexture:
+static func _nine_slice(path: String, margin: int, region := Rect2(),
+		content_margin: float = -1.0) -> StyleBoxTexture:
 	var style := StyleBoxTexture.new()
 	style.texture = load(path)
 	if region.size != Vector2.ZERO:
 		style.region_rect = region
 	style.set_texture_margin_all(margin)
-	style.set_content_margin_all(margin * 0.55)
+	style.set_content_margin_all(content_margin if content_margin >= 0.0 else margin * 0.55)
 	return style

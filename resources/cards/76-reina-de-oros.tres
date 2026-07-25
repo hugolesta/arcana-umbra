@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 10
+amount = 11
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Reina de Oros"
 suit = 3
 card_type = 1
 cost = 3
-base_value = 10
+base_value = 11
 description = "Materia, dinero y estabilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "La Reina de Oros es la carta de la abundancia práctica, la mujer (o persona) que ha construido un mundo próspero y lo cuida con sabiduría. Combina la riqueza material con la generosidad, la practicidad con la belleza, y la independencia con la capacidad de nutrir a otros. En la vida real, puede representar a alguien en tu entorno que es próspero, práctico y generoso, que sabe cómo manejar recursos con sabiduría. O puede señalar que es momento de conectar con esa energía de abundancia práctica en ti mismo. En el amor, indica una relación cálida y estable donde hay espacio para la comodidad y el disfrute material compartido. En el trabajo, señala la capacidad de gestionar recursos con inteligencia, la habilidad para crear ambientes de trabajo que nutren y la facilidad para los negocios y las finanzas. En dinero, la Reina de Oros es una de las mejores cartas: indica prosperidad ganada, buenas inversiones y la capacidad de disfrutar la abundancia sin culpa. En crecimiento personal, te invita a cultivar tu relación con el mundo material. ¿Qué hacer cuando te sale? Cuida tu entorno. Invierte en tu bienestar. La prosperidad se nutre con atención y gratitud."
 reversed_meaning = "Al reverso, la Reina de Oros indica desequilibrio entre trabajo y vida personal o descuido de uno mismo. En el amor, priorizar lo material sobre lo emocional. En el trabajo, agotamiento por cuidar de todos menos de uno mismo. ¿Qué hacer? Primero llena tu propia copa. Solo desde la abundancia propia puedes dar abundancia a otros."
-possible_plays = "Por 3 de energía: otorga 10 de escudo."
+possible_plays = "Por 3 de energía: otorga 11 de escudo."

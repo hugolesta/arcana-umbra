@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 8
+amount = 9
 target = "self"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 8
+amount = 9
 target = "self"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "La Muerte"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 8
+base_value = 9
 description = "Transformación y fin"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Escorpio"
 planet = "Plutón"
 upright_meaning = "La Muerte es la carta más malinterpretada del tarot. No predice una muerte física; representa el fin de un ciclo, la transformación radical y el comienzo de algo nuevo. No puede haber renacimiento sin dejar ir lo viejo. En la vida real, esta carta aparece cuando una etapa de tu vida está terminando definitivamente: una relación, un trabajo, una forma de pensar, una identidad que ya no te sirve. Puede doler, pero es necesario. En el amor, puede indicar el fin de una relación que ya no tenía futuro, abriendo espacio para algo mejor. En el trabajo, señala cambios radicales de carrera, el cierre de proyectos o etapas laborales que llegaron a su fin. En dinero, puede indicar el fin de una situación financiera (para bien o para mal) y la necesidad de replantear el enfoque. En crecimiento personal, es una de las cartas más poderosas: las transformaciones profundas son siempre precedidas por la muerte de algo viejo. ¿Qué hacer cuando te sale? Acepta el final. No te aferres a lo que ya terminó. Haz el duelo que necesitas, pero confía en que lo que viene después vale la pena. La transformación requiere valentía."
 reversed_meaning = "Al reverso, La Muerte indica resistencia al cambio, incapacidad de soltar el pasado o transiciones que se prolongan dolorosamente. En el amor, relaciones que deberían terminar pero se prolongan. En el trabajo, aferrarse a métodos obsoletos. ¿Qué hacer? Lo que resistes persiste. Cuando sueltas lo que ya murió, creas espacio para lo que quiere nacer."
-possible_plays = "Por 2 de energía: restaura 8 de claridad y otorga 8 de escudo."
+possible_plays = "Por 2 de energía: restaura 9 de claridad y otorga 9 de escudo."

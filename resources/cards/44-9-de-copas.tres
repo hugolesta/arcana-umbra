@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 7
+amount = 8
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "9 de Copas"
 suit = 1
 card_type = 2
 cost = 2
-base_value = 7
+base_value = 8
 description = "Emociones e intuición"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Nueve de Copas es conocido como la carta del deseo cumplido. Muestra a una figura satisfecha, sentada con los brazos cruzados y nueve copas brillantes detrás de ella: todo está como quería. Es la carta de la gratitud, la satisfacción y la felicidad material y emocional. En la vida real, esta carta aparece cuando estás en un período de genuina satisfacción, cuando lo que pediste llegó, o cuando hay motivos concretos para sentirte agradecido y contento. En el amor, indica felicidad en la vida afectiva, satisfacción emocional y relaciones que te llenan. En el trabajo, señala el logro de metas laborales, la satisfacción con los resultados y el reconocimiento de que el esfuerzo valió la pena. En dinero, indica comodidad financiera y la capacidad de disfrutar lo que tienes. En crecimiento personal, esta carta es una invitación a reconocer cuánto tienes y a no subestimarlo por siempre querer más. ¿Qué hacer cuando te sale? Siéntate con tu satisfacción un momento. No la apresures. Reconoce lo que lograste. La gratitud genuina es una de las actitudes más transformadoras que existen."
 reversed_meaning = "Al reverso, el 9 de Copas indica deseos que no se materializan o satisfacción superficial que no llena. En el amor, relaciones que se ven bien por fuera pero están vacías. En el trabajo, éxito material sin satisfacción personal. ¿Qué hacer? La verdadera satisfacción viene de alinearte con tus valores, no con tus deseos superficiales."
-possible_plays = "Por 2 de energía: restaura 7 de claridad."
+possible_plays = "Por 2 de energía: restaura 8 de claridad."

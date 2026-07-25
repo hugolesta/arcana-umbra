@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 10
+amount = 11
 target = "enemy"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 10
+amount = 11
 target = "enemy"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "El Juicio"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 10
+base_value = 11
 description = "Renacimiento y juicio"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Escorpio"
 planet = "Plutón"
 upright_meaning = "El Juicio es la carta del despertar, la llamada y la segunda oportunidad. Representa ese momento en que escuchas algo (una voz interior, una oportunidad, una revelación) que te llama a levantarte y ser una versión más verdadera de ti mismo. Es un llamado a la acción profunda, no superficial. En la vida real, esta carta aparece cuando estás siendo llamado a dejar atrás el pasado y abrazar una nueva versión de ti mismo. Puede ser el cierre de un ciclo largo, la reconciliación con algo del pasado, o la claridad absoluta sobre cuál es tu propósito. En el amor, puede indicar una reconciliación genuina con alguien del pasado, o el inicio de una relación basada en una versión más madura de ti. En el trabajo, señala el reconocimiento de tus contribuciones y una llamada a roles de mayor impacto o propósito. En dinero, indica que es momento de revisar decisiones financieras pasadas y tomar nuevos caminos con más sabiduría. En crecimiento personal, El Juicio es transformador: invita a perdonar, a liberarte del pasado y a abrazar tu potencial real. ¿Qué hacer cuando te sale? Escucha el llamado. No ignores lo que ya sabes que debes hacer. Es hora de levantarte."
 reversed_meaning = "Al reverso, El Juicio indica autojuicio severo, incapacidad de escuchar el llamado interior o resistencia a un despertar necesario. En el amor, no perdonarse errores pasados. En el trabajo, dudar de la propia vocación. ¿Qué hacer? Date permiso de empezar de nuevo. El pasado no define tu futuro a menos que tú lo decidas así."
-possible_plays = "Por 2 de energía: inflige 10 de daño a la Sombra y aplica 10 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: inflige 11 de daño a la Sombra y aplica 11 de disonancia a la Sombra."

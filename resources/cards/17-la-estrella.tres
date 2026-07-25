@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 9
+amount = 10
 target = "enemy"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 9
+amount = 10
 target = "self"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "La Estrella"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 9
+base_value = 10
 description = "Esperanza e inspiración"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Acuario"
 planet = "Urano"
 upright_meaning = "La Estrella es la carta de la esperanza, la renovación y la fe en el futuro. Después de las tormentas (La Torre, La Muerte), La Estrella aparece para recordarnos que siempre hay luz al final del túnel. Es el alivio profundo, la calma que llega cuando lo peor ya pasó. En la vida real, esta carta aparece en momentos de recuperación y sanación, cuando sientes que las cosas están mejorando o que hay razones para seguir adelante. Es el optimismo genuino, no el falso. En el amor, indica un período de paz, conexión profunda y apertura emocional. Si estabas herido, estás sanando. Si buscas pareja, las condiciones son favorables. En el trabajo, señala inspiración, nuevas ideas que fluyen con facilidad y proyectos que tienen futuro prometedor. En dinero, indica mejora gradual y estabilidad que se recupera. No es riqueza instantánea, sino la sensación de que el piso vuelve a estar firme. En crecimiento personal, La Estrella invita a confiar en el proceso y en ti mismo. ¿Qué hacer cuando te sale? Permite que la esperanza entre. Deja de anticipar lo peor. Cuídate con amor. Este es un buen momento para soñar en grande y creer que es posible."
 reversed_meaning = "Al reverso, La Estrella indica pérdida de esperanza, desilusión o dificultad para conectar con la fe en el futuro. En el amor, dudas sobre el futuro de una relación. En el trabajo, falta de inspiración. En dinero, pesimismo que impide ver oportunidades. ¿Qué hacer? La oscuridad no dura para siempre. Busca aunque sea una pequeña acción que puedas tomar hoy para acercarte a lo que deseas."
-possible_plays = "Por 2 de energía: inflige 9 de daño a la Sombra y otorga 9 de escudo."
+possible_plays = "Por 2 de energía: inflige 10 de daño a la Sombra y otorga 10 de escudo."

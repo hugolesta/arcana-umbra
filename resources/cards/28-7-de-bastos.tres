@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 4
+amount = 5
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "7 de Bastos"
 suit = 2
 card_type = 2
 cost = 2
-base_value = 4
+base_value = 5
 description = "Acción, pasión y voluntad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Siete de Bastos es la carta de la defensa de lo propio, la resistencia ante la presión y la valentía de mantenerse firme cuando todos parecen estar en contra. Una figura defiende su posición desde lo alto contra varios oponentes. Está en minoría pero en posición de ventaja. En la vida real, esta carta aparece cuando sientes que debes defender tus ideas, tu posición o tus valores contra la oposición o la crítica de otros. Puede ser agotador, pero la posición vale la pena defender. En el amor, puede indicar que debes defender la relación de influencias externas o que hay que trabajar para mantener lo que tienes. En el trabajo, señala la necesidad de defender tus ideas ante un equipo o jefatura escéptica, o de competir con determinación para mantener tu lugar. En dinero, invita a proteger lo que has acumulado de gastos innecesarios o riesgos externos. En crecimiento personal, esta carta te recuerda que tienes más fortaleza de lo que crees cuando defiendes algo en lo que realmente crees. ¿Qué hacer cuando te sale? Mantente firme. No cedas solo por la presión. Si tu posición es correcta, defenderla vale el esfuerzo."
 reversed_meaning = "Al reverso, el 7 de Bastos indica rendirse ante la presión, ceder terreno sin necesidad o falta de confianza para defender lo propio. En el amor, ceder constantemente sin recibir nada a cambio. En el trabajo, perder posiciones ganadas por falta de firmeza. ¿Qué hacer? No todos los ataques merecen respuesta, pero sí es necesario saber cuándo plantar bandera."
-possible_plays = "Por 2 de energía: aplica 4 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: aplica 5 de disonancia a la Sombra."

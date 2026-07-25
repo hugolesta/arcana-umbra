@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 9
+amount = 10
 target = "enemy"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 9
+amount = 10
 target = "enemy"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "El Sol"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 9
+base_value = 10
 description = "Vitalidad y éxito"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Leo"
 planet = "Sol"
 upright_meaning = "El Sol es una de las cartas más positivas del tarot. Representa la alegría, el éxito, la claridad y la vitalidad. Es la carta de los buenos tiempos: cuando te sientes bien contigo mismo, cuando los proyectos funcionan, cuando la vida tiene sabor. En la vida real, esta carta aparece cuando estás en un período de genuina felicidad y prosperidad. Las cosas fluyen, la energía es alta, los resultados son buenos. Es también la carta de los niños, la creatividad espontánea y el juego. En el amor, es una excelente señal: felicidad compartida, amor que crece, relaciones que nutren y energizan. En el trabajo, indica éxito reconocido, proyectos que brillan, equipos con buena energía y logros que se celebran. En dinero, señala abundancia, buenas inversiones y estabilidad económica. En crecimiento personal, El Sol te recuerda quién eres en tu mejor versión: luminoso, confiado y lleno de vida. ¿Qué hacer cuando te sale? Disfrútalo. No lo analices de más. Celebra lo que está funcionando. Comparte tu alegría, porque en este momento eres una fuente de energía positiva para quienes te rodean. La vida se puede sentir bien, y ahora mismo se siente bien."
 reversed_meaning = "Al reverso, El Sol indica que la claridad y el éxito están presentes pero temporalmente nublados. Puede haber exceso de optimismo sin base real. En el amor, relaciones felices que pasan por nubes pasajeras. En el trabajo, éxito que se retrasa pero llega. ¿Qué hacer? El sol sigue ahí aunque no lo veas. Busca activamente lo que funciona en tu vida."
-possible_plays = "Por 2 de energía: inflige 9 de daño a la Sombra y aplica 9 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: inflige 10 de daño a la Sombra y aplica 10 de disonancia a la Sombra."

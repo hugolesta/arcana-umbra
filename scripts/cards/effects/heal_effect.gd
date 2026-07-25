@@ -3,8 +3,8 @@ extends CardEffect
 ## Restaura claridad (vida) al lanzador.
 
 
-func apply(caster: Combatant, _objective: Combatant) -> void:
-	caster.heal(amount)
+func apply(caster: Combatant, _objective: Combatant, override_amount: int = -1) -> void:
+	caster.heal(effective(override_amount))
 
 
 func describe() -> String:

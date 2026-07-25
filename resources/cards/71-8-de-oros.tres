@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 8
+amount = 9
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "8 de Oros"
 suit = 3
 card_type = 1
 cost = 2
-base_value = 8
+base_value = 9
 description = "Materia, dinero y estabilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Ocho de Oros es la carta del artesano dedicado, el aprendiz que perfecciona su oficio y la energía de la práctica enfocada que produce excelencia. Una figura trabaja concentradamente en sus oros: hay diligencia, hay amor por el trabajo bien hecho, hay el placer de mejorar cada día. En la vida real, esta carta aparece cuando estás en un período de aprendizaje intenso, cuando dedicar tiempo y energía al perfeccionamiento de una habilidad es la prioridad, o cuando el trabajo minucioso y constante produce resultados de calidad. En el amor, puede indicar que la relación requiere trabajo constante y atento, que la inversión de tiempo y presencia es lo que la hace crecer. En el trabajo, es una carta excelente para quienes se están desarrollando profesionalmente: indica progreso real a través del esfuerzo sostenido. También es señal de que las habilidades que tienes están siendo valoradas. En dinero, indica que el trabajo duro y la especialización traen retorno económico real. En crecimiento personal, el Ocho de Oros celebra la maestría que se construye paso a paso. ¿Qué hacer cuando te sale? Practica. Mejora. No busques atajos. La excelencia se construye con la repetición consciente y el amor por el oficio."
 reversed_meaning = "Al reverso, el 8 de Oros indica trabajo sin calidad, perfeccionismo que paraliza o falta de dedicación. En el amor, falta de esfuerzo para mantener viva la relación. En el trabajo, hacer las cosas por cumplir y no por vocación. ¿Qué hacer? Si no puedes hacer el trabajo con orgullo, es momento de preguntarte si es el trabajo correcto."
-possible_plays = "Por 2 de energía: otorga 8 de escudo."
+possible_plays = "Por 2 de energía: otorga 9 de escudo."

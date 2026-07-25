@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 4
+amount = 6
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "8 de Bastos"
 suit = 2
 card_type = 2
 cost = 2
-base_value = 4
+base_value = 6
 description = "Acción, pasión y voluntad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Ocho de Bastos es la carta de la velocidad, la acción rápida y las cosas que finalmente se ponen en movimiento. Muestra ocho bastones volando en el aire, todos en la misma dirección: todo va rápido y todo avanza. Es la carta de los resultados que llegan cuando dejaste de esperar. En la vida real, esta carta aparece cuando después de un período de espera o lentitud, las cosas se aceleran. Mensajes que llegan, proyectos que avanzan, viajes que se concretan, respuestas que finalmente aparecen. En el amor, puede indicar el inicio de una relación que avanza rápidamente, mensajes de alguien que te interesa, o noticias románticas. En el trabajo, señala proyectos que avanzan con velocidad, comunicaciones importantes y la posibilidad de viajes de negocios o nuevas oportunidades que llegan de pronto. En dinero, indica movimiento rápido de recursos: puede ser bueno si estás bien parado, o estresante si no tienes control. En crecimiento personal, invita a aprovechar el impulso cuando todo está en movimiento. ¿Qué hacer cuando te sale? Actúa rápido. El momento es ahora. No lo pienses demasiado: la velocidad es tu aliada en este momento."
 reversed_meaning = "Al reverso, el 8 de Bastos indica retrasos, comunicaciones confusas o energía frenética sin dirección. En el amor, mensajes mal interpretados. En el trabajo, proyectos frenados por burocracia. ¿Qué hacer? Verifica que tu comunicación sea clara. Muchos retrasos se evitan con un mensaje bien escrito."
-possible_plays = "Por 2 de energía: aplica 4 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: aplica 6 de disonancia a la Sombra."

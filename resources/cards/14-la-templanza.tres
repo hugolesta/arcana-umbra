@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 8
+amount = 9
 target = "enemy"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 8
+amount = 9
 target = "enemy"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "La Templanza"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 8
+base_value = 9
 description = "Moderación y propósito"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Sagitario"
 planet = "Júpiter"
 upright_meaning = "La Templanza es la carta del equilibrio, la paciencia y la moderación. Representa la capacidad de mezclar opuestos con sabiduría: trabajo y descanso, emoción y razón, dar y recibir. No es tibieza; es la maestría de encontrar el punto medio justo. En la vida real, esta carta aparece cuando necesitas calma en medio del caos, cuando estás integrando partes distintas de tu vida, o cuando el camino requiere paciencia y no prisa. También señala un período de sanación y reequilibrio. En el amor, indica una relación armoniosa, con buena comunicación y respeto mutuo. Si hubo conflicto, está llegando la reconciliación. En el trabajo, señala colaboración efectiva, proyectos que avanzan de manera constante y sostenida, y la capacidad de manejar el estrés con madurez. En dinero, aconseja un manejo equilibrado de los recursos: ni derrochar ni obsesionarse con el ahorro. En crecimiento personal, invita a integrar las distintas partes de ti mismo con compasión. ¿Qué hacer cuando te sale? Baja la velocidad. No fuerces resultados. Deja que las cosas se integren a su tiempo. La paciencia ahora produce resultados mucho más sólidos que la urgencia."
 reversed_meaning = "Al reverso, La Templanza indica desbalance, excesos o falta de paciencia. Puede haber conflictos internos sin resolver o adicciones. En el amor, extremos emocionales o relaciones caóticas. En el trabajo, impulsividad. En dinero, excesos de gasto. ¿Qué hacer? Busca el punto medio. No tienes que elegir entre los extremos: hay una tercera opción que integra lo mejor de ambos."
-possible_plays = "Por 2 de energía: inflige 8 de daño a la Sombra y aplica 8 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: inflige 9 de daño a la Sombra y aplica 9 de disonancia a la Sombra."

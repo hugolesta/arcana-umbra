@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 5
+amount = 6
 target = "enemy"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 5
+amount = 6
 target = "enemy"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "El Mago"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 5
+base_value = 6
 description = "Comunicación y habilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Géminis"
 planet = "Mercurio"
 upright_meaning = "El Mago es la carta de la acción consciente y el poder personal. Significa que tienes todo lo que necesitas para lograr lo que quieres: talento, herramientas, energía y voluntad. No te falta nada, solo hay que ponerse en marcha. En la vida real, El Mago aparece cuando estás en un momento de capacidad máxima, cuando puedes hacer que las cosas sucedan con tu propio esfuerzo y habilidad. No es magia en el sentido sobrenatural, es la magia de saber lo que quieres y actuar con determinación. En el amor, indica que tienes el poder de crear la relación que deseas; si estás buscando pareja, es buen momento para ser proactivo. En el trabajo, señala talento reconocido, buenas negociaciones y la capacidad de convencer a otros. Es un momento ideal para presentar ideas o lanzar proyectos. En dinero, sugiere que puedes multiplicar tus recursos si actúas con inteligencia. En crecimiento personal, te recuerda que no eres víctima de las circunstancias: tú creas tu realidad. ¿Qué hacer cuando te sale? Deja de esperar a que las cosas pasen solas. Define con claridad lo que quieres y da pasos concretos. Usa tus habilidades sin subestimarlas. Este es tu momento."
 reversed_meaning = "Al reverso, El Mago indica que el talento existe pero no se está usando bien — puede haber manipulación, engaño o bloqueo creativo. Alguien a tu alrededor podría estar siendo deshonesto, o tú mismo podrías estar saboteando tus propias capacidades. En el amor, puede señalar a alguien que no es lo que parece. En el trabajo, indica oportunidades desperdiciadas o habilidades subutilizadas. En dinero, advierte contra estafas o malas decisiones. ¿Qué hacer? Revisa tus motivaciones. Asegúrate de que estás usando tu poder con integridad."
-possible_plays = "Por 2 de energía: inflige 5 de daño a la Sombra y aplica 5 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: inflige 6 de daño a la Sombra y aplica 6 de disonancia a la Sombra."

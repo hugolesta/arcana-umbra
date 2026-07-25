@@ -37,7 +37,7 @@ static func intent_value(intent: Intent, base_attack: int) -> int:
 		Intent.ATACAR:
 			return base_attack
 		Intent.ATAQUE_FUERTE:
-			return int(round(base_attack * 1.75))
+			return int(round(base_attack * 1.6))
 		Intent.DEFENDER:
 			return base_attack
 		Intent.DRENAR:

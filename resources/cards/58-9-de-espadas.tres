@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 8
+amount = 10
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "9 de Espadas"
 suit = 0
 card_type = 0
 cost = 2
-base_value = 8
+base_value = 10
 description = "Mente, verdad y comunicación"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Nueve de Espadas es la carta de la ansiedad, las noches de insomnio y la mente que tortura con preocupaciones en la oscuridad. Una figura se sienta en la cama con la cara entre las manos y nueve espadas sobre su cabeza: el sufrimiento es real, aunque muchas veces sea amplificado por la mente. En la vida real, esta carta aparece cuando estás pasando por un período de mucha angustia mental, cuando los pensamientos negativos no te dejan dormir, o cuando el miedo y la preocupación dominan tu estado mental. En el amor, puede indicar ansiedad sobre la relación, miedo al abandono o pensamientos negativos que distorsionan la realidad de la situación. En el trabajo, señala estrés laboral intenso, miedo al fracaso o la parálisis producida por la preocupación excesiva. En dinero, puede indicar angustia financiera que no te deja pensar con claridad. En crecimiento personal, esta carta es una llamada urgente al autocuidado mental. ¿Qué hacer cuando te sale? Busca ayuda profesional si el nivel de ansiedad es alto. Habla con alguien de confianza. Los problemas siempre parecen más grandes en la oscuridad; la luz los pone en perspectiva."
 reversed_meaning = "Al reverso, el 9 de Espadas indica que los peores miedos no se materializan o inicio de recuperación mental. En el amor, miedos sobre la relación que resultan infundados. En el trabajo, el catastrofismo que se disuelve con acción concreta. ¿Qué hacer? Habla con alguien. La ansiedad vive de la soledad y el silencio."
-possible_plays = "Por 2 de energía: inflige 8 de daño a la Sombra."
+possible_plays = "Por 2 de energía: inflige 10 de daño a la Sombra."

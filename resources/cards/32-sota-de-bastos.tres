@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 5
+amount = 7
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Sota de Bastos"
 suit = 2
 card_type = 2
 cost = 3
-base_value = 5
+base_value = 7
 description = "Acción, pasión y voluntad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "La Sota de Bastos es la carta del mensajero entusiasta, el aprendiz apasionado y el espíritu aventurero que todavía no tiene experiencia pero tiene todo el fuego del mundo. Representa la energía joven, la curiosidad insaciable y el deseo de explorar sin miedo. En la vida real, esta carta puede representar a una persona joven y llena de energía en tu vida, o puede reflejar una actitud: el entusiasmo de un principiante ante algo nuevo. También puede anunciar noticias relacionadas con proyectos creativos o aventuras. En el amor, puede indicar una atracción nueva y emocionante, o alguien que trae energía fresca y espontánea a tu vida. En el trabajo, señala el inicio de algo nuevo con mucho entusiasmo pero poca experiencia: necesitas aprender antes de correr. En dinero, aconseja entusiasmo moderado: las ideas son buenas pero necesitan estructura. En crecimiento personal, te invita a recuperar esa curiosidad de principiante que hace que el aprendizaje sea divertido. ¿Qué hacer cuando te sale? Deja que el entusiasmo te lleve al primer paso, pero pon los pies en la tierra para los siguientes. El fuego inicial es valioso; no lo desperdicies."
 reversed_meaning = "Al reverso, la Sota de Bastos indica impulsividad sin dirección, energía descontrolada o noticias que se retrasan. En el amor, atracción intensa pero sin profundidad. En el trabajo, buenas ideas sin seguimiento. ¿Qué hacer? El entusiasmo sin disciplina es una llama que se apaga sola. Elige una cosa y termínala antes de empezar la siguiente."
-possible_plays = "Por 3 de energía: aplica 5 de disonancia a la Sombra."
+possible_plays = "Por 3 de energía: aplica 7 de disonancia a la Sombra."

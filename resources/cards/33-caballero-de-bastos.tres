@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 6
+amount = 8
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Caballero de Bastos"
 suit = 2
 card_type = 2
 cost = 3
-base_value = 6
+base_value = 8
 description = "Acción, pasión y voluntad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Caballero de Bastos es la carta de la acción impulsiva, la energía desbordante y el espíritu aventurero que actúa primero y piensa después. No hay nadie más apasionado ni más impaciente que él. Va a toda velocidad hacia lo que quiere, y a veces eso es exactamente lo que se necesita. En la vida real, esta carta puede representar a alguien en tu entorno que es carismático, apasionado y un poco impredecible. O puede señalar que en este momento debes actuar con valentía y sin dudar demasiado. En el amor, puede indicar una relación apasionada e intensa, pero también inestable. Hay mucho fuego, pero no siempre hay dirección. En el trabajo, señala un período de mucha actividad, ideas que fluyen rápido y la necesidad de canalizar esa energía antes de que se disperse. En dinero, aconseja cautela: la impulsividad puede llevar a gastos innecesarios o inversiones apresuradas. En crecimiento personal, te invita a aprovechar esa energía sin dejarte llevar por la impulsividad. ¿Qué hacer cuando te sale? Actúa, pero con un mínimo de planificación. El entusiasmo que tienes ahora es un regalo; úsalo con intención."
 reversed_meaning = "Al reverso, el Caballero de Bastos indica impulsividad peligrosa, proyectos abandonados a mitad de camino o conflictos causados por precipitación. En el amor, relaciones intensas que se enfrían igual de rápido. En el trabajo, cambios de dirección constantes. ¿Qué hacer? Velocidad sin dirección es solo ruido. Reduce la marcha y verifica el rumbo."
-possible_plays = "Por 3 de energía: aplica 6 de disonancia a la Sombra."
+possible_plays = "Por 3 de energía: aplica 8 de disonancia a la Sombra."

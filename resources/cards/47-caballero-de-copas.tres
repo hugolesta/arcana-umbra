@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 9
+amount = 10
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Caballero de Copas"
 suit = 1
 card_type = 2
 cost = 3
-base_value = 9
+base_value = 10
 description = "Emociones e intuición"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Caballero de Copas es la carta del romántico, el soñador que actúa desde el corazón y lleva sus emociones como estandarte. No avanza con furia sino con gracia: su energía es suave, artística y profundamente sensible. En la vida real, puede representar a alguien que entra a tu vida con una propuesta romántica o emocional, o puede señalar que es momento de actuar desde los sentimientos en lugar de solo desde la lógica. En el amor, es una carta muy positiva: puede indicar la llegada de alguien romántico y encantador, una propuesta amorosa, o la renovación del romance en una relación existente. En el trabajo, señala proyectos creativos que avanzan con gracia, propuestas que llegan con buena energía y la importancia de la intuición en las decisiones laborales. En dinero, aconseja que no te dejes llevar solo por las emociones en temas financieros, aunque la intuición también cuenta. En crecimiento personal, invita a actuar desde la autenticidad emocional. ¿Qué hacer cuando te sale? Permite que tus emociones guíen la acción. No todo tiene que pasar primero por la cabeza. A veces el corazón sabe el camino."
 reversed_meaning = "Al reverso, el Caballero de Copas indica seducción engañosa o promesas que no se cumplen. En el amor, mentiras románticas o personas que idealizan sin comprometerse. En el trabajo, promesas laborales que no se materializan. ¿Qué hacer? Escucha las acciones, no solo las palabras."
-possible_plays = "Por 3 de energía: restaura 9 de claridad."
+possible_plays = "Por 3 de energía: restaura 10 de claridad."

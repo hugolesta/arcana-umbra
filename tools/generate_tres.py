@@ -51,21 +51,23 @@ def gd_string(text: str) -> str:
 
 
 def gameplay(card: dict) -> dict:
+    """Curvas balanceadas contra la IA de intenciones (ver tools/sim_balance.gd:
+    la simulación headless valida bandas de win-rate por arquetipo)."""
     suit, rank = card["suit"], card["rank"]
     if suit == "ESPADAS":
         return {"type": "ATAQUE", "cost": 1 + (rank - 1) // 5,
-                "value": 4 + rank // 2, "effects": [("damage", "enemy")]}
+                "value": 6 + rank // 2, "effects": [("damage", "enemy")]}
     if suit == "BASTOS":
         return {"type": "HABILIDAD", "cost": 1 + (rank - 1) // 5,
-                "value": 2 + rank // 3, "effects": [("disonancia", "enemy")]}
+                "value": 2 + rank // 2, "effects": [("disonancia", "enemy")]}
     if suit == "COPAS":
         return {"type": "HABILIDAD", "cost": 1 + (rank - 1) // 5,
-                "value": 3 + rank // 2, "effects": [("heal", "self")]}
+                "value": 4 + rank // 2, "effects": [("heal", "self")]}
     if suit == "OROS":
         return {"type": "DEFENSA", "cost": 1 + (rank - 1) // 5,
-                "value": 4 + rank // 2, "effects": [("shield", "self")]}
+                "value": 5 + rank // 2, "effects": [("shield", "self")]}
     element = card["element"] if card["element"] in MAJOR_COMBOS else "Aire"
-    return {"type": "INTEGRACION", "cost": 2, "value": 5 + rank // 4,
+    return {"type": "INTEGRACION", "cost": 2, "value": 6 + rank // 4,
             "effects": MAJOR_COMBOS[element]}
 
 

@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 7
+amount = 8
 target = "enemy"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 7
+amount = 8
 target = "self"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "La Justicia"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 7
+base_value = 8
 description = "Equilibrio y verdad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Libra"
 planet = "Venus"
 upright_meaning = "La Justicia es la carta de la verdad, el equilibrio y las consecuencias. Representa que las cosas terminan donde deben terminar: los actos tienen consecuencias, las decisiones tienen resultados, y el universo tiende hacia el equilibrio a largo plazo. No es venganza; es ecuanimidad. En la vida real, esta carta aparece cuando una situación está siendo juzgada o evaluada, cuando esperas una resolución, o cuando debes tomar una decisión con impacto significativo. También puede indicar que algo que hiciste en el pasado está llegando a su resultado natural. En el amor, puede señalar la necesidad de honestidad y equidad en la relación. Si algo no está funcionando, hay que nombrarlo. En el trabajo, indica evaluaciones, contratos, negociaciones o situaciones legales. Actúa con integridad y los resultados serán justos. En dinero, aconseja revisión de cuentas, pago de deudas y contratos bien leídos. En crecimiento personal, invita a ser honesto contigo mismo: ¿estás actuando de acuerdo con tus valores? ¿Qué hacer cuando te sale? Actúa con honestidad. Asume las consecuencias de tus decisiones. Si hay un conflicto pendiente, enfréntalo con ecuanimidad. La verdad siempre es el mejor punto de partida."
 reversed_meaning = "Al reverso, La Justicia indica injusticia, desequilibrio o consecuencias de decisiones pasadas que llegan de manera dolorosa. En el amor, relaciones desequilibradas. En el trabajo, situaciones injustas. En dinero, deudas que cobran o problemas legales. ¿Qué hacer? Examina dónde no estás siendo completamente honesto. La injusticia externa a veces refleja una falta de integridad interna."
-possible_plays = "Por 2 de energía: inflige 7 de daño a la Sombra y otorga 7 de escudo."
+possible_plays = "Por 2 de energía: inflige 8 de daño a la Sombra y otorga 8 de escudo."

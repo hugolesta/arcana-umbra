@@ -14,6 +14,7 @@ enum State { INICIO_TURNO, JUGADOR_ACCIONA, RESOLVER_CARTA, TURNO_ENEMIGO, CHEQU
 
 const HAND_SIZE := 5
 const MAX_ENERGY := 3
+const INTEGRATED_BONUS := 1.25  # las cartas integradas rinden +25% en combate
 
 var state: State = State.INICIO_TURNO
 var player: Combatant
@@ -53,9 +54,11 @@ func play_card(card: CardData) -> void:
 	_enter_state(State.RESOLVER_CARTA)
 	energy -= card.cost
 	energy_changed.emit(energy, MAX_ENERGY)
+	var integrated := GameState.cartas_integradas.has(card.card_name)
 	for effect in card.effects:
 		var objective: Combatant = enemy if effect.target == "enemy" else player
-		effect.apply(player, objective)
+		var value := int(ceil(effect.amount * INTEGRATED_BONUS)) if integrated else effect.amount
+		effect.apply(player, objective, value)
 	hand.erase(card)
 	discard_pile.append(card)
 	card_played.emit(card)

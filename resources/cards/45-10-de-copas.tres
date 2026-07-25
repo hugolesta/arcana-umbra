@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 8
+amount = 9
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "10 de Copas"
 suit = 1
 card_type = 2
 cost = 2
-base_value = 8
+base_value = 9
 description = "Emociones e intuición"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Diez de Copas es la carta de la felicidad familiar, la paz duradera y el amor que se completa. Muestra a una familia bajo un arcoíris de copas: hay alegría colectiva, hay un hogar, hay amor que se sostiene en el tiempo. Es el cuadro del final feliz en el plano emocional. En la vida real, esta carta aparece cuando estás en armonía con las personas que más te importan, cuando el hogar se siente como refugio, o cuando alcanzas ese estado de plenitud emocional que va más allá del logro individual. En el amor, es una de las mejores cartas: indica una relación profundamente satisfactoria, una familia unida y la felicidad compartida. En el trabajo, señala buen ambiente, relaciones laborales que se sienten como comunidad y la sensación de contribuir a algo que importa. En dinero, indica estabilidad que permite la tranquilidad y el disfrute familiar. En crecimiento personal, el Diez de Copas representa la integración emocional: sentirte en paz con tu historia y con las personas de tu vida. ¿Qué hacer cuando te sale? Valora lo que tienes. Invierte en las relaciones que importan. La riqueza emocional es la más duradera de todas."
 reversed_meaning = "Al reverso, el 10 de Copas indica fractura en las relaciones familiares o felicidad que se busca en el lugar equivocado. En el amor, discordias familiares que afectan la pareja. En el trabajo, falta de alineación con el equipo. ¿Qué hacer? La familia perfecta no existe, pero las familias que se eligen y cuidan sí."
-possible_plays = "Por 2 de energía: restaura 8 de claridad."
+possible_plays = "Por 2 de energía: restaura 9 de claridad."

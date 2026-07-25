@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 10
+amount = 12
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Reina de Espadas"
 suit = 0
 card_type = 0
 cost = 3
-base_value = 10
+base_value = 12
 description = "Mente, verdad y comunicación"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "La Reina de Espadas es la carta de la claridad sin sentimentalismo, la inteligencia directa y la capacidad de ver la verdad sin distorsionarla con ilusiones. Es alguien que ha pasado por el dolor y aprendió a pensar con frialdad. No es crueldad; es lucidez. En la vida real, puede representar a alguien en tu entorno que es muy inteligente, directa y poco tolerante con la deshonestidad o el autoengaño. O puede señalar que necesitas adoptar esa perspectiva clara y objetiva en una situación específica. En el amor, puede indicar la necesidad de ser honesto sobre lo que funciona y lo que no, sin anestesia emocional. En el trabajo, señala la capacidad de tomar decisiones difíciles con objetividad, comunicar con claridad y no dejarse llevar por dinámicas emocionales en el ambiente laboral. En dinero, indica análisis financiero frío y preciso: los números importan más que las esperanzas. En crecimiento personal, la Reina de Espadas invita a la honestidad radical contigo mismo. ¿Qué hacer cuando te sale? Di la verdad, con compasión pero sin rodeos. La claridad que ofreces a otros y a ti mismo es un regalo, aunque no siempre sea cómoda."
 reversed_meaning = "Al reverso, la Reina de Espadas indica frialdad excesiva, amargura o uso de la inteligencia para manipular. En el amor, parejas distantes emocionalmente. En el trabajo, liderazgo despiadado. ¿Qué hacer? Usa tu claridad mental para construir, no para destruir o mantener distancia."
-possible_plays = "Por 3 de energía: inflige 10 de daño a la Sombra."
+possible_plays = "Por 3 de energía: inflige 12 de daño a la Sombra."

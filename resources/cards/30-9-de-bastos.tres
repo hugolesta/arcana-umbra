@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 5
+amount = 6
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "9 de Bastos"
 suit = 2
 card_type = 2
 cost = 2
-base_value = 5
+base_value = 6
 description = "Acción, pasión y voluntad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Nueve de Bastos es la carta del guerrero cansado que sigue de pie. Muestra a alguien que ha peleado muchas batallas y tiene las heridas para demostrarlo, pero no se ha rendido. Hay agotamiento, pero también hay resiliencia y determinación. En la vida real, esta carta aparece cuando llevas mucho tiempo luchando por algo y estás cansado, pero todavía no has llegado al final. La victoria está cerca, pero el camino ha sido duro. En el amor, puede indicar una relación que ha pasado por momentos difíciles y requiere seguir trabajando aunque el cansancio sea real. En el trabajo, señala que un proyecto o situación laboral ha sido muy demandante y que tal vez estás llegando al límite, pero también que estás más cerca del final de lo que crees. En dinero, puede indicar que has estado luchando financieramente por un tiempo y que necesitas mantener el esfuerzo un poco más. En crecimiento personal, esta carta reconoce tu tenacidad y te pide que no te rindas ahora que ya recorriste tanto camino. ¿Qué hacer cuando te sale? Descansa si puedes, pero no te rindas. Estás más cerca del final que del principio. La resiliencia que mostraste hasta aquí es tu mayor logro."
 reversed_meaning = "Al reverso, el 9 de Bastos indica agotamiento extremo, paranoia o incapacidad de confiar en los demás. En el amor, defensas tan altas que impiden la intimidad. En el trabajo, burnout. ¿Qué hacer? No toda batalla vale la pena. Aprende a elegir en qué vale la pena gastar tu energía."
-possible_plays = "Por 2 de energía: aplica 5 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: aplica 6 de disonancia a la Sombra."

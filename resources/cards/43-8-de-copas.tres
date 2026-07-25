@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 7
+amount = 8
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "8 de Copas"
 suit = 1
 card_type = 2
 cost = 2
-base_value = 7
+base_value = 8
 description = "Emociones e intuición"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Ocho de Copas es la carta del abandono consciente, de dejar atrás lo que ya no llena el alma. Una figura se aleja de ocho copas apiladas y sube hacia las montañas: hay algo completo allí, pero ya no es suficiente. Es la valentía de irse aunque todo esté bien en la superficie. En la vida real, esta carta aparece cuando sientes que algo (una relación, un trabajo, un estilo de vida) ya no te nutre emocionalmente, aunque desde afuera parezca estar bien. Es la señal de que es hora de buscar algo más profundo, más significativo. En el amor, puede indicar el fin de una relación que ya no tiene futuro emocional, aunque no haya un conflicto obvio. En el trabajo, señala la decisión de dejar un trabajo estable pero insatisfactorio en busca de algo más alineado con lo que realmente quieres. En dinero, puede indicar que priorices el bienestar emocional sobre la seguridad material. En crecimiento personal, es una carta valiente: irse cuando todo parece bien requiere mucho coraje. ¿Qué hacer cuando te sale? Sigue tu corazón aunque no tengas garantías. Lo que dejas puede ser cómodo, pero lo que buscas es más real."
 reversed_meaning = "Al reverso, el 8 de Copas indica incapacidad de alejarse de algo que ya no funciona o regreso a situaciones que deberían haberse abandonado. En el amor, quedarse en relaciones que ya terminaron emocionalmente. En el trabajo, no poder renunciar a algo que ya no da satisfacción. ¿Qué hacer? Algunos finales son el mejor comienzo que puedes tener."
-possible_plays = "Por 2 de energía: restaura 7 de claridad."
+possible_plays = "Por 2 de energía: restaura 8 de claridad."

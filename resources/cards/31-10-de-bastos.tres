@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 5
+amount = 7
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "10 de Bastos"
 suit = 2
 card_type = 2
 cost = 2
-base_value = 5
+base_value = 7
 description = "Acción, pasión y voluntad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Diez de Bastos es la carta de la carga excesiva, el exceso de responsabilidad y el agotamiento por cargar con demasiado. La figura dobla el lomo bajo el peso de diez bastones que apenas puede sostener. La pregunta no es si puedes aguantar; es si deberías. En la vida real, esta carta aparece cuando estás haciendo demasiado: demasiadas responsabilidades, demasiados compromisos, demasiada presión autoimpuesta. Puede que hayas asumido el trabajo de otros, o que no hayas aprendido a delegar. En el amor, puede indicar que estás cargando demasiado en la relación: dando más de lo que recibes, asumiendo más responsabilidades de las que te corresponden. En el trabajo, señala sobrecarga laboral, dificultad para delegar y el riesgo real del burnout. En dinero, puede indicar demasiadas obligaciones financieras simultáneas. En crecimiento personal, esta carta es un aviso importante: el heroísmo de aguantar todo solo no es virtud, es una trampa. ¿Qué hacer cuando te sale? Delega. Deja caer algunos bastones. No tienes que cargar con todo. Pide ayuda. La carga que sientes no tiene que ser permanente."
 reversed_meaning = "Al reverso, el 10 de Bastos indica cargas que finalmente se sueltan o colapso total por no haber pedido ayuda a tiempo. En el amor, relaciones donde uno carga con todo. En el trabajo, delegación que llega tarde pero llega. ¿Qué hacer? Soltar no es rendirse. Es reconocer que no puedes hacerlo todo solo."
-possible_plays = "Por 2 de energía: aplica 5 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: aplica 7 de disonancia a la Sombra."

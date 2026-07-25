@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 9
+amount = 10
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Sota de Oros"
 suit = 3
 card_type = 1
 cost = 3
-base_value = 9
+base_value = 10
 description = "Materia, dinero y estabilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "La Sota de Oros es la carta del estudiante diligente, el joven emprendedor que estudia el mundo con curiosidad y determinación. Es práctico, curioso y tiene los pies en la tierra: sueña con construir algo real y está dispuesto a aprender lo que haga falta para lograrlo. En la vida real, puede representar a una persona joven con mucho potencial en el ámbito práctico o financiero en tu entorno. O puede señalar que estás comenzando a estudiar o aprender algo nuevo con enfoque y dedicación. También puede anunciar noticias relacionadas con oportunidades de estudio, trabajo o dinero. En el amor, puede indicar que alguien nuevo y prometedor entra en tu vida, o que es momento de ser más práctico y menos idealista en las relaciones. En el trabajo, señala el inicio de una carrera prometedora, el aprendizaje de nuevas habilidades o el estudio de nuevas áreas. En dinero, indica el inicio de un proceso de construcción financiera. En crecimiento personal, invita a la disciplina del aprendizaje continuo. ¿Qué hacer cuando te sale? Estudia. Aprende. Construye habilidades concretas. El conocimiento aplicado es la base de la prosperidad real."
 reversed_meaning = "Al reverso, la Sota de Oros indica falta de enfoque, procrastinación o noticias financieras que se retrasan. En el amor, inmadurez en el manejo de la vida práctica. En el trabajo, falta de disciplina. ¿Qué hacer? Empieza por los hábitos pequeños. La disciplina no se construye de golpe."
-possible_plays = "Por 3 de energía: otorga 9 de escudo."
+possible_plays = "Por 3 de energía: otorga 10 de escudo."

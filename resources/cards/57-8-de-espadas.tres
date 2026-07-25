@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 8
+amount = 10
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "8 de Espadas"
 suit = 0
 card_type = 0
 cost = 2
-base_value = 8
+base_value = 10
 description = "Mente, verdad y comunicación"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Ocho de Espadas es la carta de la mente prisionera: la sensación de estar atrapado que en realidad es autoimpuesta. Una figura está vendada y rodeada de espadas, pero no está amarrada. Si se quitara la venda, vería que puede salir. En la vida real, esta carta aparece cuando te sientes atrapado en una situación de la que en realidad podrías salir si cambiaras tu perspectiva. Los límites son mayormente mentales. En el amor, puede indicar que te sientes atrapado en una relación por miedo, culpa o costumbre, aunque tengas más opciones de las que crees. En el trabajo, señala la sensación de no poder avanzar por restricciones que existen sobre todo en tu cabeza: miedo al fracaso, miedo al rechazo, miedo al cambio. En dinero, puede indicar que creencias limitantes sobre el dinero te impiden ver oportunidades reales. En crecimiento personal, el Ocho de Espadas es una poderosa invitación al trabajo mental. ¿Qué hacer cuando te sale? Cuestiona la narrativa que te dice que no puedes. Quítate la venda. Las espadas pueden estar en tu mente, no necesariamente en la realidad."
 reversed_meaning = "Al reverso, el 8 de Espadas indica el inicio de la liberación o el despertar de que las restricciones eran en parte autoimpuestas. En el amor, liberarse de una relación que ataba. En el trabajo, encontrar formas creativas de resolver situaciones bloqueadas. ¿Qué hacer? Empieza quitándote la venda. Después, uno a uno, los nudos."
-possible_plays = "Por 2 de energía: inflige 8 de daño a la Sombra."
+possible_plays = "Por 2 de energía: inflige 10 de daño a la Sombra."

@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 8
+amount = 9
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "9 de Oros"
 suit = 3
 card_type = 1
 cost = 2
-base_value = 8
+base_value = 9
 description = "Materia, dinero y estabilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Nueve de Oros es la carta de la independencia ganada, la abundancia disfrutada en paz y la satisfacción de haberse construido a uno mismo. Una figura elegante camina por un jardín próspero con un halcón en la mano: hay riqueza, hay refinamiento y hay la profunda satisfacción de haberlo logrado con el propio esfuerzo. En la vida real, esta carta aparece cuando estás disfrutando de los frutos de tu trabajo, cuando has alcanzado un nivel de independencia material y emocional que te da libertad real, o cuando reconoces lo que lograste construir por ti mismo. En el amor, puede indicar que eres completo en ti mismo y que puedes elegir pareja desde la abundancia, no desde la necesidad. En el trabajo, señala el éxito de un proyecto personal o negocio propio, y el reconocimiento de la propia capacidad. En dinero, es una excelente carta: indica prosperidad, independencia financiera y la capacidad de disfrutar la vida material sin culpa. En crecimiento personal, el Nueve de Oros celebra la autosuficiencia elegante. ¿Qué hacer cuando te sale? Disfruta lo que construiste. Date crédito. La prosperidad que tienes es el resultado de tu trabajo. Celébrala."
 reversed_meaning = "Al reverso, el 9 de Oros indica dependencia financiera de otros o prosperidad que no es completamente propia. En el amor, relaciones donde la independencia económica está comprometida. En el trabajo, éxito que depende demasiado de factores externos. ¿Qué hacer? Construye algo que sea completamente tuyo."
-possible_plays = "Por 2 de energía: otorga 8 de escudo."
+possible_plays = "Por 2 de energía: otorga 9 de escudo."

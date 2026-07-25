@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 9
+amount = 10
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "10 de Oros"
 suit = 3
 card_type = 1
 cost = 2
-base_value = 9
+base_value = 10
 description = "Materia, dinero y estabilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Diez de Oros es la carta de la riqueza duradera, el legado familiar y la prosperidad que trasciende a una sola persona. Muestra a varias generaciones juntas, con símbolos de abundancia por todas partes: hay herencia, hay estabilidad construida para durar, hay el logro colectivo que va más allá del individuo. En la vida real, esta carta aparece cuando estás construyendo algo que durará en el tiempo: una empresa familiar, una casa propia, una tradición familiar, o simplemente una base económica sólida que beneficia a quienes amas. En el amor, indica una relación madura, estable y con potencial de largo plazo: hay planes concretos de futuro juntos. En el trabajo, señala el logro de la seguridad profesional duradera, proyectos que dejan huella y el reconocimiento de una carrera construida con integridad. En dinero, es una de las mejores cartas: indica prosperidad establecida, herencias, inversiones que maduran y la estabilidad financiera a largo plazo. En crecimiento personal, el Diez de Oros invita a pensar en legado. ¿Qué hacer cuando te sale? Construye para el largo plazo. Piensa en qué quieres dejar a quienes vienen después. La verdadera abundancia se comparte."
 reversed_meaning = "Al reverso, el 10 de Oros indica conflictos familiares sobre herencias o pérdida del legado. En el amor, conflictos familiares que afectan la relación. En el trabajo, problemas con empresas familiares. ¿Qué hacer? Las tradiciones que valen la pena se preservan. Las que ya no sirven, se transforman."
-possible_plays = "Por 2 de energía: otorga 9 de escudo."
+possible_plays = "Por 2 de energía: otorga 10 de escudo."

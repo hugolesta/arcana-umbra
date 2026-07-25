@@ -28,6 +28,10 @@ Todo cambio debe dejar el proyecto en este estado (Godot está en `/Applications
 
 # 5. Smoke test de la tienda (compra, descuento de integrada, quitar carta, topes)
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeShop.tscn
+
+# 6. Simulación de balance: 200 combates/arquetipo, semilla fija, bandas de win-rate
+#    (Menor >=85%, Élite >=50%, Jefe 30-95% con mazo inicial)
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SimBalance.tscn
 ```
 
 Nota: los scripts `-s` no pueden tocar código que use el autoload `GameState` (no compila fuera del juego); para tests que lo necesiten, usar una escena como `SmokeCombat.tscn`.
@@ -75,6 +79,7 @@ Patrones a respetar:
 - **Disonancia** = debuff sobre la Sombra: cada punto resta 1 a su próximo ataque, luego se disipa a la mitad.
 - **Escudo** = absorbe daño; el del jugador se resetea al terminar su turno.
 - **Integración** = tipo de carta de los Arcanos Mayores y meta-progresión (`cartas_integradas`): las cartas se integran al reflexionar sobre ellas en eventos.
+- **Balance**: las curvas por palo viven SOLO en `gameplay()` de `tools/generate_tres.py` (Espadas `6+rank//2` daño, Oros `5+rank//2` escudo, Copas `4+rank//2` curación, Bastos `2+rank//2` disonancia, Mayores `6+num//4` doble efecto; coste `1+(rank-1)//5`). Las cartas **integradas rinden +25%** en combate (`INTEGRATED_BONUS` en `combat_manager.gd`, aplicado sin mutar los `.tres`). Cualquier cambio de números u orden de patrones de IA debe pasar `SimBalance.tscn` — el balance se verifica, no se opina.
 - **Intenciones de las Sombras** (`shadow_ai.gd`): cada arquetipo cicla un patrón telegrafiado antes del turno del jugador — Atacar, Golpe Fuerte (×1.75), Defender (escudo), Acechar (el próximo golpe hace ×1.5) y Drenar (daña la mitad y se cura). Menor = [atacar, atacar, defender] con 25% de caos; Élite = [atacar, acechar, golpe fuerte, defender]; Jefe = [acechar, golpe fuerte, atacar, drenar], ambos deterministas. La disonancia resta al golpe y la descripción de la intención se re-emite en vivo al cambiar. El escudo de la Sombra expira al comenzar su propia acción.
 - **Esencia** = moneda del run: `ESENCIA_COMBATE/ELITE/JEFE` al vencer Sombras; se gasta en la tienda; se resetea con cada run (viaja en `progress.save`).
 - **Tienda ("El Mercader de Umbrales")**: en un nodo TIENDA (`shop_scene.gd`) se ofrecen 3 cartas al azar (menores 25, mayores 50, **mitad de precio si está integrada** — el journaling paga) y quitar una carta del mazo por 30 (una por visita, nunca por debajo de `MIN_DECK_SIZE`).
@@ -102,4 +107,4 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
 
 ## Fuera de alcance en esta fase (no implementar sin que Hugo lo pida)
 
-Balance de cartas, UI final, export móvil, monetización.
+UI final, export móvil, monetización.

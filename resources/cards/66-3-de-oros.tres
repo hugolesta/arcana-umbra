@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 5
+amount = 6
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "3 de Oros"
 suit = 3
 card_type = 1
 cost = 1
-base_value = 5
+base_value = 6
 description = "Materia, dinero y estabilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Tres de Oros es la carta del trabajo en equipo, el artesano que recibe retroalimentación de expertos y la colaboración que produce resultados de calidad. Muestra a un trabajador en una iglesia, siendo evaluado por dos personas: hay trabajo serio, hay reconocimiento y hay aprendizaje colaborativo. En la vida real, esta carta aparece cuando estás trabajando en un proyecto colectivo con resultados visibles, cuando buscas o recibes mentoría, o cuando tu trabajo es reconocido y valorado por otros. En el amor, puede indicar que la relación requiere trabajo activo de ambos para construir algo duradero, y que ese esfuerzo conjunto está funcionando. En el trabajo, es una carta excelente: señala el reconocimiento de tus habilidades, la colaboración efectiva y el tipo de trabajo que construye una carrera sólida. En dinero, indica que el trabajo bien hecho trae retorno económico. La calidad del esfuerzo se refleja en los resultados. En crecimiento personal, esta carta te invita a valorar el aprendizaje colaborativo y a tomar en serio el proceso de mejora continua. ¿Qué hacer cuando te sale? Trabaja con cuidado. Busca retroalimentación. La excelencia no se construye sola."
 reversed_meaning = "Al reverso, el 3 de Oros indica falta de colaboración, trabajo en equipo disfuncional o habilidades que no se reconocen. En el amor, falta de trabajo en equipo en la relación. En el trabajo, conflictos de equipo. ¿Qué hacer? El trabajo bien hecho habla por sí solo, pero a veces también hay que saber presentarlo."
-possible_plays = "Por 1 de energía: otorga 5 de escudo."
+possible_plays = "Por 1 de energía: otorga 6 de escudo."

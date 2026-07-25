@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 6
+amount = 7
 target = "self"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 6
+amount = 7
 target = "self"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "El Hierofante"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 6
+base_value = 7
 description = "Tradición y valores"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Tauro"
 planet = "Venus"
 upright_meaning = "El Hierofante es la carta de las tradiciones, las instituciones y la sabiduría compartida. Representa el aprendizaje a través de caminos establecidos: la educación formal, la religión, el matrimonio, los rituales culturales. No significa que debas seguir ciegamente las normas, sino que hay valor en lo que ha funcionado para muchas personas durante mucho tiempo. En la vida real, esta carta aparece cuando estás buscando orientación, cuando necesitas un mentor, o cuando el camino convencional es la mejor opción para ti en este momento. También puede señalar que estás dentro de una institución (escuela, empresa, iglesia) que te da estructura. En el amor, puede indicar una relación que busca formalización, compromiso serio o matrimonio. También puede apuntar a valores compartidos como base de la pareja. En el trabajo, sugiere aprender de expertos, respetar la jerarquía y seguir procedimientos establecidos. En dinero, aconseja métodos probados y seguros sobre especulaciones arriesgadas. En crecimiento personal, invita a explorar tradiciones espirituales o filosóficas que te den sentido. ¿Qué hacer cuando te sale? Busca un mentor. Considera la posibilidad de que el camino probado sea el correcto. No rechaces la sabiduría colectiva solo por parecer convencional."
 reversed_meaning = "Al reverso, El Hierofante señala ruptura con las tradiciones, cuestionamiento de dogmas o rebeldía contra sistemas establecidos. Puede indicar hipocresía institucional. En el amor, relaciones que rompen con lo convencional. En el trabajo, conflictos con reglas o jerarquías. ¿Qué hacer? Está bien desafiar el sistema, pero hazlo con sabiduría y no solo por rebeldía."
-possible_plays = "Por 2 de energía: otorga 6 de escudo y restaura 6 de claridad."
+possible_plays = "Por 2 de energía: otorga 7 de escudo y restaura 7 de claridad."

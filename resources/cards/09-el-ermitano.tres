@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 7
+amount = 8
 target = "self"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 7
+amount = 8
 target = "self"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "El Ermitaño"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 7
+base_value = 8
 description = "Análisis y discernimiento"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Virgo"
 planet = "Mercurio"
 upright_meaning = "El Ermitaño es la carta de la soledad elegida, la reflexión profunda y la búsqueda interior. No es aislamiento por rechazo, sino el retiro consciente de quien necesita encontrarse a sí mismo. Representa el tiempo que nos damos para pensar, para sanar, para entender quiénes somos más allá del ruido del mundo. En la vida real, esta carta aparece cuando necesitas un período de pausa, cuando las respuestas no están afuera sino dentro, o cuando es momento de evaluar tu camino antes de seguir. En el amor, puede indicar que necesitas tiempo solo para conocerte antes de buscar pareja, o que la relación actual necesita más espacio y profundidad. En el trabajo, señala un período de estudio, especialización o reflexión sobre la dirección de tu carrera. No es el momento de grandes movimientos sino de consolidar lo aprendido. En dinero, aconseja prudencia y análisis cuidadoso antes de tomar decisiones financieras. En crecimiento personal, es una carta transformadora: el viaje hacia adentro siempre cambia para bien. ¿Qué hacer cuando te sale? Busca el silencio. Desconéctate del ruido externo. Lee, medita, escribe. Las respuestas que buscas afuera hace tiempo que te esperan adentro."
 reversed_meaning = "Al reverso, El Ermitaño indica aislamiento excesivo, soledad no elegida o rechazo a buscar guía cuando se necesita. En el amor, distancia emocional o incapacidad de conectar. En el trabajo, resistencia a pedir ayuda. ¿Qué hacer? No tienes que tenerlo todo resuelto solo. Buscar ayuda es un acto de inteligencia, no de debilidad."
-possible_plays = "Por 2 de energía: otorga 7 de escudo y restaura 7 de claridad."
+possible_plays = "Por 2 de energía: otorga 8 de escudo y restaura 8 de claridad."

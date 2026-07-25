@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 11
+amount = 12
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Rey de Oros"
 suit = 3
 card_type = 1
 cost = 3
-base_value = 11
+base_value = 12
 description = "Materia, dinero y estabilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Rey de Oros es la carta de la riqueza consolidada, el liderazgo empresarial maduro y la prosperidad que se construyó con paciencia, sabiduría y trabajo sostenido. Es el hombre de negocios exitoso, el patriarca próspero, la persona que convierte el trabajo en legado. En la vida real, puede representar a un mentor financiero, un empresario exitoso o una figura de estabilidad y abundancia en tu vida. O puede señalar que es momento de que tú asumas ese rol de liderazgo práctico y construyas con visión de largo plazo. En el amor, indica una relación madura y estable, con alguien que ofrece seguridad genuina: no solo económica sino también emocional y práctica. En el trabajo, señala el logro del éxito empresarial o profesional, la capacidad de liderar equipos con resultados concretos y la visión estratégica para construir algo que dure. En dinero, es la carta más poderosa de prosperidad: indica riqueza consolidada, inversiones exitosas y la sabiduría financiera que viene de años de experiencia. En crecimiento personal, el Rey de Oros invita a convertirte en el amo de tu mundo material. ¿Qué hacer cuando te sale? Lidera con sabiduría práctica. Construye para el futuro. Tu experiencia y tu solidez son el cimiento de la prosperidad que mereces."
 reversed_meaning = "Al reverso, el Rey de Oros indica materialismo extremo, corrupción o uso del dinero para controlar. En el amor, usar los recursos económicos como herramienta de poder. En el trabajo, liderazgo corrupto o ambición desmedida. ¿Qué hacer? El dinero amplifica lo que ya eres. Examina los valores que guían tus decisiones financieras."
-possible_plays = "Por 3 de energía: otorga 11 de escudo."
+possible_plays = "Por 3 de energía: otorga 12 de escudo."

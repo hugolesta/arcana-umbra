@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 10
+amount = 11
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Caballero de Oros"
 suit = 3
 card_type = 1
 cost = 3
-base_value = 10
+base_value = 11
 description = "Materia, dinero y estabilidad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Caballero de Oros es la carta del trabajador incansable, el que avanza despacio pero con una determinación que no conoce el descanso innecesario. No es el más rápido ni el más brillante, pero es el más constante, y al final llega. En la vida real, puede representar a alguien confiable, trabajador y metódico en tu entorno. O puede señalar que en este momento la clave es la persistencia y la metodología, no la velocidad ni el brillo. En el amor, puede indicar una relación que avanza lentamente pero de forma sólida, con alguien que demuestra su compromiso con hechos más que con palabras. En el trabajo, señala el avance constante de proyectos a través del esfuerzo sistemático y la disciplina. No hay atajos, pero tampoco hay sorpresas desagradables. En dinero, indica gestión financiera prudente, el ahorro constante y las inversiones que crecen de manera gradual. En crecimiento personal, el Caballero de Oros celebra la virtud de la constancia. ¿Qué hacer cuando te sale? Mantén el ritmo. No te rindas porque el progreso sea lento. Lo que se construye despacio y con cuidado dura más que lo que se construye de prisa."
 reversed_meaning = "Al reverso, el Caballero de Oros indica estancamiento, rutina paralizante o perfeccionismo que impide avanzar. En el amor, relaciones que no evolucionan por exceso de comodidad. En el trabajo, resistencia a los cambios necesarios. ¿Qué hacer? La estabilidad que no crece se convierte en estancamiento."
-possible_plays = "Por 3 de energía: otorga 10 de escudo."
+possible_plays = "Por 3 de energía: otorga 11 de escudo."

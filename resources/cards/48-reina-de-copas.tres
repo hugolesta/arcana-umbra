@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 9
+amount = 10
 target = "self"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "Reina de Copas"
 suit = 1
 card_type = 2
 cost = 3
-base_value = 9
+base_value = 10
 description = "Emociones e intuición"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "La Reina de Copas es la carta de la inteligencia emocional profunda, la empatía sin límites y la capacidad de contener a otros desde un lugar de amor genuino. Es la persona que escucha de verdad, que siente lo que otros sienten y que crea espacios de seguridad emocional. En la vida real, puede representar a alguien así en tu entorno: una persona profundamente empática, intuitiva y compasiva. O puede señalar que necesitas conectar con esa parte de ti mismo. En el amor, indica una relación profundamente emocional y nutritiva, con alguien que sabe escuchar y que ama sin condiciones. En el trabajo, señala liderazgo empático, capacidad de crear equipos emocionalmente seguros y la importancia de la inteligencia emocional en el ambiente laboral. En dinero, confía en la intuición para tomar decisiones financieras, aunque también equilibra con datos concretos. En crecimiento personal, la Reina de Copas te invita a desarrollar la empatía hacia ti mismo antes que hacia los demás. ¿Qué hacer cuando te sale? Escucha más. Juzga menos. La conexión emocional profunda que ofreces a otros también la mereces tú."
 reversed_meaning = "Al reverso, la Reina de Copas indica manipulación emocional, dependencia o inseguridad emocional que se expresa de manera controladora. En el amor, relaciones codependientes. En el trabajo, incapacidad de separar sentimientos de decisiones profesionales. ¿Qué hacer? Los límites emocionales son amor propio, no frialdad. Cuida tu energía emocional."
-possible_plays = "Por 3 de energía: restaura 9 de claridad."
+possible_plays = "Por 3 de energía: restaura 10 de claridad."

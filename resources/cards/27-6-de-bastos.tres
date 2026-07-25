@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 4
+amount = 5
 target = "enemy"
 
 [resource]
@@ -16,7 +16,7 @@ card_name = "6 de Bastos"
 suit = 2
 card_type = 2
 cost = 2
-base_value = 4
+base_value = 5
 description = "Acción, pasión y voluntad"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
@@ -25,4 +25,4 @@ zodiac_sign = ""
 planet = ""
 upright_meaning = "El Seis de Bastos es la carta del triunfo público, el reconocimiento y la victoria merecida. La figura central regresa victoriosa, aclamada por quienes la rodean. Es el momento en que el esfuerzo se ve, se reconoce y se celebra. En la vida real, esta carta aparece cuando recibes reconocimiento por tu trabajo, cuando un proyecto tiene éxito visible, o cuando logras algo que otros también pueden ver y celebrar. No es solo la victoria privada; es la victoria que se comparte. En el amor, puede indicar una relación que se hace pública y es bien recibida, o el orgullo de estar con alguien que admiras. En el trabajo, señala ascensos, reconocimientos, premios o el éxito de una presentación importante. Tu trabajo está siendo visto y valorado. En dinero, indica éxito financiero que se consolida y es reconocible. En crecimiento personal, esta carta te recuerda que mereces el reconocimiento que recibes. No lo minimices. ¿Qué hacer cuando te sale? Acepta el reconocimiento con gracia. No te achiques. Celebra sin arrogancia pero sin falsa modestia. Este es tu momento y te lo ganaste."
 reversed_meaning = "Al reverso, el 6 de Bastos indica fracaso temporal, falta de reconocimiento o ego inflado que precede a una caída. En el amor, falta de apoyo de la pareja. En el trabajo, logros que no se reconocen. ¿Qué hacer? El verdadero éxito no necesita audiencia."
-possible_plays = "Por 2 de energía: aplica 4 de disonancia a la Sombra."
+possible_plays = "Por 2 de energía: aplica 5 de disonancia a la Sombra."

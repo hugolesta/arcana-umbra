@@ -8,12 +8,12 @@
 
 [sub_resource type="Resource" id="sub_eff_0"]
 script = ExtResource("eff_0")
-amount = 5
+amount = 6
 target = "self"
 
 [sub_resource type="Resource" id="sub_eff_1"]
 script = ExtResource("eff_1")
-amount = 5
+amount = 6
 target = "self"
 
 [resource]
@@ -22,7 +22,7 @@ card_name = "La Emperatriz"
 suit = 4
 card_type = 3
 cost = 2
-base_value = 5
+base_value = 6
 description = "Amor y abundancia"
 icon = ExtResource("3_tex")
 effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
@@ -31,4 +31,4 @@ zodiac_sign = "Tauro"
 planet = "Venus"
 upright_meaning = "La Emperatriz es la carta de la abundancia, la creatividad y el cuidado. Representa la fertilidad en todos los sentidos: puede ser un embarazo literal, pero también el nacimiento de un proyecto, una nueva etapa de prosperidad o un período de florecimiento personal. Es la energía de nutrir, crear y hacer crecer. En la vida real, esta carta aparece cuando las cosas están madurando, cuando el trabajo duro comienza a dar frutos, o cuando entras en un período de bienestar y plenitud. En el amor, es una de las mejores cartas: indica relaciones cálidas, afecto genuino, posibilidad de embarazo o de un amor que se profundiza. En el trabajo, señala proyectos creativos que prosperan, reconocimiento y buen ambiente. En dinero, indica abundancia y estabilidad financiera, especialmente si has invertido tiempo y esfuerzo. En crecimiento personal, te invita a conectar con tu cuerpo, con la naturaleza y con tu capacidad de crear belleza. ¿Qué hacer cuando te sale? Permítete recibir. Cuídate. Nutre tus proyectos con paciencia. Este no es momento de apresurarse sino de dejar que las cosas florezcan a su propio ritmo. Rodéate de belleza y disfruta el proceso."
 reversed_meaning = "Al reverso, La Emperatriz puede señalar bloqueos creativos, dependencia emocional o exceso de control sobre otros. En el amor, hay sofocamiento o exceso de celos y posesividad. En el trabajo, los proyectos creativos están estancados. En dinero, puede indicar gastos excesivos o falta de abundancia. ¿Qué hacer? Reconecta con tu creatividad. Suelta el control y permite que las cosas fluyan naturalmente sin forzarlas."
-possible_plays = "Por 2 de energía: otorga 5 de escudo y restaura 5 de claridad."
+possible_plays = "Por 2 de energía: otorga 6 de escudo y restaura 6 de claridad."

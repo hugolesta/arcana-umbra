@@ -8,6 +8,12 @@ const JOURNAL_PATH := "user://journal.save"
 const CARDS_DIR := "res://resources/cards"
 const EVENT_CLARIDAD_REWARD := 8
 
+# Esencia: moneda del run. Se gana venciendo Sombras, se gasta en la tienda.
+const ESENCIA_COMBATE := 12
+const ESENCIA_ELITE := 25
+const ESENCIA_JEFE := 50
+const MIN_DECK_SIZE := 5
+
 const STARTER_DECK_NAMES: Array[String] = [
 	"As de Espadas", "2 de Espadas", "3 de Espadas",
 	"As de Oros", "2 de Oros",
@@ -22,6 +28,7 @@ var cartas_integradas: Array[String] = []
 
 var player_max_claridad: int = 50
 var player_claridad: int = 50
+var esencia: int = 0
 
 var map_grid: Array = []  # Array de pisos; cada piso es Array[MapNode]
 var current_node_coord: Vector2i = Vector2i(-1, -1)
@@ -39,6 +46,7 @@ func _ready() -> void:
 
 func start_new_run() -> void:
 	player_claridad = player_max_claridad
+	esencia = 0
 	if mazo_permanente.is_empty():
 		_build_starter_deck()
 	map_grid = MapGenerator.new().generate_map()
@@ -70,6 +78,48 @@ func mark_visited(node: MapNode) -> void:
 
 func run_completed() -> bool:
 	return current_node_coord.x == map_grid.size() - 1
+
+
+func esencia_reward_for(node_type: MapNode.NodeType) -> int:
+	match node_type:
+		MapNode.NodeType.ELITE:
+			return ESENCIA_ELITE
+		MapNode.NodeType.JEFE_SOMBRA:
+			return ESENCIA_JEFE
+	return ESENCIA_COMBATE
+
+
+func add_esencia(amount: int) -> void:
+	esencia += amount
+	save_progress()
+
+
+func card_price(card: CardData) -> int:
+	var price := 50 if card.suit == CardData.Suit.ARCANO_MAYOR else 25
+	if cartas_integradas.has(card.card_name):
+		price /= 2  # la Integración abarata la carta: el journaling paga
+	return price
+
+
+func buy_card(card: CardData) -> bool:
+	var price := card_price(card)
+	if esencia < price:
+		return false
+	esencia -= price
+	mazo_permanente.append(card)
+	save_progress()
+	return true
+
+
+func remove_card(card: CardData, price: int) -> bool:
+	if esencia < price or mazo_permanente.size() <= MIN_DECK_SIZE:
+		return false
+	if not mazo_permanente.has(card):
+		return false
+	esencia -= price
+	mazo_permanente.erase(card)
+	save_progress()
+	return true
 
 
 func reflect_on_card(card: CardData, reversed: bool, question: String, text: String) -> void:
@@ -132,6 +182,7 @@ func save_progress() -> void:
 		"deck": deck_names,
 		"claridad": player_claridad,
 		"max_claridad": player_max_claridad,
+		"esencia": esencia,
 		"map": map_data,
 		"current_node": [current_node_coord.x, current_node_coord.y],
 	}
@@ -162,6 +213,7 @@ func load_progress() -> bool:
 		_build_starter_deck()
 	player_max_claridad = int(data.get("max_claridad", 50))
 	player_claridad = int(data.get("claridad", player_max_claridad))
+	esencia = int(data.get("esencia", 0))
 	map_grid.clear()
 	for floor_dicts in data.get("map", []):
 		var floor_nodes: Array = []

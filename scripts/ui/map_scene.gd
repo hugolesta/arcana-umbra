@@ -26,7 +26,8 @@ func _build_top_bar() -> void:
 	add_child(bar)
 
 	var claridad := Label.new()
-	claridad.text = "  Claridad: %d/%d" % [GameState.player_claridad, GameState.player_max_claridad]
+	claridad.text = "  Claridad: %d/%d · Esencia: %d" % [
+		GameState.player_claridad, GameState.player_max_claridad, GameState.esencia]
 	claridad.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bar.add_child(claridad)
 

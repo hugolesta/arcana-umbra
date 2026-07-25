@@ -7,6 +7,7 @@ const COMBAT_SCENE := "res://scenes/CombatScene.tscn"
 const DECK_SCENE := "res://scenes/DeckBuilderScene.tscn"
 const EVENT_SCENE := "res://scenes/EventScene.tscn"
 const JOURNAL_SCENE := "res://scenes/JournalScene.tscn"
+const SHOP_SCENE := "res://scenes/ShopScene.tscn"
 
 var _current: Node
 
@@ -53,9 +54,15 @@ func _on_map_node_selected(node: MapNode) -> void:
 		MapNode.NodeType.EVENTO:
 			_start_event(node)
 		MapNode.NodeType.TIENDA:
-			# Placeholder: la tienda llega en una fase posterior.
-			GameState.mark_visited(node)
-			show_map()
+			_start_shop(node)
+
+
+func _start_shop(node: MapNode) -> void:
+	var shop: Node = _swap_to(SHOP_SCENE)
+	shop.setup(node)
+	shop.finished.connect(func():
+		GameState.mark_visited(node)
+		show_map())
 
 
 func _start_event(node: MapNode) -> void:
@@ -74,6 +81,7 @@ func _start_combat(node: MapNode) -> void:
 
 func _on_combat_finished(victory: bool, node: MapNode) -> void:
 	if victory:
+		GameState.add_esencia(GameState.esencia_reward_for(node.node_type))
 		GameState.mark_visited(node)
 		if GameState.run_completed():
 			GameState.start_new_run()

@@ -25,6 +25,9 @@ Todo cambio debe dejar el proyecto en este estado (Godot está en `/Applications
 
 # 4. Smoke test de eventos/journaling (diario, persistencia, integración, claridad)
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeEvent.tscn
+
+# 5. Smoke test de la tienda (compra, descuento de integrada, quitar carta, topes)
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeShop.tscn
 ```
 
 Nota: los scripts `-s` no pueden tocar código que use el autoload `GameState` (no compila fuera del juego); para tests que lo necesiten, usar una escena como `SmokeCombat.tscn`.
@@ -70,6 +73,8 @@ Patrones a respetar:
 - **Disonancia** = debuff sobre la Sombra: cada punto resta 1 a su próximo ataque, luego se disipa a la mitad.
 - **Escudo** = absorbe daño; el del jugador se resetea al terminar su turno.
 - **Integración** = tipo de carta de los Arcanos Mayores y meta-progresión (`cartas_integradas`): las cartas se integran al reflexionar sobre ellas en eventos.
+- **Esencia** = moneda del run: `ESENCIA_COMBATE/ELITE/JEFE` al vencer Sombras; se gasta en la tienda; se resetea con cada run (viaja en `progress.save`).
+- **Tienda ("El Mercader de Umbrales")**: en un nodo TIENDA (`shop_scene.gd`) se ofrecen 3 cartas al azar (menores 25, mayores 50, **mitad de precio si está integrada** — el journaling paga) y quitar una carta del mazo por 30 (una por visita, nunca por debajo de `MIN_DECK_SIZE`).
 - **Eventos/journaling ("El Espejo del Viajero")**: en un nodo EVENTO se roba una carta del mazo propio (50% invertida), se muestra su significado real (derecho o reverso, datos de Kabbalah) y una pregunta introspectiva según su elemento (`event_scene.gd`). Escribir y guardar la reflexión da `+EVENT_CLARIDAD_REWARD` de claridad e integra la carta; saltar no da nada. El diario persiste **entre runs** en `user://journal.save` (separado de `progress.save`, que se resetea con cada run) y se consulta desde el botón "Diario" del título (`journal_scene.gd`).
 - Palos → efectos: Espadas=daño, Oros=escudo, Copas=curación, Bastos=disonancia, Arcanos Mayores=dos efectos según su elemento.
 
@@ -94,4 +99,4 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
 
 ## Fuera de alcance en esta fase (no implementar sin que Hugo lo pida)
 
-Tienda (hoy es un placeholder que marca el nodo y avanza), IA de enemigos, balance de cartas, UI final, export móvil, monetización.
+IA de enemigos, balance de cartas, UI final, export móvil, monetización.

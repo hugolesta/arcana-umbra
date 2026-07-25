@@ -80,5 +80,12 @@ func _initialize() -> void:
 	if missing_sprites == 0:
 		print("OK: 3 sprites de Sombras presentes en assets/sombras/")
 
+	# 5. El sprite del Viajero existe (assets/viajero/viajero.png).
+	if FileAccess.file_exists("res://assets/viajero/viajero.png"):
+		print("OK: sprite del Viajero presente en assets/viajero/")
+	else:
+		print("FALLO: falta res://assets/viajero/viajero.png")
+		failures += 1
+
 	print("RESULTADO: %s (%d fallos)" % ["PASA" if failures == 0 else "FALLA", failures])
 	quit(1 if failures > 0 else 0)

@@ -5,6 +5,7 @@ extends Control
 signal finished(victory: bool)
 
 const SPRITE_DIR := "res://assets/sombras"
+const VIAJERO_SPRITE := "res://assets/viajero/viajero.png"
 
 var manager: CombatManager
 
@@ -94,20 +95,39 @@ func _build_ui() -> void:
 	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	layout.add_child(spacer)
 
+	# Zona del jugador: sprite del Viajero a la izquierda, stats a la derecha.
+	var player_row := HBoxContainer.new()
+	player_row.add_theme_constant_override("separation", 12)
+	layout.add_child(player_row)
+
+	if ResourceLoader.exists(VIAJERO_SPRITE):
+		var viajero := TextureRect.new()
+		viajero.texture = load(VIAJERO_SPRITE)
+		viajero.custom_minimum_size = Vector2(128, 128)
+		viajero.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		viajero.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		viajero.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		player_row.add_child(viajero)
+
+	var stats := VBoxContainer.new()
+	stats.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	stats.alignment = BoxContainer.ALIGNMENT_CENTER
+	player_row.add_child(stats)
+
 	_claridad_label = Label.new()
-	layout.add_child(_claridad_label)
+	stats.add_child(_claridad_label)
 
 	_claridad_bar = ProgressBar.new()
 	_claridad_bar.custom_minimum_size.y = 24
 	_claridad_bar.show_percentage = false
-	layout.add_child(_claridad_bar)
+	stats.add_child(_claridad_bar)
 
 	_shield_label = Label.new()
 	_shield_label.text = "Escudo: 0"
-	layout.add_child(_shield_label)
+	stats.add_child(_shield_label)
 
 	_energy_label = Label.new()
-	layout.add_child(_energy_label)
+	stats.add_child(_energy_label)
 
 	var hand_scroll := ScrollContainer.new()
 	hand_scroll.custom_minimum_size.y = 240

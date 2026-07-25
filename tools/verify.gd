@@ -87,5 +87,52 @@ func _initialize() -> void:
 		print("FALLO: falta res://assets/viajero/viajero.png")
 		failures += 1
 
+	# 6. Los 22 Arcanos Mayores tienen pixel art y sus CardData lo usan de icono.
+	var missing_pixel := 0
+	var pixel_dir := DirAccess.open("res://assets/cartas_pixel")
+	var pixel_count := 0
+	if pixel_dir:
+		pixel_dir.list_dir_begin()
+		var pixel_file := pixel_dir.get_next()
+		while pixel_file != "":
+			if pixel_file.ends_with(".png"):
+				pixel_count += 1
+			pixel_file = pixel_dir.get_next()
+		pixel_dir.list_dir_end()
+	if pixel_count != 22:
+		print("FALLO: se esperaban 22 cartas pixel art, hay ", pixel_count)
+		failures += 1
+		missing_pixel += 1
+	# El icono de cada arcano mayor debe apuntar a cartas_pixel (lo fija generate_tres.py).
+	for card in _load_major_arcana():
+		if card.icon == null or not card.icon.resource_path.begins_with("res://assets/cartas_pixel/"):
+			print("FALLO: %s no usa pixel art de icono" % card.card_name)
+			failures += 1
+			missing_pixel += 1
+	if missing_pixel == 0:
+		print("OK: 22 Arcanos Mayores con pixel art en assets/cartas_pixel/")
+
+	# 7. El emblema de la pantalla de título existe (assets/ui/titulo_emblema.png).
+	if FileAccess.file_exists("res://assets/ui/titulo_emblema.png"):
+		print("OK: emblema del título presente en assets/ui/")
+	else:
+		print("FALLO: falta res://assets/ui/titulo_emblema.png")
+		failures += 1
+
 	print("RESULTADO: %s (%d fallos)" % ["PASA" if failures == 0 else "FALLA", failures])
 	quit(1 if failures > 0 else 0)
+
+
+func _load_major_arcana() -> Array:
+	var majors: Array = []
+	var dir := DirAccess.open("res://resources/cards")
+	dir.list_dir_begin()
+	var file_name := dir.get_next()
+	while file_name != "":
+		if file_name.ends_with(".tres"):
+			var card: CardData = load("res://resources/cards/" + file_name)
+			if card and card.suit == CardData.Suit.ARCANO_MAYOR:
+				majors.append(card)
+		file_name = dir.get_next()
+	dir.list_dir_end()
+	return majors

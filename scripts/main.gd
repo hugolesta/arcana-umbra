@@ -1,6 +1,7 @@
 extends Node
 ## Escena raíz: alterna entre mapa, combate y constructor de mazo.
 
+const TITLE_SCENE := "res://scenes/TitleScene.tscn"
 const MAP_SCENE := "res://scenes/MapScene.tscn"
 const COMBAT_SCENE := "res://scenes/CombatScene.tscn"
 const DECK_SCENE := "res://scenes/DeckBuilderScene.tscn"
@@ -9,7 +10,16 @@ var _current: Node
 
 
 func _ready() -> void:
-	show_map()
+	show_title()
+
+
+func show_title() -> void:
+	var title: Node = _swap_to(TITLE_SCENE)
+	title.continue_requested.connect(show_map)
+	title.new_run_requested.connect(func():
+		GameState.start_new_run()
+		show_map())
+	title.deck_requested.connect(show_deck_builder.bind(true))
 
 
 func show_map() -> void:
@@ -18,9 +28,9 @@ func show_map() -> void:
 	map.deck_requested.connect(show_deck_builder)
 
 
-func show_deck_builder() -> void:
+func show_deck_builder(from_title: bool = false) -> void:
 	var deck: Node = _swap_to(DECK_SCENE)
-	deck.back_requested.connect(show_map)
+	deck.back_requested.connect(show_title if from_title else show_map)
 
 
 func _on_map_node_selected(node: MapNode) -> void:

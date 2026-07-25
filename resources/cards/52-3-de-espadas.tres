@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/52-3-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 5
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "3 de Espadas"
+suit = 0
+card_type = 0
+cost = 1
+base_value = 5
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Tres de Espadas es la carta del dolor emocional, el corazón roto y las heridas que nos acompañan en la vida. Un corazón atravesado por tres espadas bajo una lluvia de tormenta: no hay forma de suavizarlo. Esta carta habla de tristeza real, traición, pérdida o decepción profunda. En la vida real, esta carta aparece cuando estás pasando por un período de dolor genuino: una traición, una ruptura, una pérdida, palabras que hirieron. No es el momento de minimizar; es el momento de reconocer el dolor. En el amor, puede indicar infidelidad, ruptura dolorosa o palabras que dañaron profundamente la relación. En el trabajo, puede señalar conflictos que lastiman, traiciones de colegas o decisiones que te afectan negativamente. En dinero, puede indicar pérdidas que duelen. En crecimiento personal, el Tres de Espadas nos recuerda que el dolor también es parte del camino, y que procesarlo honestamente es más sano que ignorarlo. ¿Qué hacer cuando te sale? Permite sentir el dolor. No lo suprimas. Busca apoyo. El corazón roto sana cuando se le da el tiempo y el cuidado que necesita."
+reversed_meaning = "Al reverso, el 3 de Espadas indica el inicio de la recuperación después de un dolor profundo, o dolor que se suprime en lugar de procesarse. En el amor, sanar después de una traición. En el trabajo, superar fracasos profesionales. ¿Qué hacer? Permite que duela. Solo lo que se siente completamente puede comenzar a sanar."
+possible_plays = "Por 1 de energía: inflige 5 de daño a la Sombra."

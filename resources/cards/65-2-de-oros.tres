@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/65-2-de-oros.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 5
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "2 de Oros"
+suit = 3
+card_type = 1
+cost = 1
+base_value = 5
+description = "Materia, dinero y estabilidad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Tierra"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Dos de Oros es la carta del equilibrio dinámico, de malabarear múltiples responsabilidades con gracia. Una figura hace malabares con dos oros mientras el mar agitado está al fondo: la vida tiene muchas demandas simultáneas y el desafío es mantener el equilibrio sin perder ninguna. En la vida real, esta carta aparece cuando estás manejando múltiples proyectos, responsabilidades o fuentes de ingreso al mismo tiempo. Puede ser estimulante o agotador, dependiendo de cómo lo gestiones. En el amor, puede indicar que estás dividiendo el tiempo entre la relación y otras responsabilidades, y que el equilibrio requiere atención consciente. En el trabajo, señala la gestión de múltiples proyectos, la adaptabilidad ante cambios y la capacidad de fluir con la incertidumbre. En dinero, indica fluctuaciones financieras que necesitan manejo cuidadoso: ingresa por un lado, sale por otro. En crecimiento personal, esta carta invita a desarrollar la flexibilidad y la capacidad de adaptación. ¿Qué hacer cuando te sale? Prioriza. No todo puede tener la misma urgencia. Gestiona con humor y flexibilidad: la rigidez ante el cambio rompe lo que la adaptabilidad podría doblar."
+reversed_meaning = "Al reverso, el 2 de Oros indica desbalance financiero, dificultad para manejar múltiples responsabilidades o caos en la gestión del dinero. En el amor, tensión por problemas económicos. En el trabajo, sobrecarga sin organización. ¿Qué hacer? Prioriza. No todo es urgente aunque todo parezca serlo."
+possible_plays = "Por 1 de energía: otorga 5 de escudo."

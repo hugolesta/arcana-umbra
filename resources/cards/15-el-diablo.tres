@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/15-el-diablo.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 8
+target = "self"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 8
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "El Diablo"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 8
+description = "Materia y atadura"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Tierra"
+zodiac_sign = "Capricornio"
+planet = "Saturno"
+upright_meaning = "El Diablo es la carta de las cadenas que tú mismo te pones. Representa las adicciones, los patrones autodestructivos, las relaciones tóxicas y las creencias limitantes que te mantienen atrapado. La imagen muestra dos figuras encadenadas a un demonio... pero las cadenas son flojas: podrían irse si quisieran. En la vida real, esta carta aparece cuando estás atrapado en algo que sabes que no te hace bien pero no puedes (o no quieres) soltar: una relación dañina, un trabajo que te asfixia, un vicio, la necesidad de aprobación. En el amor, puede señalar una relación basada en la dependencia, los celos o el control. Hay atracción, pero también toxicidad. En el trabajo, indica situaciones que te atrapan por miedo: trabajo que odias pero no renuncias, jefes que abusan pero tolerás. En dinero, puede señalar gastos compulsivos, deudas que crecen por hábitos o decisiones impulsivas. En crecimiento personal, es una llamada a la honestidad radical: ¿a qué estás atado y por qué? ¿Qué hacer cuando te sale? Reconoce la cadena. Nombra el patrón. El primer paso para liberarte es admitir que estás atrapado. La libertad es posible, pero requiere honestidad y acción."
+reversed_meaning = "Al reverso, El Diablo puede indicar liberación de ataduras, ruptura de cadenas o comienzo del proceso de desapego de lo que te controla. En el amor, salir de relaciones tóxicas. En el trabajo, liberarse de ambientes laborales abusivos. En dinero, empezar a tomar el control de deudas. ¿Qué hacer? El primer paso es reconocer la cadena. Ya estás haciéndolo."
+possible_plays = "Por 2 de energía: otorga 8 de escudo y restaura 8 de claridad."

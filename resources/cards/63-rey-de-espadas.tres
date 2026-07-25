@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/63-rey-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 11
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "Rey de Espadas"
+suit = 0
+card_type = 0
+cost = 3
+base_value = 11
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Rey de Espadas es la carta de la autoridad intelectual, el pensamiento estructurado y la capacidad de liderar con justicia y objetividad. Es el juez, el experto, el líder que toma decisiones difíciles basadas en principios y no en emociones. Su fuerza es la mente. En la vida real, puede representar a una figura de autoridad en tu vida: un jefe, un juez, un experto cuya opinión es importante. O puede señalar que es momento de que tú lideres con esa misma claridad y objetividad. En el amor, indica la necesidad de comunicación clara y honesta, y a veces la dificultad de alguien que prioriza la lógica sobre los sentimientos. En el trabajo, señala decisiones tomadas con objetividad, liderazgo basado en principios y la capacidad de comunicar expectativas con precisión. En dinero, indica análisis riguroso, contratos bien estructurados y decisiones basadas en datos. En crecimiento personal, el Rey de Espadas invita a desarrollar la claridad mental y la integridad intelectual. ¿Qué hacer cuando te sale? Lidera con justicia. Di lo que piensas con claridad y respeto. La mente afilada al servicio de la integridad es una combinación poderosa."
+reversed_meaning = "Al reverso, el Rey de Espadas indica tiranía intelectual, abuso de autoridad o uso del poder para manipular. En el amor, parejas que usan la lógica para invalidar sentimientos. En el trabajo, figuras de autoridad que abusan de su posición. ¿Qué hacer? El liderazgo intelectual verdadero escucha antes de hablar."
+possible_plays = "Por 3 de energía: inflige 11 de daño a la Sombra."

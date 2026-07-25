@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/34-reina-de-bastos.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "Reina de Bastos"
+suit = 2
+card_type = 2
+cost = 3
+base_value = 6
+description = "Acción, pasión y voluntad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Fuego"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "La Reina de Bastos es la carta de la mujer (o persona) que irradia confianza, carisma y energía creativa sin pedir permiso a nadie. Es independiente, apasionada y tiene una presencia magnética que atrae a los demás naturalmente. Sabe lo que quiere y tiene la energía para conseguirlo. En la vida real, puede representar a alguien así en tu entorno: una persona carismática, emprendedora y llena de vida. O puede reflejar una actitud que deberías adoptar. En el amor, indica una relación vibrante y apasionada, o la capacidad de atraer a otros desde la confianza en uno mismo, no desde la necesidad. En el trabajo, señala liderazgo carismático, proyectos creativos que prosperan y la capacidad de inspirar a otros con tu energía. En dinero, indica buenos instintos para los negocios y la capacidad de crear abundancia desde la confianza y la acción. En crecimiento personal, esta carta te invita a ser tú mismo sin pedir disculpas. ¿Qué hacer cuando te sale? Confía en tu energía. Deja que tu entusiasmo sea visible. No te hagas pequeño. Tienes más poder del que crees."
+reversed_meaning = "Al reverso, la Reina de Bastos indica temperamento explosivo, celos o inseguridad disfrazada de agresividad. En el amor, posesividad o conflictos por dominancia. En el trabajo, liderazgo autoritario. ¿Qué hacer? La confianza real no necesita demostración constante."
+possible_plays = "Por 3 de energía: aplica 6 de disonancia a la Sombra."

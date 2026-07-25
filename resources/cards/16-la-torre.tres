@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/16-la-torre.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 9
+target = "enemy"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 9
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "La Torre"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 9
+description = "Conflicto y ruptura"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Fuego"
+zodiac_sign = "Aries"
+planet = "Marte"
+upright_meaning = "La Torre es la carta del derrumbe repentino, la revelación que lo cambia todo y la destrucción de lo que estaba construido sobre bases falsas. Es dramática y puede ser difícil de recibir, pero su mensaje es claro: lo que cae debía caer. En la vida real, esta carta aparece cuando algo en tu vida se rompe de manera inesperada: una ruptura, un despido, una revelación que cambia todo. No es castigo; es limpieza. Lo que se derrumba es lo que ya no era real o sólido. En el amor, puede indicar una ruptura repentina o una revelación que cambia la dinámica de la relación. En el trabajo, señala cambios abruptos, pérdidas de trabajo o colapso de proyectos mal fundamentados. En dinero, puede indicar pérdidas inesperadas que obligan a reconstruir desde cero. En crecimiento personal, La Torre es dolorosa pero liberadora: rompe ilusiones y obliga a ver la realidad tal como es. ¿Qué hacer cuando te sale? No trates de salvar lo que ya se está cayendo. Permítete procesar el shock. Luego, con calma, empieza a construir sobre bases más honestas. Del caos puede surgir algo mucho más auténtico."
+reversed_meaning = "Al reverso, La Torre puede indicar que el colapso que se avecina está siendo evitado o retrasado, generando más presión. También puede señalar resistencia a aceptar una transformación necesaria. En el amor, tensiones que explotan en privado. En el trabajo, cambios bruscos que se procesan lentamente. ¿Qué hacer? No postergues el cambio que ya sabes que es necesario. A veces es mejor demoler lo que no funciona con tus propias manos."
+possible_plays = "Por 2 de energía: inflige 9 de daño a la Sombra y aplica 9 de disonancia a la Sombra."

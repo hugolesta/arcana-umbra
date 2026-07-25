@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/38-3-de-copas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 4
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "3 de Copas"
+suit = 1
+card_type = 2
+cost = 1
+base_value = 4
+description = "Emociones e intuición"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Agua"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Tres de Copas es la carta de la celebración con amigos, la alegría compartida y la comunidad que nos nutre. Tres figuras danzan juntas con copas en alto: hay abundancia, hay alegría, hay gratitud colectiva. En la vida real, esta carta aparece cuando hay motivos para celebrar con las personas que amas: una reunión con amigos, un logro grupal, un festejo familiar o simplemente un período de alegría compartida. En el amor, puede indicar que la relación se celebra abiertamente, que hay apoyo de amigos y familia, o simplemente que hay mucha alegría en la vida afectiva. En el trabajo, señala el éxito de un equipo, proyectos grupales que culminan bien y la alegría de trabajar con personas que te gustan. En dinero, puede indicar ganancias compartidas o celebraciones que implican gastos (que valen la pena). En crecimiento personal, esta carta te recuerda que la alegría se multiplica cuando se comparte. ¿Qué hacer cuando te sale? Busca a tu gente. Celebra los logros, aunque sean pequeños. No te aísles. La comunidad y la conexión son fuentes de energía que se renuevan solas."
+reversed_meaning = "Al reverso, el 3 de Copas indica excesos sociales, chismes, terceros en una relación o celebraciones que ocultan problemas reales. En el amor, infidelidades o triángulos amorosos. En el trabajo, camarillas o exclusión social. ¿Qué hacer? La amistad verdadera no necesita audiencia. Invierte en las relaciones que te nutren de verdad."
+possible_plays = "Por 1 de energía: restaura 4 de claridad."

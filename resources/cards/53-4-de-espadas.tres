@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/53-4-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "4 de Espadas"
+suit = 0
+card_type = 0
+cost = 1
+base_value = 6
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Cuatro de Espadas es la carta del descanso, la recuperación y la tregua necesaria después de una batalla. Una figura yace en reposo, con las manos juntas como en oración: hay quietud, hay pausa, hay recuperación consciente. No es rendición; es el descanso que prepara para la siguiente acción. En la vida real, esta carta aparece cuando necesitas tomarte un tiempo para recuperarte: después de un período de mucho estrés, una enfermedad, o un conflicto que agotó tus fuerzas. El cuerpo y la mente necesitan parar para poder seguir. En el amor, puede indicar que la relación necesita un período de calma y menos presión, o que tú necesitas tiempo para ti antes de darte completamente. En el trabajo, señala la necesidad de tomar vacaciones o simplemente bajar el ritmo antes de que el agotamiento se vuelva un problema mayor. En dinero, puede indicar un período de espera antes de tomar nuevas decisiones financieras. En crecimiento personal, esta carta es permiso para parar. ¿Qué hacer cuando te sale? Descansa sin culpa. La pausa no es pérdida de tiempo: es inversión en tu capacidad de seguir."
+reversed_meaning = "Al reverso, el 4 de Espadas indica agotamiento por no haberse detenido a descansar, o despertar precipitado antes de recuperarse. En el amor, volver a una relación antes de estar listo. En el trabajo, reincorporarse sin haber descansado. ¿Qué hacer? El cuerpo y la mente te dicen cuándo están listos. Aprende a escucharlos."
+possible_plays = "Por 1 de energía: inflige 6 de daño a la Sombra."

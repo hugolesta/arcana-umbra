@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/64-as-de-oros.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 4
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "As de Oros"
+suit = 3
+card_type = 1
+cost = 1
+base_value = 4
+description = "Materia, dinero y estabilidad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Tierra"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El As de Oros es la semilla de la prosperidad material, la oportunidad concreta que llega al mundo físico. Representa el inicio de un nuevo ciclo de abundancia: un trabajo nuevo, una oportunidad de negocio, una inversión que vale la pena o simplemente la energía de crear algo real y tangible. En la vida real, esta carta aparece cuando hay una nueva oportunidad material en camino: un trabajo, un negocio, una casa o cualquier recurso que promete prosperidad si se trabaja con dedicación. En el amor, puede indicar que una relación se vuelve más estable y se ancla en la realidad cotidiana: hay compromiso concreto, no solo promesas. En el trabajo, señala el inicio de un proyecto con potencial real, una oferta laboral o una oportunidad de negocio sólida. En dinero, es una excelente señal: hay abundancia disponible si tomas acción. En crecimiento personal, el As de Oros invita a manifestar en la realidad lo que has estado visualizando. ¿Qué hacer cuando te sale? Toma la oportunidad con las dos manos. Trabájala con paciencia. Lo que empieza aquí tiene el potencial de crecer hasta volverse muy sólido."
+reversed_meaning = "Al reverso, el As de Oros indica oportunidades materiales perdidas, proyectos financieros que no arrancan o prosperidad bloqueada. En el amor, relaciones bloqueadas por inseguridades materiales. En el trabajo, oportunidades que se dejan pasar por miedo al riesgo. ¿Qué hacer? La seguridad perfecta no existe. A veces hay que plantar aunque el suelo no sea ideal."
+possible_plays = "Por 1 de energía: otorga 4 de escudo."

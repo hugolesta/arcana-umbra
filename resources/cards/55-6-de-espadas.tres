@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/55-6-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 7
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "6 de Espadas"
+suit = 0
+card_type = 0
+cost = 2
+base_value = 7
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Seis de Espadas es la carta de la transición, el alejamiento de la tormenta y el viaje hacia aguas más tranquilas. Una figura lleva a otras en un bote desde aguas agitadas hacia un horizonte más calmo: hay movimiento, hay salida, aunque el camino no sea fácil todavía. En la vida real, esta carta aparece cuando estás saliendo de un período difícil, cuando las cosas empiezan a calmarse después de mucha turbulencia, o cuando es necesario alejarse de una situación dañina para sanar. En el amor, puede indicar alejarse de una relación tóxica o el inicio de una transición hacia algo más tranquilo y sano. En el trabajo, señala la posibilidad de un cambio de ambiente laboral, un traslado, o simplemente la salida de una situación de mucho conflicto. En dinero, indica una transición hacia mayor estabilidad, aunque todavía no sea perfecta. En crecimiento personal, el Seis de Espadas es una carta de esperanza: las cosas están mejorando aunque el proceso sea gradual. ¿Qué hacer cuando te sale? Confía en que te estás alejando de lo que te hacía daño. El destino puede no verse todavía, pero la dirección es correcta."
+reversed_meaning = "Al reverso, el 6 de Espadas indica resistencia a moverse o regreso a situaciones que se habían dejado atrás. En el amor, dificultad para superar una relación pasada. En el trabajo, cambios que no salen como se espera. ¿Qué hacer? No siempre es fácil avanzar, pero quedarse también tiene un costo."
+possible_plays = "Por 2 de energía: inflige 7 de daño a la Sombra."

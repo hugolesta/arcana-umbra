@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/39-4-de-copas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 5
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "4 de Copas"
+suit = 1
+card_type = 2
+cost = 1
+base_value = 5
+description = "Emociones e intuición"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Agua"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Cuatro de Copas es la carta del descontento, la apatía y la incapacidad de ver lo que tienes delante. Una figura sentada bajo un árbol mira con indiferencia tres copas frente a ella, mientras una cuarta copa le es ofrecida desde el cielo... y no la ve. En la vida real, esta carta aparece cuando estás aburrido, desconectado o tan metido en tu propio mundo que no ves las oportunidades o el afecto que te están ofreciendo. Puede ser una señal de depresión leve o simplemente de estancamiento emocional. En el amor, puede indicar que estás tan enfocado en lo que falta que no ves lo que tu pareja te ofrece, o que estás cerrado a nuevas conexiones. En el trabajo, señala la sensación de que nada te motiva, que estás haciendo lo mismo de siempre sin inspiración. En dinero, puede indicar que no ves oportunidades que están frente a ti. En crecimiento personal, esta carta es un aviso: la gratitud y la apertura son antídotos. ¿Qué hacer cuando te sale? Levanta la vista. Mira lo que tienes, no solo lo que falta. La oportunidad que no estás viendo puede ser exactamente lo que necesitas."
+reversed_meaning = "Al reverso, el 4 de Copas indica despertar de la apatía o apertura a nuevas oportunidades tras un período de retiro. En el amor, salir de una zona de comfort emocional. En el trabajo, nueva motivación después de estancamiento. ¿Qué hacer? Ya descansaste. Es momento de volver al mundo con ojos nuevos."
+possible_plays = "Por 1 de energía: restaura 5 de claridad."

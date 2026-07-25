@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/18-la-luna.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 9
+target = "self"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 9
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "La Luna"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 9
+description = "Ilusión y subconsciente"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Agua"
+zodiac_sign = "Piscis"
+planet = "Neptuno"
+upright_meaning = "La Luna es la carta de la ilusión, el miedo y el inconsciente. Representa ese espacio nebuloso donde no estamos seguros de qué es real y qué es proyección de nuestros propios miedos. Hay cosas que no se ven claramente; hay confusión, ansiedad o engaño. En la vida real, esta carta aparece cuando estás confundido, cuando hay información oculta, o cuando tus miedos internos están distorsionando tu percepción de la realidad. No todo es lo que parece. En el amor, puede indicar que hay cosas no dichas, falta de claridad sobre los sentimientos de alguien, o que estás proyectando expectativas que no corresponden. En el trabajo, señala confusión, falta de dirección o situaciones que no están siendo completamente transparentes. Ten cuidado con los engaños. En dinero, aconseja no tomar decisiones financieras importantes hasta tener más claridad. En crecimiento personal, La Luna invita a explorar el inconsciente: los sueños, los miedos, las partes de ti que evitas mirar. ¿Qué hacer cuando te sale? No tomes decisiones importantes ahora. Espera a que la situación se aclare. Presta atención a tus sueños. Lo que percibes como amenaza puede ser solo una sombra."
+reversed_meaning = "Al reverso, La Luna indica que las ilusiones están disipándose y la verdad comienza a emerger. También puede señalar confusión que empeora o miedos que se amplifican. En el amor, revelación de secretos. En el trabajo, claridad que llega después de mucha confusión. ¿Qué hacer? No actúes hasta tener más claridad. La luna al reverso pide paciencia antes de cualquier decisión importante."
+possible_plays = "Por 2 de energía: restaura 9 de claridad y otorga 9 de escudo."

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/12-el-colgado.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 8
+target = "self"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 8
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "El Colgado"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 8
+description = "Sacrificio e ilusión"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Agua"
+zodiac_sign = "Piscis"
+planet = "Neptuno"
+upright_meaning = "El Colgado es la carta de la pausa voluntaria, el sacrificio y el cambio de perspectiva. La figura cuelga de un árbol por su propio pie —no está atada a la fuerza— lo que indica que esta pausa es necesaria y elegida, aunque no siempre se entienda en el momento. En la vida real, esta carta aparece cuando necesitas detenerte aunque no quieras, cuando la situación te pide rendirte a lo que no puedes controlar, o cuando para avanzar primero hay que soltar algo. En el amor, puede indicar una relación en pausa o la necesidad de ver la situación desde otro ángulo antes de actuar. En el trabajo, señala un período de espera o estancamiento que en realidad es un tiempo de preparación. No fuerces resultados ahora. En dinero, aconseja no tomar decisiones financieras importantes en este momento; espera a tener más claridad. En crecimiento personal, esta carta es profundamente transformadora: las pausas enseñan más que la acción cuando estamos abiertos a aprender. ¿Qué hacer cuando te sale? Suelta el control. Deja de luchar contra lo que no puedes cambiar ahora. Úsalo como tiempo de reflexión. Lo que parece un obstáculo puede ser exactamente lo que necesitabas."
+reversed_meaning = "Al reverso, El Colgado indica resistencia al sacrificio necesario, estancamiento por egoísmo o negación a ver las cosas desde otra perspectiva. En el amor, relaciones que no avanzan por terquedad. En el trabajo, rechazo a cambiar métodos que ya no funcionan. ¿Qué hacer? El sacrificio que evitas es exactamente lo que te libera. Identifica a qué te estás resistiendo y pregúntate por qué."
+possible_plays = "Por 2 de energía: restaura 8 de claridad y otorga 8 de escudo."

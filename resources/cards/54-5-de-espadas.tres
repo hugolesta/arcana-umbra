@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/54-5-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "5 de Espadas"
+suit = 0
+card_type = 0
+cost = 1
+base_value = 6
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Cinco de Espadas es la carta del conflicto deshonesto, la victoria a cualquier precio y las consecuencias de ganar de maneras que no respetan a los demás. Una figura recoge las espadas de quienes se van derrotados: ganó, pero a qué costo. En la vida real, esta carta aparece cuando hay un conflicto en el que alguien (tú o alguien más) está jugando sucio, cuando una victoria se consigue humillando al otro, o cuando el enfrentamiento deja heridas que no valen lo que se ganó. En el amor, puede indicar peleas que se ganan pero destruyen la relación, o la tendencia de alguien a manipular o controlar. En el trabajo, señala competencia desleal, política de oficina tóxica o situaciones donde alguien se aprovecha de los demás para avanzar. En dinero, aconseja cuidado con tratos deshonestos o situaciones donde alguien quiere ganar a tu costa. En crecimiento personal, esta carta invita a reflexionar sobre las consecuencias a largo plazo de ganar sin ética. ¿Qué hacer cuando te sale? Pregúntate si la victoria vale el precio. A veces es mejor retirarse que ganar de una manera que te avergüences después."
+reversed_meaning = "Al reverso, el 5 de Espadas indica que los conflictos comienzan a resolverse, aunque con cicatrices. En el amor, fin de disputas. En el trabajo, resolución de conflictos laborales. ¿Qué hacer? Ganar una discusión y perder una relación no es victoria. Pregúntate si el conflicto que mantienes te hace crecer o solo te desgasta."
+possible_plays = "Por 1 de energía: inflige 6 de daño a la Sombra."

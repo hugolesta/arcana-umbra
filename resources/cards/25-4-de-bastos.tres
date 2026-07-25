@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/25-4-de-bastos.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 3
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "4 de Bastos"
+suit = 2
+card_type = 2
+cost = 1
+base_value = 3
+description = "Acción, pasión y voluntad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Fuego"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Cuatro de Bastos es la carta de la celebración, la estabilidad joyosa y los logros que se festejan con otros. Es una de las cartas más felices del palo de Bastos: indica un período de armonía, éxito compartido y la alegría de haber construido algo sólido. En la vida real, esta carta aparece en momentos de festejo: una graduación, una boda, el cierre exitoso de un proyecto, una mudanza celebrada con amigos. Hay estabilidad y hay gozo al mismo tiempo. En el amor, es una carta excelente: indica compromiso, celebración de la relación, posibilidad de matrimonio o convivencia. Hay amor y hay alegría compartida. En el trabajo, señala el éxito de un proyecto, el buen ambiente laboral y los logros que se reconocen colectivamente. En dinero, indica estabilidad financiera ganada con esfuerzo y la posibilidad de disfrutar los frutos del trabajo. En crecimiento personal, invita a celebrar lo que has logrado sin minimizarlo. ¿Qué hacer cuando te sale? Celebra. Comparte la alegría con quienes te importan. No sigas corriendo hacia lo siguiente sin detenerte a disfrutar lo que ya tienes. Los momentos de celebración nutren el alma."
+reversed_meaning = "Al reverso, el 4 de Bastos puede señalar celebraciones postergadas, inestabilidad en el hogar o transiciones que no fluyen bien. En el amor, conflictos domésticos. En el trabajo, ambiente laboral tenso. ¿Qué hacer? Construye desde adentro hacia afuera. La estabilidad exterior comienza con la estabilidad interior."
+possible_plays = "Por 1 de energía: aplica 3 de disonancia a la Sombra."

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/08-la-fuerza.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 7
+target = "enemy"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 7
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "La Fuerza"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 7
+description = "Fuerza y confianza"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Fuego"
+zodiac_sign = "Leo"
+planet = "Sol"
+upright_meaning = "La Fuerza no es la carta de los músculos, sino de la valentía interior y la compasión. Representa la capacidad de enfrentar situaciones difíciles con calma y amor, en lugar de con violencia o miedo. La figura en la carta domina al león no por la fuerza bruta sino por la dulzura y la confianza. En la vida real, esta carta aparece cuando necesitas enfrentar algo que te da miedo: una conversación difícil, una situación que te paraliza, o una parte de ti mismo que no quieres ver. La fortaleza viene desde adentro. En el amor, indica una relación que requiere paciencia, o la capacidad de amar incluso cuando es difícil. Es también la carta de perdonar sin olvidar. En el trabajo, señala que puedes manejar situaciones tensas con inteligencia emocional; el liderazgo compasivo triunfa. En dinero, sugiere resistencia frente a dificultades económicas y la capacidad de salir adelante sin entrar en pánico. En crecimiento personal, es una de las más importantes: invita a conocer y aceptar tus partes oscuras con amor. ¿Qué hacer cuando te sale? Enfréntate a lo que evitas. Con amor, no con fuerza bruta. La compasión —hacia ti y hacia otros— es tu mayor poder ahora mismo."
+reversed_meaning = "Al reverso, La Fuerza indica debilidad interna, dudas propias o abuso del poder. Puede manifestarse como inseguridad extrema o dominio agresivo sobre otros. En el amor, puede haber relaciones donde uno controla al otro. En el trabajo, falta de confianza para defender tus ideas. ¿Qué hacer? Recuerda que la verdadera fuerza no grita ni domina. Está en la calma y en la confianza silenciosa en uno mismo."
+possible_plays = "Por 2 de energía: inflige 7 de daño a la Sombra y aplica 7 de disonancia a la Sombra."

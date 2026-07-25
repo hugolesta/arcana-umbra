@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/49-rey-de-copas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 10
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "Rey de Copas"
+suit = 1
+card_type = 2
+cost = 3
+base_value = 10
+description = "Emociones e intuición"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Agua"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Rey de Copas es la carta de la madurez emocional, el liderazgo compasivo y la capacidad de contener grandes emociones sin ser arrastrado por ellas. Es alguien que siente profundamente pero no pierde el equilibrio: puede estar en medio de la tormenta emocional y seguir siendo un ancla para quienes lo rodean. En la vida real, puede representar a un mentor, un terapeuta, un padre amoroso o cualquier figura que combine autoridad con compasión. O puede señalar que es momento de que tú adoptes ese rol. En el amor, indica una relación madura, emocionalmente inteligente y segura. Hay amor y hay estabilidad: no hay dramas innecesarios. En el trabajo, señala liderazgo que inspira confianza, la capacidad de mediar conflictos con sabiduría emocional y el talento para motivar a otros desde el corazón. En dinero, indica decisiones financieras equilibradas que toman en cuenta tanto los datos como los valores. En crecimiento personal, el Rey de Copas representa la meta de la madurez emocional. ¿Qué hacer cuando te sale? Sé el adulto emocional en la situación. Lidera con compasión. Tu madurez emocional es tu mayor fortaleza."
+reversed_meaning = "Al reverso, el Rey de Copas indica represión emocional, manipulación encubierta o pérdida del equilibrio emocional. En el amor, parejas que no expresan lo que sienten. En el trabajo, líderes que usan la empatía como herramienta de control. ¿Qué hacer? La emoción no expresada no desaparece, solo se acumula. Busca un espacio donde puedas ser honesto contigo mismo."
+possible_plays = "Por 3 de energía: restaura 10 de claridad."

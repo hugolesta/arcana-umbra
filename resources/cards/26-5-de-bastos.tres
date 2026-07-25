@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/26-5-de-bastos.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 3
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "5 de Bastos"
+suit = 2
+card_type = 2
+cost = 1
+base_value = 3
+description = "Acción, pasión y voluntad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Fuego"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Cinco de Bastos es la carta del conflicto, la competencia y el caos creativo. Muestra a cinco figuras golpeando bastones en todas direcciones: todos tienen energía, pero nadie se entiende. Puede ser competencia sana o discordia improductiva, dependiendo del contexto. En la vida real, esta carta aparece cuando hay múltiples fuerzas empujando en distintas direcciones: conflictos de opiniones, competencia por un mismo objetivo, o simplemente el caos de tener demasiado en movimiento al mismo tiempo. En el amor, puede indicar peleas, malentendidos o la sensación de que hay demasiada energía sin dirección en la relación. En el trabajo, señala competencia con colegas, choques de ideas o un ambiente donde todos quieren imponer su visión. En dinero, puede indicar gastos dispersos o inversiones en demasiadas direcciones. En crecimiento personal, esta carta invita a canalizar tu energía: tienes mucha, pero necesita dirección. ¿Qué hacer cuando te sale? No te pelees por pelear. Elige tus batallas. La energía que está dispersa puede unificarse si hay liderazgo claro. Sé ese líder, aunque sea de ti mismo."
+reversed_meaning = "Al reverso, el 5 de Bastos indica conflictos internalizados, competencia desleal o disputas que se evitan en lugar de resolverse. En el amor, riñas no resueltas. En el trabajo, competencia desleal. ¿Qué hacer? A veces es necesario hablar claro. Evitar el conflicto no lo resuelve, solo lo pospone con intereses."
+possible_plays = "Por 1 de energía: aplica 3 de disonancia a la Sombra."

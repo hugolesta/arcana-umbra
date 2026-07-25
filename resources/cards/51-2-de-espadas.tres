@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/51-2-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 5
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "2 de Espadas"
+suit = 0
+card_type = 0
+cost = 1
+base_value = 5
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Dos de Espadas es la carta del punto muerto, la indecisión y la negativa a ver la realidad tal como es. Una figura con los ojos vendados sostiene dos espadas cruzadas sobre el pecho: hay equilibrio, pero es el equilibrio de quien no quiere elegir ni enfrentar lo que está delante. En la vida real, esta carta aparece cuando estás evitando una decisión difícil, cuando hay dos opciones y ninguna parece perfecta, o cuando te niegas a ver algo que en el fondo ya sabes. En el amor, puede indicar que estás evitando una conversación necesaria, o que hay una decisión sobre la relación que sigues postergando. En el trabajo, señala bloqueos mentales, indecisión en momentos clave y la parálisis de quien quiere certezas antes de actuar. En dinero, aconseja no postergar más decisiones financieras que ya sabes que debes tomar. En crecimiento personal, esta carta es un aviso: la evitación no resuelve nada. ¿Qué hacer cuando te sale? Quítate la venda. Mira la situación de frente. La decisión que evitas no va a desaparecer; solo se hace más difícil con el tiempo. Elige."
+reversed_meaning = "Al reverso, el 2 de Espadas indica que información oculta comienza a salir, aunque puede generar más confusión. En el amor, verdades que salen a la luz. En el trabajo, información que cambia el panorama. ¿Qué hacer? Quítate la venda. La verdad duele menos que vivir en la incertidumbre."
+possible_plays = "Por 1 de energía: inflige 5 de daño a la Sombra."

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/36-as-de-copas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 3
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "As de Copas"
+suit = 1
+card_type = 2
+cost = 1
+base_value = 3
+description = "Emociones e intuición"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Agua"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El As de Copas es la fuente de amor pura, el inicio de una conexión emocional profunda o el despertar de los sentimientos. Representa la apertura del corazón, la abundancia emocional y la posibilidad de nuevos comienzos en el plano de los afectos. En la vida real, esta carta aparece cuando hay una nueva conexión emocional entrando en tu vida, cuando sientes que tu corazón se está abriendo después de un período cerrado, o cuando hay una oportunidad de amor, amistad o conexión espiritual profunda. En el amor, es una de las mejores cartas: puede indicar el inicio de una relación nueva y significativa, o la renovación del amor en una relación existente. En el trabajo, señala proyectos que te emocionan genuinamente, o relaciones laborales que se vuelven más cálidas y significativas. En dinero, puede indicar generosidad que retorna o recursos que fluyen desde la abundancia emocional. En crecimiento personal, el As de Copas invita a abrir el corazón y permitirte sentir profundamente. ¿Qué hacer cuando te sale? Ábrele la puerta al amor. No pongas barreras innecesarias. La fuente está llena; solo necesitas permitirte beber."
+reversed_meaning = "Al reverso, el As de Copas indica bloqueo emocional, dificultad para amar o recibir amor. En el amor, incapacidad de conectar emocionalmente. En el trabajo, falta de pasión por lo que se hace. ¿Qué hacer? Abrir el corazón comienza por reconocer que mereces ser amado y dar amor sin condiciones."
+possible_plays = "Por 1 de energía: restaura 3 de claridad."

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/21-el-mundo.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 10
+target = "self"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 10
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "El Mundo"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 10
+description = "Completitud y maestría"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Tierra"
+zodiac_sign = "Capricornio"
+planet = "Saturno"
+upright_meaning = "El Mundo es la carta de la culminación, el logro completo y la integración. Es el final feliz del viaje del héroe: has pasado por todas las experiencias, has aprendido lo que necesitabas aprender, y ahora llegas a un punto de plenitud real. En la vida real, esta carta aparece cuando completas algo significativo: terminas un ciclo, logras una meta importante, o llegas a un punto de armonía interior que se refleja en tu vida exterior. No es el fin de todo, sino el fin de una etapa importante. En el amor, indica una relación en su punto más maduro y satisfactorio, o el logro de una meta emocional importante (casarse, tener hijos, construir una vida juntos). En el trabajo, señala el logro de un objetivo grande, el reconocimiento profesional o la culminación de un proyecto importante. En dinero, indica estabilidad sólida y la sensación de que el esfuerzo valió la pena. En crecimiento personal, El Mundo representa la integración de todas las partes de ti mismo: ya no estás dividido. ¿Qué hacer cuando te sale? Celebra. Reconoce lo que lograste. Y cuando hayas disfrutado plenamente esta llegada, prepárate para el próximo ciclo. El viaje siempre continúa."
+reversed_meaning = "Al reverso, El Mundo indica ciclos incompletos, sensación de estar cerca de una meta pero sin alcanzarla. En el amor, relaciones que no llegan al siguiente nivel. En el trabajo, proyectos casi terminados que se estancan. ¿Qué hacer? Termina lo que empezaste. El mundo al reverso no niega el éxito, solo lo pospone hasta que estés completamente listo."
+possible_plays = "Por 2 de energía: otorga 10 de escudo y restaura 10 de claridad."

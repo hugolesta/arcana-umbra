@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/69-6-de-oros.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 7
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "6 de Oros"
+suit = 3
+card_type = 1
+cost = 2
+base_value = 7
+description = "Materia, dinero y estabilidad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Tierra"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Seis de Oros es la carta de la generosidad, la distribución justa de recursos y la dinámica de dar y recibir. Una figura próspera da monedas a dos figuras que las necesitan: hay abundancia que se comparte, hay equilibrio entre quien tiene y quien necesita. En la vida real, esta carta puede señalar que estás en posición de ayudar a otros (o de recibir ayuda), que hay generosidad en tu entorno, o que la justicia económica está operando a tu favor. En el amor, indica una relación donde hay equidad: ambos dan y ambos reciben, nadie lleva toda la carga. En el trabajo, puede señalar el apoyo de mentores o superiores, aumentos de sueldo o el reconocimiento concreto del valor que aportas. En dinero, es una buena carta: indica recursos que fluyen en tu dirección, ya sea a través de ayuda, bonos o inversiones que dan fruto. En crecimiento personal, el Seis de Oros invita a reflexionar sobre la dinámica de la generosidad: ¿das sin agotarte? ¿recibes sin culpa? ¿Qué hacer cuando te sale? Sé generoso cuando puedas. Recibe con gratitud cuando necesites. El flujo del dar y recibir es la base de la abundancia real."
+reversed_meaning = "Al reverso, el 6 de Oros indica desequilibrio en dar y recibir o dinero usado para controlar. En el amor, relaciones donde uno da y el otro solo recibe. En el trabajo, favores que crean deudas. ¿Qué hacer? La generosidad genuina no lleva factura."
+possible_plays = "Por 2 de energía: otorga 7 de escudo."

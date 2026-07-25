@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/68-5-de-oros.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "5 de Oros"
+suit = 3
+card_type = 1
+cost = 1
+base_value = 6
+description = "Materia, dinero y estabilidad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Tierra"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Cinco de Oros es la carta de la dificultad material, la sensación de estar afuera en el frío y la pobreza que puede ser económica pero también espiritual o emocional. Dos figuras pasan frente a una iglesia iluminada en la nieve: hay apoyo disponible, pero no lo ven o no saben cómo pedirlo. En la vida real, esta carta aparece cuando estás pasando por dificultades económicas, cuando te sientes excluido o marginado, o cuando hay una sensación de carencia que parece permanente aunque no lo sea. En el amor, puede indicar relaciones que se desgastan por presiones económicas, o la sensación de no recibir el apoyo emocional que necesitas. En el trabajo, señala períodos de desempleo, proyectos que no prosperan o la sensación de estar quedándote atrás. En dinero, es la carta más directa sobre dificultades económicas. En crecimiento personal, el Cinco de Oros invita a pedir ayuda y a reconocer que el apoyo está más disponible de lo que crees. ¿Qué hacer cuando te sale? Pide ayuda. Busca los recursos disponibles. La situación es difícil pero temporal. No estás tan solo como sientes."
+reversed_meaning = "Al reverso, el 5 de Oros indica el inicio de la recuperación después de una época difícil o ayuda que llega. En el amor, mejora en relaciones afectadas por problemas económicos. En el trabajo, inicio de recuperación profesional. ¿Qué hacer? Pedir ayuda no es debilidad, es inteligencia. Las personas que necesitas pueden estar más cerca de lo que crees."
+possible_plays = "Por 1 de energía: otorga 6 de escudo."

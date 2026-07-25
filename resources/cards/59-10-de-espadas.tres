@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/59-10-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 9
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "10 de Espadas"
+suit = 0
+card_type = 0
+cost = 2
+base_value = 9
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Diez de Espadas es la carta del golpe final, el punto más bajo y el colapso de lo que ya no podía sostenerse. Una figura yace en el suelo con diez espadas en la espalda: el final fue dramático y doloroso. Pero al fondo, el cielo comienza a aclarar. En la vida real, esta carta aparece cuando algo llega a su fin de manera definitiva y dolorosa: una relación, un trabajo, un período de tu vida. Es el rock bottom, el punto más bajo desde donde solo se puede subir. En el amor, puede indicar una ruptura final y definitiva, sin posibilidad de retorno. En el trabajo, señala el cierre de una etapa laboral que quizás no fue buena, o el final de un proyecto que no funcionó. En dinero, puede indicar el punto más bajo financiero antes de una recuperación. En crecimiento personal, el Diez de Espadas nos enseña que los finales más dolorosos también son los que abren espacio para los comienzos más profundos. ¿Qué hacer cuando te sale? Acepta que este ciclo terminó. El dolor es real, pero también es temporal. Cuando el horizonte aclara, es momento de levantarse."
+reversed_meaning = "Al reverso, el 10 de Espadas indica recuperación inevitable después del punto más bajo. En el amor, superación de una ruptura difícil. En el trabajo, recuperación después de un fracaso importante. ¿Qué hacer? Acepta que esto terminó. Solo desde ese reconocimiento puede comenzar algo nuevo."
+possible_plays = "Por 2 de energía: inflige 9 de daño a la Sombra."

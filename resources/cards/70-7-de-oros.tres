@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/70-7-de-oros.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 7
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "7 de Oros"
+suit = 3
+card_type = 1
+cost = 2
+base_value = 7
+description = "Materia, dinero y estabilidad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Tierra"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Siete de Oros es la carta de la evaluación, la paciencia y el momento de preguntarse si el esfuerzo invertido está dando los frutos esperados. Una figura se apoya sobre su azada y mira los frutos de su trabajo con pensamiento reflexivo: hay logros visibles, pero también incertidumbre sobre si el camino es el correcto. En la vida real, esta carta aparece cuando llevas tiempo trabajando en algo y es momento de hacer una pausa para evaluar los resultados. ¿Está creciendo como esperabas? ¿Vale la pena seguir? ¿Necesitas ajustar la estrategia? En el amor, puede indicar un momento de evaluación de la relación: ¿está creciendo en la dirección que quieres? En el trabajo, señala el momento de revisar si los proyectos o la carrera están dando el retorno esperado, y si es necesario replantear algo. En dinero, invita a revisar inversiones y ahorros: ¿están creciendo? ¿La estrategia financiera funciona? En crecimiento personal, esta carta celebra la paciencia y la capacidad de evaluar con honestidad. ¿Qué hacer cuando te sale? Haz una pausa. Revisa lo que has sembrado. Ajusta si es necesario y confía en que el esfuerzo honesto siempre da frutos."
+reversed_meaning = "Al reverso, el 7 de Oros indica impaciencia con los resultados o inversiones que no rinden como se esperaba. En el amor, relaciones que no crecen a pesar de la inversión. En el trabajo, proyectos a largo plazo que generan frustración. ¿Qué hacer? A veces el problema no es la paciencia sino la estrategia. Revisa el plan."
+possible_plays = "Por 2 de energía: otorga 7 de escudo."

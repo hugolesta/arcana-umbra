@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/02-la-sacerdotisa.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 5
+target = "self"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 5
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "La Sacerdotisa"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 5
+description = "Intuición y misterio"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Agua"
+zodiac_sign = "Cáncer"
+planet = "Luna"
+upright_meaning = "La Sacerdotisa es la carta de la intuición, el conocimiento interno y los secretos. Representa esa voz interior que sabe cosas que la mente racional no puede explicar. No todo en la vida se resuelve con lógica; a veces hay que escuchar lo que sientes en el estómago. En la vida real, esta carta aparece cuando necesitas ir hacia adentro antes de tomar decisiones. Hay algo que todavía no está claro, y la respuesta no está afuera sino dentro de ti. En el amor, puede indicar que hay cosas no dichas en la relación, o que necesitas escuchar tu intuición antes de avanzar. No todo lo que parece bien, lo es. En el trabajo, sugiere que hay información oculta o que todavía no es el momento de actuar: observa, aprende, espera. En dinero, aconseja prudencia y no mostrar todas tus cartas. En crecimiento personal, esta carta invita a la meditación, al silencio y al autoconocimiento profundo. ¿Qué hacer cuando te sale? Haz una pausa. No tomes decisiones impulsivas. Medita, escribe en un diario, presta atención a tus sueños. Lo que buscas ya lo sabes; solo necesitas silencio para escucharlo."
+reversed_meaning = "Al reverso, La Sacerdotisa indica que estás ignorando tu intuición o que hay secretos que están dañando una situación. Puede haber información oculta que necesitas descubrir. En el amor, puede señalar falta de comunicación o cosas que no se dicen. En el trabajo, hay algo que no te están contando. En dinero, hay datos ocultos que debes investigar. ¿Qué hacer? Aprende a silenciar el ruido exterior. Lo que sientes pero no dices tiene más poder del que crees."
+possible_plays = "Por 2 de energía: restaura 5 de claridad y otorga 5 de escudo."

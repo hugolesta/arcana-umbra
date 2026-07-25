@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/46-sota-de-copas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 8
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "Sota de Copas"
+suit = 1
+card_type = 2
+cost = 3
+base_value = 8
+description = "Emociones e intuición"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Agua"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "La Sota de Copas es la carta del mensajero soñador, el artista en ciernes y la persona que ve el mundo con sensibilidad emocional y creatividad. Muestra a una figura joven mirando con curiosidad a un pez que asoma de su copa: hay apertura a lo inesperado, hay disposición a recibir mensajes del corazón. En la vida real, puede representar a una persona joven con mucha sensibilidad emocional, o la actitud de apertura y receptividad que necesitas en este momento. También puede anunciar noticias relacionadas con asuntos emocionales o creativos. En el amor, puede indicar el inicio de una conexión emocional profunda, mensajes de amor, o el surgimiento de sentimientos inesperados. En el trabajo, señala creatividad que florece, proyectos artísticos o emocionales que toman forma. En dinero, puede indicar oportunidades que llegan de manera inesperada. En crecimiento personal, invita a escuchar la voz de tu intuición y a explorar tu mundo emocional con curiosidad. ¿Qué hacer cuando te sale? Mantente abierto a lo que tu corazón quiere decirte. Los mensajes más importantes a veces llegan de formas inesperadas."
+reversed_meaning = "Al reverso, la Sota de Copas indica hipersensibilidad, inmadurez emocional o manipulación emocional. En el amor, relaciones con personas emocionalmente inmaduras. En el trabajo, falta de objetividad por exceso de emoción. ¿Qué hacer? Sentir profundo es una fortaleza. Dejarte controlar por las emociones, no."
+possible_plays = "Por 3 de energía: restaura 8 de claridad."

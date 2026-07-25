@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/10-la-rueda-de-la-fortuna.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 7
+target = "enemy"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 7
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "La Rueda de la Fortuna"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 7
+description = "Expansión y fortuna"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Fuego"
+zodiac_sign = "Sagitario"
+planet = "Júpiter"
+upright_meaning = "La Rueda de la Fortuna es la carta del cambio, los ciclos y los giros del destino. Nos recuerda que la vida no es estática: lo que sube baja, lo que baja vuelve a subir. Nadie está siempre arriba ni siempre abajo. Es la ley natural del cambio constante. En la vida real, esta carta aparece cuando algo está a punto de cambiar, cuando un ciclo termina y otro comienza, o cuando recibes una oportunidad inesperada. También puede indicar que eventos fuera de tu control están moldeando tu situación. En el amor, puede señalar un giro inesperado: un reencuentro, una ruptura o una nueva etapa. En el trabajo, indica cambios laborales, nuevas oportunidades o giros en proyectos. La clave es adaptarse rápido. En dinero, señala fluctuaciones: pueden venir ganancias inesperadas o gastos imprevistos. Estar preparado para ambos es fundamental. En crecimiento personal, esta carta invita a soltar la ilusión de control y fluir con los cambios en lugar de resistirlos. ¿Qué hacer cuando te sale? Acepta que el cambio es inevitable. Mantente flexible. Aprovecha el impulso cuando la rueda gira a tu favor y conserva energía cuando va en tu contra."
+reversed_meaning = "Al reverso, La Rueda de la Fortuna señala mala suerte temporal, resistencia al cambio o ciclos negativos que se repiten. En el amor, altibajos en la relación. En el trabajo, obstáculos inesperados. En dinero, pérdidas o inestabilidad financiera. ¿Qué hacer? Acepta que los ciclos malos también terminan. Identifica qué hábitos están alimentando el ciclo negativo y trabaja para romperlos."
+possible_plays = "Por 2 de energía: inflige 7 de daño a la Sombra y aplica 7 de disonancia a la Sombra."

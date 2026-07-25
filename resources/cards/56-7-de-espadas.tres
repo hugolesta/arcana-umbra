@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/56-7-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 7
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "7 de Espadas"
+suit = 0
+card_type = 0
+cost = 2
+base_value = 7
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Siete de Espadas es la carta del engaño, la deshonestidad y la estrategia de actuar en secreto para obtener lo que se quiere sin confrontación directa. Una figura huye cargando cinco espadas de las que no le pertenecen, mirando hacia atrás. En la vida real, esta carta puede señalar que alguien te está siendo deshonesto, que hay traición o robo de información, o que tú mismo estás evitando una confrontación necesaria usando la deshonestidad o la evasión. En el amor, puede indicar infidelidad, mentiras o la tendencia a evitar conversaciones difíciles. En el trabajo, señala cuidado con colegas que actúan de manera encubierta, robo de crédito o situaciones donde no todo es transparente. En dinero, aconseja revisar bien los contratos y desconfiar de acuerdos que parecen demasiado buenos. En crecimiento personal, esta carta invita a la honestidad: ¿hay algo que estás evitando decir? ¿Qué hacer cuando te sale? Examina si estás siendo completamente honesto, contigo y con los demás. Si hay deshonestidad en tu entorno, mantén los ojos abiertos. La verdad siempre sale a la luz."
+reversed_meaning = "Al reverso, el 7 de Espadas indica que los engaños salen a la luz o que el autoengaño es el mayor obstáculo. En el amor, verdades que emergen. En el trabajo, descubrimiento de fraudes. ¿Qué hacer? La verdad que evitas es la que más necesitas enfrentar."
+possible_plays = "Por 2 de energía: inflige 7 de daño a la Sombra."

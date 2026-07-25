@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/41-6-de-copas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "6 de Copas"
+suit = 1
+card_type = 2
+cost = 2
+base_value = 6
+description = "Emociones e intuición"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Agua"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Seis de Copas es la carta de la nostalgia, los recuerdos felices y las conexiones del pasado. Muestra a dos figuras, una más grande y una más pequeña, en un intercambio de flores: hay ternura, inocencia y el calor de los buenos tiempos. En la vida real, esta carta aparece cuando sientes nostalgia por el pasado, cuando alguien del pasado regresa a tu vida, o cuando estás siendo influenciado (positiva o negativamente) por experiencias de la infancia. También puede señalar que hay alegría simple y genuina disponible si bajas la guardia. En el amor, puede indicar el reencuentro con un amor pasado, o simplemente una relación con mucha ternura y familiaridad reconfortante. En el trabajo, puede señalar el valor de la experiencia acumulada o el regreso a algo que hacías antes y que te hacía bien. En dinero, puede indicar apoyo de familia o de personas del pasado. En crecimiento personal, invita a reconciliarte con tu historia sin quedarte atrapado en ella. ¿Qué hacer cuando te sale? Atesora los buenos recuerdos sin idealizarlos. Recibe con gratitud lo que el pasado te trae. Y sigue hacia adelante con esas raíces firmes."
+reversed_meaning = "Al reverso, el 6 de Copas indica vivir atrapado en el pasado o nostalgia que impide avanzar. En el amor, comparar relaciones actuales con las pasadas. En el trabajo, resistencia a métodos nuevos. ¿Qué hacer? Aprecia lo que fue, pero invierte tu energía en lo que es ahora."
+possible_plays = "Por 2 de energía: restaura 6 de claridad."

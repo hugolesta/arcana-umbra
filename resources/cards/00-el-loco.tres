@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/00-el-loco.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 5
+target = "enemy"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 5
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "El Loco"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 5
+description = "Lo inesperado y la libertad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Aire"
+zodiac_sign = "Acuario"
+planet = "Urano"
+upright_meaning = "El Loco es la carta del comienzo puro. Representa a alguien que da un salto de fe sin miedo al ridículo ni al fracaso. No es imprudencia ciega, sino la valentía de empezar algo nuevo con entusiasmo y corazón abierto. En la vida real, esta carta aparece cuando estás a punto de comenzar una etapa completamente nueva: un viaje, un proyecto, una relación, un cambio de carrera. El mundo te dice que es arriesgado; El Loco te dice que igual vale la pena intentarlo. En el amor, puede indicar una relación nueva e inesperada, o que te estás dejando llevar por la emoción del momento. En el trabajo, es señal de que es buen momento para lanzarte a ese negocio propio o aceptar esa oferta que parece impredecible. En dinero, pide precaución: entusiasmo sí, pero sin tirarlo todo al aire sin pensar. En crecimiento personal, esta carta te invita a soltar el control y confiar en el proceso. ¿Qué hacer cuando te sale? Confía en ti mismo. Da el primer paso aunque no tengas el mapa completo. Acepta que no sabrás todo de antemano y que eso está bien. El error más grande que puedes cometer es no intentarlo por miedo a equivocarte."
+reversed_meaning = "Al reverso, El Loco advierte sobre imprudencia extrema y decisiones tomadas sin pensar en las consecuencias. Puede indicar que estás actuando de manera irresponsable, evitando compromisos o huyendo de la realidad. En el amor, señala inmadurez emocional o miedo al compromiso. En el trabajo, es una señal de alerta contra proyectos mal planificados o actitudes caóticas. En dinero, puede indicar gastos impulsivos o riesgos financieros sin fundamento. ¿Qué hacer? Frena. Evalúa si tu entusiasmo está tapando una falta real de planificación. El valor sin criterio no es valentía, es imprudencia."
+possible_plays = "Por 2 de energía: inflige 5 de daño a la Sombra y otorga 5 de escudo."

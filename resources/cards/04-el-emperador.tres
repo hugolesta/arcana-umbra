@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/04-el-emperador.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "enemy"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 6
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "El Emperador"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 6
+description = "Liderazgo y acción"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Fuego"
+zodiac_sign = "Aries"
+planet = "Marte"
+upright_meaning = "El Emperador es la carta del orden, la autoridad y la estructura. Representa la capacidad de construir algo sólido y duradero, de poner límites claros y de tomar responsabilidad. No es control por miedo, sino liderazgo con propósito. En la vida real, esta carta aparece cuando necesitas ser más disciplinado, cuando debes tomar el mando de una situación o cuando es momento de construir bases firmes. También puede representar a una figura de autoridad en tu vida: un jefe, un padre, una institución. En el amor, puede indicar una relación estable pero que necesita más espontaneidad, o la presencia de alguien serio y protector. En el trabajo, es señal de liderazgo, ascensos, proyectos estructurados y logros a largo plazo. Es buen momento para organizarte y ser disciplinado. En dinero, indica estabilidad y planificación financiera. El ahorro y la inversión inteligente son favorecidos. En crecimiento personal, te invita a hacerte cargo de tu vida con responsabilidad y sin excusas. ¿Qué hacer cuando te sale? Organiza tus prioridades. Pon límites donde haga falta. Sé el adulto en la sala. La disciplina ahora construye la libertad del mañana."
+reversed_meaning = "Al reverso, El Emperador indica abuso de autoridad, rigidez excesiva o falta de control sobre la propia vida. Puede haber una figura dominante que está limitando tu libertad. En el amor, señala relaciones controladoras. En el trabajo, un jefe autoritario o estructuras que sofocan. En dinero, mala gestión financiera. ¿Qué hacer? Encuentra el equilibrio entre estructura y flexibilidad. El poder verdadero no necesita imponer, inspira."
+possible_plays = "Por 2 de energía: inflige 6 de daño a la Sombra y aplica 6 de disonancia a la Sombra."

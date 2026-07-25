@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/67-4-de-oros.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "4 de Oros"
+suit = 3
+card_type = 1
+cost = 1
+base_value = 6
+description = "Materia, dinero y estabilidad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Tierra"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Cuatro de Oros es la carta de la acumulación, el control sobre los recursos y a veces el miedo a perder lo que se tiene. Una figura sostiene fuertemente sus cuatro oros, uno sobre la corona, dos bajo los pies y uno abrazado al pecho: hay seguridad pero también hay exceso de control. En la vida real, esta carta aparece cuando te aferras demasiado a tus recursos por miedo a la escasez, cuando el control del dinero se vuelve obsesivo, o cuando la necesidad de seguridad material te impide crecer o disfrutar. En el amor, puede indicar la dificultad de abrirse emocionalmente por miedo a la vulnerabilidad, o una relación donde alguien controla los recursos de la pareja. En el trabajo, señala la tendencia a no delegar ni compartir información por miedo a perder posición. En dinero, puede señalar ahorro extremo que limita la vida, o la dificultad de invertir por miedo a perder. En crecimiento personal, invita a soltar el control con gracia. ¿Qué hacer cuando te sale? Evalúa si el miedo a perder te está impidiendo vivir. La seguridad real no viene del control absoluto sino de la confianza en tu capacidad de adaptarte."
+reversed_meaning = "Al reverso, el 4 de Oros indica liberación de la avaricia o descontrol en el gasto. En el amor, apertura emocional después de un período de distancia. En el trabajo, soltar el control sobre proyectos. ¿Qué hacer? El dinero es una herramienta, no un fin. Encuentra el equilibrio entre seguridad y generosidad."
+possible_plays = "Por 1 de energía: otorga 6 de escudo."

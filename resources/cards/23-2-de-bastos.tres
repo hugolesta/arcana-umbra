@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/23-2-de-bastos.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 2
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "2 de Bastos"
+suit = 2
+card_type = 2
+cost = 1
+base_value = 2
+description = "Acción, pasión y voluntad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Fuego"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Dos de Bastos es la carta del visionario que ya ha dado sus primeros pasos y ahora mira hacia el horizonte con determinación. Representa la planificación, la ambición y la decisión de ir más allá de lo familiar. Tienes lo básico construido; ahora toca decidir qué tan lejos quieres llegar. En la vida real, esta carta aparece cuando estás en el umbral de una expansión: un negocio que quiere crecer, un proyecto que necesita más alcance, o una persona que siente que el mundo actual le queda chico. En el amor, puede indicar que la relación está lista para dar un paso más: más compromiso, más profundidad, más futuro en común. En el trabajo, señala planificación estratégica, expansión de proyectos y la visión de nuevos mercados o posibilidades. Es momento de pensar en grande. En dinero, invita a planificar inversiones a largo plazo y a salir de la zona de confort financiera. En crecimiento personal, esta carta te reta a definir qué quieres lograr en los próximos años y a trazar un camino para lograrlo. ¿Qué hacer cuando te sale? Define tu visión con claridad. Haz un plan. El mundo está esperando que lo explores."
+reversed_meaning = "Al reverso, el 2 de Bastos indica planes que se cancelan, miedo al futuro o incapacidad de comprometerse con una dirección. En el amor, miedo al compromiso. En el trabajo, planificación sin ejecución. ¿Qué hacer? Un plan imperfecto ejecutado supera a un plan perfecto que nunca se inicia."
+possible_plays = "Por 1 de energía: aplica 2 de disonancia a la Sombra."

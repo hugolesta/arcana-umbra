@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/42-7-de-copas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "7 de Copas"
+suit = 1
+card_type = 2
+cost = 2
+base_value = 6
+description = "Emociones e intuición"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Agua"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Siete de Copas es la carta de la ilusión, las fantasías y la dificultad para elegir entre demasiadas opciones. Una figura mira siete copas flotando entre nubes, cada una con una imagen diferente: hay deseos, miedos y sueños entremezclados. En la vida real, esta carta aparece cuando tienes muchas opciones pero no puedes decidirte, cuando estás viviendo más en la fantasía que en la realidad, o cuando lo que imaginas no coincide con lo que realmente está disponible. En el amor, puede indicar que estás idealizando a alguien o que hay demasiadas opciones y ninguna te convence porque esperas la perfección. En el trabajo, señala la parálisis de las demasiadas ideas sin ejecución, o la tendencia a soñar más que a actuar. En dinero, aconseja cuidado con las ilusiones financieras: no todo lo que brilla es oro. En crecimiento personal, esta carta invita a distinguir entre sueños genuinos y escapismo. ¿Qué hacer cuando te sale? Baja de las nubes. Elige una copa y comprométete con ella. La dispersión en demasiadas opciones es una forma de no elegir nada. La claridad viene de la acción, no de seguir imaginando."
+reversed_meaning = "Al reverso, el 7 de Copas indica claridad después de la confusión o ilusiones que siguen siendo más atractivas que la realidad. En el amor, ver a la pareja tal como es, no como uno la imaginaba. En el trabajo, elegir un camino concreto. ¿Qué hacer? Elige. Cualquier camino concreto es mejor que soñar con todos a la vez."
+possible_plays = "Por 2 de energía: restaura 6 de claridad."

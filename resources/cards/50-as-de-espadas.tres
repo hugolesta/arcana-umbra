@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/50-as-de-espadas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 4
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "As de Espadas"
+suit = 0
+card_type = 0
+cost = 1
+base_value = 4
+description = "Mente, verdad y comunicación"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Aire"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El As de Espadas es la carta de la claridad mental absoluta, la verdad que corta como un rayo y el poder de la mente cuando está completamente enfocada. Representa el inicio de un período de gran lucidez, donde puedes ver las cosas tal como son y decir lo que piensas con precisión. En la vida real, esta carta aparece cuando tienes una revelación importante, cuando logras claridad sobre algo que antes era confuso, o cuando necesitas tomar una decisión con determinación y sin rodeos. En el amor, puede indicar una conversación difícil pero necesaria, o la claridad de saber exactamente qué quieres y qué no quieres en una relación. En el trabajo, señala el poder de una idea clara, la capacidad de comunicar con precisión y la fuerza mental para superar obstáculos. En dinero, indica decisiones financieras tomadas con lucidez y objetividad. En crecimiento personal, el As de Espadas invita a pensar con claridad y a no temer la verdad, aunque duela. ¿Qué hacer cuando te sale? Di lo que piensas. Corta lo que no sirve. La claridad, aunque a veces sea incómoda, siempre es liberadora."
+reversed_meaning = "Al reverso, el As de Espadas indica confusión mental, ideas que no se concretan o uso del intelecto para destruir. En el amor, conflictos verbales. En el trabajo, proyectos intelectuales bloqueados. ¿Qué hacer? A veces la claridad llega al actuar, no al seguir pensando."
+possible_plays = "Por 1 de energía: inflige 4 de daño a la Sombra."

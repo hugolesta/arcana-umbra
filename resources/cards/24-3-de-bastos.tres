@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/24-3-de-bastos.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 3
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "3 de Bastos"
+suit = 2
+card_type = 2
+cost = 1
+base_value = 3
+description = "Acción, pasión y voluntad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Fuego"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Tres de Bastos es la carta del emprendedor que ya lanzó sus barcos y ahora espera con confianza los resultados. Los primeros esfuerzos ya están en marcha; ahora toca ver qué regresa. Representa la anticipación del éxito después de haber tomado acción. En la vida real, esta carta aparece cuando un proyecto o esfuerzo que iniciaste ya está produciendo resultados incipientes, y las perspectivas son buenas. También señala expansión hacia nuevos territorios, literales o metafóricos. En el amor, puede indicar que una relación está tomando forma concreta, que hay potencial real de futuro. En el trabajo, señala proyectos que están dando frutos, negocios que se expanden o la posibilidad de trabajar en nuevos mercados o contextos. En dinero, indica que las inversiones o esfuerzos previos están empezando a dar retorno. En crecimiento personal, esta carta invita a confiar en lo que ya pusiste en marcha y a seguir apuntando alto. ¿Qué hacer cuando te sale? Ten paciencia con los procesos que ya iniciaste. Sigue construyendo. Los resultados están llegando; no abandones ahora. También es buen momento para explorar nuevas oportunidades de expansión."
+reversed_meaning = "Al reverso, el 3 de Bastos indica retrasos en proyectos, expectativas que no se cumplen o falta de previsión. En el amor, relaciones a distancia con obstáculos. En el trabajo, proyectos que tardan más de lo esperado. ¿Qué hacer? Revisa si hay algo que puedas ajustar en tu estrategia para acelerar el proceso."
+possible_plays = "Por 1 de energía: aplica 3 de disonancia a la Sombra."

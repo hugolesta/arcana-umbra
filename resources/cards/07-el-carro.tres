@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/07-el-carro.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "self"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 6
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "El Carro"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 6
+description = "Voluntad y protección"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Agua"
+zodiac_sign = "Cáncer"
+planet = "Luna"
+upright_meaning = "El Carro es la carta de la determinación, la victoria y el control sobre las fuerzas que te rodean. Representa la capacidad de avanzar a pesar de los obstáculos, de mantener el rumbo cuando todo empuja en distintas direcciones. Es disciplina en movimiento. En la vida real, esta carta aparece cuando estás en medio de una lucha y necesitas recordar que puedes ganar si no te rindes. También aparece justo antes o después de un logro importante. En el amor, puede indicar que debes trabajar activamente en la relación para que funcione, o que estás superando un período difícil con tu pareja. En el trabajo, es señal de éxito conquistado con esfuerzo, proyectos que avanzan, y la capacidad de superar la competencia. En dinero, indica que puedes alcanzar tus metas financieras si mantienes el enfoque y la disciplina. En crecimiento personal, esta carta te reta a tomar el control de tus impulsos y canalizar tu energía hacia metas concretas. ¿Qué hacer cuando te sale? Mantente enfocado. No dejes que los distractores te desvíen. Tienes más fuerza de la que crees; úsala con intención. La victoria es posible si no aflojas."
+reversed_meaning = "Al reverso, El Carro indica pérdida de control, dirección equivocada o agresividad desmedida. Puedes estar yendo demasiado rápido sin saber hacia dónde. En el amor, puede señalar luchas de poder. En el trabajo, proyectos que se salen de control. En dinero, gastos sin planificación. ¿Qué hacer? Reduce la velocidad. Antes de avanzar, asegúrate de que sabes exactamente a dónde vas."
+possible_plays = "Por 2 de energía: restaura 6 de claridad y otorga 6 de escudo."

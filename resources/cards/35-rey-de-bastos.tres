@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/35-rey-de-bastos.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "enemy"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "Rey de Bastos"
+suit = 2
+card_type = 2
+cost = 3
+base_value = 6
+description = "Acción, pasión y voluntad"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Fuego"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Rey de Bastos es la carta del líder visionario, el emprendedor maduro y la persona que ha aprendido a canalizar su fuego con sabiduría. Ya no actúa por impulso; ahora actúa con intención y experiencia. Su pasión no se extinguió con los años, sino que se refinó. En la vida real, puede representar a un mentor, un líder inspirador o un empresario maduro en tu vida. O puede señalar que es momento de que tú adoptes ese rol de liderazgo. En el amor, indica una relación madura y apasionada, con alguien que es seguro de sí mismo y sabe lo que quiere. En el trabajo, señala el momento de liderar con visión, de inspirar a otros y de tomar las riendas de un proyecto o equipo con confianza. En dinero, indica instintos financieros sólidos, buenos resultados en inversiones y la capacidad de construir riqueza de manera sostenida. En crecimiento personal, el Rey de Bastos te invita a convertirte en el líder de tu propia vida. ¿Qué hacer cuando te sale? Asume el liderazgo. Actúa desde la experiencia y la visión. Tu sabiduría acumulada es un recurso valioso: compártela y úsala."
+reversed_meaning = "Al reverso, el Rey de Bastos indica autoritarismo, impulsividad o liderazgo que se ha vuelto tiránico. En el amor, relaciones dominantes. En el trabajo, toma de decisiones sin consultar al equipo. ¿Qué hacer? El verdadero líder inspira, no impone. Escucha más de lo que hablas."
+possible_plays = "Por 3 de energía: aplica 6 de disonancia a la Sombra."

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/40-5-de-copas.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/heal_effect.gd" id="eff_0"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 5
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "5 de Copas"
+suit = 1
+card_type = 2
+cost = 1
+base_value = 5
+description = "Emociones e intuición"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0")])
+element = "Agua"
+zodiac_sign = ""
+planet = ""
+upright_meaning = "El Cinco de Copas es la carta del duelo, la pérdida y el enfoque en lo que ya no está. Tres copas están derramadas en el suelo; dos siguen de pie detrás de la figura, que solo mira lo que se perdió. La lección es clara: hay pérdida real, pero también hay algo que queda. En la vida real, esta carta aparece cuando estás pasando por un duelo: una ruptura, una pérdida, una decepción profunda. Es normal sentir dolor; la carta no niega eso. Pero también señala que hay recursos y posibilidades que siguen disponibles, si puedes girar la cabeza. En el amor, puede indicar una ruptura dolorosa o la sensación de que una relación no dio lo que esperabas. En el trabajo, señala una pérdida laboral, un proyecto que fracasó o una decepción con colegas. En dinero, puede indicar una pérdida financiera que hay que procesar antes de seguir adelante. En crecimiento personal, invita a hacer el duelo completo pero luego girar la mirada hacia lo que sigue de pie. ¿Qué hacer cuando te sale? Llora lo que perdiste. Pero cuando puedas, date la vuelta. Las dos copas que quedan son reales y pueden ser tu nuevo comienzo."
+reversed_meaning = "Al reverso, el 5 de Copas indica el inicio de la recuperación emocional o un duelo que se prolonga más de lo necesario. En el amor, empezar a sanar después de una ruptura. En el trabajo, aceptar fracasos y aprender de ellos. ¿Qué hacer? Honra tu pérdida, pero no te instales en ella. Lo que se fue ya fue, lo que viene merece tu atención."
+possible_plays = "Por 1 de energía: restaura 5 de claridad."

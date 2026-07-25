@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
+[ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
+[ext_resource type="Texture2D" path="res://assets/cards/06-los-enamorados.webp" id="3_tex"]
+[ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
+[ext_resource type="Script" path="res://scripts/cards/effects/shield_effect.gd" id="eff_1"]
+
+[sub_resource type="Resource" id="sub_eff_0"]
+script = ExtResource("eff_0")
+amount = 6
+target = "enemy"
+
+[sub_resource type="Resource" id="sub_eff_1"]
+script = ExtResource("eff_1")
+amount = 6
+target = "self"
+
+[resource]
+script = ExtResource("1_cd")
+card_name = "Los Enamorados"
+suit = 4
+card_type = 3
+cost = 2
+base_value = 6
+description = "Dualidad y elección"
+icon = ExtResource("3_tex")
+effects = Array[ExtResource("2_ce")]([SubResource("sub_eff_0"), SubResource("sub_eff_1")])
+element = "Aire"
+zodiac_sign = "Géminis"
+planet = "Mercurio"
+upright_meaning = "Los Enamorados es la carta de las decisiones importantes, las relaciones significativas y los valores personales. Aunque su imagen evoca el romance, en realidad habla de elegir con el corazón alineado con lo que uno cree. Es la carta de las encrucijadas: dos caminos, una sola elección. En la vida real, esta carta aparece cuando debes tomar una decisión importante que define quién eres y hacia dónde vas. No necesariamente es sobre amor; puede ser una decisión de carrera, de estilo de vida o de valores. En el amor, evidentemente es una carta poderosa: indica atracción profunda, conexión real, y en algunos casos la decisión de comprometerse seriamente con alguien. En el trabajo, puede señalar una elección entre dos proyectos o caminos laborales. Elige lo que realmente resuene contigo, no lo más conveniente. En dinero, pide honestidad: elige con base en tus valores reales, no por presión externa. En crecimiento personal, te invita a conocer tus propios valores y a tomar decisiones que los reflejen. ¿Qué hacer cuando te sale? No huyas de la decisión. Pregúntate qué es lo que realmente quieres, más allá del miedo o la presión. Decide desde la autenticidad."
+reversed_meaning = "Al reverso, Los Enamorados indican desalineación de valores, decisiones tomadas por presión externa o conflictos en relaciones importantes. Puede haber infidelidad o falta de compromiso. En el amor, señala incompatibilidad o relaciones desequilibradas. En el trabajo, una decisión difícil entre dos caminos. ¿Qué hacer? Tómate tiempo para decidir. Una elección hecha desde el miedo raramente es la correcta."
+possible_plays = "Por 2 de energía: inflige 6 de daño a la Sombra y otorga 6 de escudo."

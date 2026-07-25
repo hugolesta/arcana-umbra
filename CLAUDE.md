@@ -22,6 +22,9 @@ Todo cambio debe dejar el proyecto en este estado (Godot está en `/Applications
 
 # 3. Smoke test del combate (escena real con autoloads: animaciones, carta, turno)
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeCombat.tscn
+
+# 4. Smoke test de eventos/journaling (diario, persistencia, integración, claridad)
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeEvent.tscn
 ```
 
 Nota: los scripts `-s` no pueden tocar código que use el autoload `GameState` (no compila fuera del juego); para tests que lo necesiten, usar una escena como `SmokeCombat.tscn`.
@@ -66,7 +69,8 @@ Patrones a respetar:
 - **Claridad** = vida (jugador y Sombras). Si llega a 0, fin del combate.
 - **Disonancia** = debuff sobre la Sombra: cada punto resta 1 a su próximo ataque, luego se disipa a la mitad.
 - **Escudo** = absorbe daño; el del jugador se resetea al terminar su turno.
-- **Integración** = tipo de carta de los Arcanos Mayores y futura meta-progresión (`cartas_integradas`).
+- **Integración** = tipo de carta de los Arcanos Mayores y meta-progresión (`cartas_integradas`): las cartas se integran al reflexionar sobre ellas en eventos.
+- **Eventos/journaling ("El Espejo del Viajero")**: en un nodo EVENTO se roba una carta del mazo propio (50% invertida), se muestra su significado real (derecho o reverso, datos de Kabbalah) y una pregunta introspectiva según su elemento (`event_scene.gd`). Escribir y guardar la reflexión da `+EVENT_CLARIDAD_REWARD` de claridad e integra la carta; saltar no da nada. El diario persiste **entre runs** en `user://journal.save` (separado de `progress.save`, que se resetea con cada run) y se consulta desde el botón "Diario" del título (`journal_scene.gd`).
 - Palos → efectos: Espadas=daño, Oros=escudo, Copas=curación, Bastos=disonancia, Arcanos Mayores=dos efectos según su elemento.
 
 ## Assets de pixel art (PixelLab MCP)
@@ -90,4 +94,4 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
 
 ## Fuera de alcance en esta fase (no implementar sin que Hugo lo pida)
 
-Tienda y eventos/journaling (hoy son placeholders que marcan el nodo y avanzan), IA de enemigos, balance de cartas, UI final, export móvil, monetización.
+Tienda (hoy es un placeholder que marca el nodo y avanza), IA de enemigos, balance de cartas, UI final, export móvil, monetización.

@@ -5,6 +5,8 @@ const TITLE_SCENE := "res://scenes/TitleScene.tscn"
 const MAP_SCENE := "res://scenes/MapScene.tscn"
 const COMBAT_SCENE := "res://scenes/CombatScene.tscn"
 const DECK_SCENE := "res://scenes/DeckBuilderScene.tscn"
+const EVENT_SCENE := "res://scenes/EventScene.tscn"
+const JOURNAL_SCENE := "res://scenes/JournalScene.tscn"
 
 var _current: Node
 
@@ -20,6 +22,12 @@ func show_title() -> void:
 		GameState.start_new_run()
 		show_map())
 	title.deck_requested.connect(show_deck_builder.bind(true))
+	title.journal_requested.connect(show_journal)
+
+
+func show_journal() -> void:
+	var journal: Node = _swap_to(JOURNAL_SCENE)
+	journal.back_requested.connect(show_title)
 
 
 func show_map() -> void:
@@ -42,10 +50,20 @@ func _on_map_node_selected(node: MapNode) -> void:
 				GameState.player_claridad + 15, GameState.player_max_claridad)
 			GameState.mark_visited(node)
 			show_map()
-		MapNode.NodeType.TIENDA, MapNode.NodeType.EVENTO:
-			# Placeholder: tienda y eventos/journaling llegan en la próxima fase.
+		MapNode.NodeType.EVENTO:
+			_start_event(node)
+		MapNode.NodeType.TIENDA:
+			# Placeholder: la tienda llega en una fase posterior.
 			GameState.mark_visited(node)
 			show_map()
+
+
+func _start_event(node: MapNode) -> void:
+	var event: Node = _swap_to(EVENT_SCENE)
+	event.setup(node)
+	event.finished.connect(func():
+		GameState.mark_visited(node)
+		show_map())
 
 
 func _start_combat(node: MapNode) -> void:

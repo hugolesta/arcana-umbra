@@ -4,7 +4,9 @@ extends Node
 ## genera para poder continuar el run si se cierra la app).
 
 const SAVE_PATH := "user://progress.save"
+const JOURNAL_PATH := "user://journal.save"
 const CARDS_DIR := "res://resources/cards"
+const EVENT_CLARIDAD_REWARD := 8
 
 const STARTER_DECK_NAMES: Array[String] = [
 	"As de Espadas", "2 de Espadas", "3 de Espadas",
@@ -24,9 +26,13 @@ var player_claridad: int = 50
 var map_grid: Array = []  # Array de pisos; cada piso es Array[MapNode]
 var current_node_coord: Vector2i = Vector2i(-1, -1)
 
+# Diario del Viajero: persiste entre runs (no se borra al reiniciar el mapa).
+var journal_entries: Array = []
+
 
 func _ready() -> void:
 	_load_all_cards()
+	load_journal()
 	if not load_progress():
 		start_new_run()
 
@@ -64,6 +70,44 @@ func mark_visited(node: MapNode) -> void:
 
 func run_completed() -> bool:
 	return current_node_coord.x == map_grid.size() - 1
+
+
+func reflect_on_card(card: CardData, reversed: bool, question: String, text: String) -> void:
+	journal_entries.append({
+		"fecha": Time.get_datetime_string_from_system(),
+		"carta": card.card_name,
+		"invertida": reversed,
+		"piso": current_node_coord.x,
+		"pregunta": question,
+		"texto": text,
+	})
+	save_journal()
+	if not cartas_integradas.has(card.card_name):
+		cartas_integradas.append(card.card_name)
+	player_claridad = mini(player_claridad + EVENT_CLARIDAD_REWARD, player_max_claridad)
+	save_progress()
+
+
+func save_journal() -> void:
+	var file := FileAccess.open(JOURNAL_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify({"entradas": journal_entries}))
+
+
+func load_journal() -> bool:
+	journal_entries.clear()
+	if not FileAccess.file_exists(JOURNAL_PATH):
+		return false
+	var file := FileAccess.open(JOURNAL_PATH, FileAccess.READ)
+	if file == null:
+		return false
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if parsed == null or not (parsed is Dictionary):
+		return false
+	for entry in parsed.get("entradas", []):
+		if entry is Dictionary:
+			journal_entries.append(entry)
+	return true
 
 
 func find_card(card_name: String) -> CardData:

@@ -6,6 +6,7 @@ extends Control
 signal continue_requested
 signal new_run_requested
 signal deck_requested
+signal journal_requested
 
 const EMBLEM_PATH := "res://assets/ui/titulo_emblema.png"
 
@@ -66,6 +67,9 @@ func _ready() -> void:
 		"Nuevo viaje" if has_run else "Comenzar viaje",
 		func(): new_run_requested.emit()))
 	layout.add_child(_make_button("Ver mazo", func(): deck_requested.emit()))
+	layout.add_child(_make_button(
+		"Diario (%d)" % GameState.journal_entries.size(),
+		func(): journal_requested.emit()))
 
 
 func _make_button(text: String, on_pressed: Callable) -> Button:

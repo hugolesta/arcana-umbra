@@ -53,6 +53,8 @@ func _show_card_detail(card: CardData) -> void:
 		meta.append("Signo: %s" % card.zodiac_sign)
 	if card.element:
 		meta.append("Elemento: %s" % card.element)
+	if GameState.cartas_integradas.has(card.card_name):
+		meta.append("✦ Integrada")
 	dialog.dialog_text = "%s\n%s\n\n%s\n\nJugadas: %s" % [
 		" · ".join(meta), card.description,
 		card.upright_meaning.left(400) + "…", card.possible_plays]

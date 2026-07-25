@@ -36,8 +36,20 @@ var current_node_coord: Vector2i = Vector2i(-1, -1)
 # Diario del Viajero: persiste entre runs (no se borra al reiniciar el mapa).
 var journal_entries: Array = []
 
+# Rutas efectivas de guardado. Con ARCANA_TEST=1 (smokes/simulación) se usan
+# archivos aparte y limpios: los tests JAMÁS tocan el progreso real.
+var save_path := SAVE_PATH
+var journal_path := JOURNAL_PATH
+
 
 func _ready() -> void:
+	if OS.get_environment("ARCANA_TEST") == "1":
+		save_path = "user://test_progress.save"
+		journal_path = "user://test_journal.save"
+		if FileAccess.file_exists(save_path):
+			DirAccess.remove_absolute(save_path)
+		if FileAccess.file_exists(journal_path):
+			DirAccess.remove_absolute(journal_path)
 	_load_all_cards()
 	load_journal()
 	if not load_progress():
@@ -139,16 +151,16 @@ func reflect_on_card(card: CardData, reversed: bool, question: String, text: Str
 
 
 func save_journal() -> void:
-	var file := FileAccess.open(JOURNAL_PATH, FileAccess.WRITE)
+	var file := FileAccess.open(journal_path, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify({"entradas": journal_entries}))
 
 
 func load_journal() -> bool:
 	journal_entries.clear()
-	if not FileAccess.file_exists(JOURNAL_PATH):
+	if not FileAccess.file_exists(journal_path):
 		return false
-	var file := FileAccess.open(JOURNAL_PATH, FileAccess.READ)
+	var file := FileAccess.open(journal_path, FileAccess.READ)
 	if file == null:
 		return false
 	var parsed: Variant = JSON.parse_string(file.get_as_text())
@@ -186,15 +198,15 @@ func save_progress() -> void:
 		"map": map_data,
 		"current_node": [current_node_coord.x, current_node_coord.y],
 	}
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var file := FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(save_dict))
 
 
 func load_progress() -> bool:
-	if not FileAccess.file_exists(SAVE_PATH):
+	if not FileAccess.file_exists(save_path):
 		return false
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var file := FileAccess.open(save_path, FileAccess.READ)
 	if file == null:
 		return false
 	var parsed: Variant = JSON.parse_string(file.get_as_text())

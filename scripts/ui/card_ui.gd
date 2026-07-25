@@ -10,6 +10,18 @@ func _init(p_card: CardData) -> void:
 	custom_minimum_size = Vector2(140, 210)
 	clip_text = true
 	_build_content()
+	# Juice: la carta responde al tacto con un pequeño pop.
+	resized.connect(func(): pivot_offset = size / 2.0)
+	button_down.connect(func(): _pop(0.94))
+	button_up.connect(func(): _pop(1.0))
+	mouse_entered.connect(func(): _pop(1.04))
+	mouse_exited.connect(func(): _pop(1.0))
+
+
+func _pop(target: float) -> void:
+	var tween := create_tween()
+	tween.tween_property(self, "scale", Vector2.ONE * target, 0.08) \
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 
 func _build_content() -> void:

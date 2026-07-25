@@ -10,10 +10,24 @@ const JOURNAL_SCENE := "res://scenes/JournalScene.tscn"
 const SHOP_SCENE := "res://scenes/ShopScene.tscn"
 
 var _current: Node
+var _fade: ColorRect
 
 
 func _ready() -> void:
+	get_window().theme = UITheme.build()
+	_build_fade_overlay()
 	show_title()
+
+
+func _build_fade_overlay() -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = 100
+	add_child(layer)
+	_fade = ColorRect.new()
+	_fade.color = Color(0.05, 0.04, 0.12, 0.0)
+	_fade.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(_fade)
 
 
 func show_title() -> void:
@@ -95,4 +109,10 @@ func _swap_to(scene_path: String) -> Node:
 		_current.queue_free()
 	_current = load(scene_path).instantiate()
 	add_child(_current)
+	# Transición: la escena nueva entra con un fundido desde el color de fondo.
+	if _fade:
+		_fade.color.a = 1.0
+		var tween := create_tween()
+		tween.tween_property(_fade, "color:a", 0.0, 0.35) \
+				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	return _current

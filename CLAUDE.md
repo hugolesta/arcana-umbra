@@ -20,18 +20,14 @@ Todo cambio debe dejar el proyecto en este estado (Godot está en `/Applications
 # 2. La suite de verificación pasa: 78 CardData completos + reglas del DAG del mapa
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . -s tools/verify.gd
 
-# 3. Smoke test del combate (escena real con autoloads: animaciones, carta, turno)
-/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeCombat.tscn
-
-# 4. Smoke test de eventos/journaling (diario, persistencia, integración, claridad)
-/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeEvent.tscn
-
-# 5. Smoke test de la tienda (compra, descuento de integrada, quitar carta, topes)
-/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeShop.tscn
-
-# 6. Simulación de balance: 200 combates/arquetipo, semilla fija, bandas de win-rate
-#    (Menor >=85%, Élite >=50%, Jefe 30-95% con mazo inicial)
-/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SimBalance.tscn
+# 3-6. Tests de gameplay: SIEMPRE con ARCANA_TEST=1 (usa saves aislados y limpios
+#      user://test_*.save — sin la variable contaminarían el progreso real del jugador)
+ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeCombat.tscn
+ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeEvent.tscn
+ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeShop.tscn
+# SimBalance: 200 combates/arquetipo, semilla fija, bandas de win-rate con mazo inicial
+# (Menor >=85%, Élite >=50%, Jefe 30-95%)
+ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SimBalance.tscn
 ```
 
 Nota: los scripts `-s` no pueden tocar código que use el autoload `GameState` (no compila fuera del juego); para tests que lo necesiten, usar una escena como `SmokeCombat.tscn`.
@@ -94,7 +90,9 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
 - **Personajes animados (combate)**: `assets/personajes/<clave>/{idle_south,attack_south}/<n>.png` — carpetas de frames cuadrados numerados desde 0 (el 0 es el frame de referencia; ver `scripts/ui/sprite_strip.gd`). Claves: `viajero`, `sombra_menor`, `sombra_elite`, `jefe_sombra`. `combat_scene.gd` reproduce idle en bucle y dispara attack con las señales (`card_played` → Viajero, `TURNO_ENEMIGO` → Sombra). Personajes creados con `create_character` v3; los `character_id` NO se guardan (los personajes viven en la cuenta PixelLab, listables con `list_characters`).
 - **Sprites estáticos legacy (fallback)**: `assets/sombras/<tipo>.png` y `assets/viajero/viajero.png` (128×128) — se usan si faltan las tiras animadas. No borrarlos: son el fallback de `combat_scene.gd`.
 - **Cartas pixel art**: `assets/cartas_pixel/<NN>-<slug>.png` — PNG 128×192 (formato carta), mismo nombre base que el `.webp` de `assets/cards/`. Las **78 cartas completas** (mayores y menores) tienen pixel art con iconografía Rider-Waite. `generate_tres.py` usa el pixel art como `icon` del CardData **si el PNG existe**; si no, cae al `.webp` de Kabbalah — tras añadir/quitar pixel art hay que regenerar los `.tres`.
-- **UI de título**: `assets/ui/titulo_emblema.png` — emblema 256×256 usado por `title_scene.gd` (pantalla de inicio, construida por código con `StyleBoxFlat`; sin paneles de `create_ui_asset`). Ojo: este PNG tiene **fondo opaco** `#13173a`; `COLOR_BG` de `title_scene.gd` usa ese mismo color para fundirlo. Si se regenera el emblema, revisar el color de fondo real del PNG y ajustar la constante.
+- **UI de título**: `assets/ui/titulo_emblema.png` — emblema 256×256 usado por `title_scene.gd`. Ojo: este PNG tiene **fondo opaco** `#13173a`; `COLOR_BG` de `title_scene.gd` usa ese mismo color para fundirlo. Si se regenera el emblema, revisar el color de fondo real del PNG y ajustar la constante.
+- **Tema global (UI final)**: `scripts/ui/ui_theme.gd` construye un `Theme` en runtime desde `assets/ui/` y se aplica en `main.gd` (`get_window().theme`). Piezas de `create_ui_asset` (aprobadas por Hugo, 40 gen c/u): `panel_arcano.png` (9-slice de Panel/PanelContainer; su centro transparente se rellenó de violeta a mano), `boton_arcano.png` (estados por modulación; región útil `Rect2(76,68,152,63)`, el texto "Button" horneado se borró del PNG) y `barra_claridad.png` (ProgressBar; la barra fina vive en `Rect2(107,249,298,30)`). Tipografía: `arcana_umbra.ttf` (pixel font Bold de `create_font`, 20 gen), fuente por defecto del tema. **Si se regenera un asset de UI hay que recalcular sus regiones/rellenos** (los PNG commiteados están post-procesados). Cada pieza tiene fallback si falta el archivo.
+- **Transiciones y juice**: fundido de 0.35s entre escenas (overlay en `main.gd`), pop de cartas al tocarlas (`card_ui.gd`), sacudida al recibir daño y barra de claridad animada con flash (`combat_scene.gd`). Todo con `create_tween()`, sin AnimationPlayer.
 - **Estilo fijado**: 64×64 px, paleta oscura mística (violeta/dorado), coherente con `icon.svg` (tarot/ocultismo/sombras). Vista "side", contorno "single color outline". Renderizar con `TEXTURE_FILTER_NEAREST` en la UI.
 - **Qué herramienta usar por tipo de asset** (plan Tier 1 activo, pero seguir siendo frugal):
   - Iconos, emblemas e ilustraciones estáticas (cartas): `create_map_object` básico — 1 generación.
@@ -107,4 +105,4 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
 
 ## Fuera de alcance en esta fase (no implementar sin que Hugo lo pida)
 
-UI final, export móvil, monetización.
+Export móvil y monetización.

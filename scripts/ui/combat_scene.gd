@@ -23,6 +23,7 @@ var _energy_label: Label
 var _hand_box: HBoxContainer
 var _node: MapNode
 var _sprite_key := "sombra_menor"
+var _last_enemy_claridad := 0
 
 
 func _ready() -> void:
@@ -70,6 +71,9 @@ func setup(node: MapNode) -> void:
 	manager.enemy.disonancia_changed.connect(func(_v): _refresh_enemy())
 	manager.player.claridad_changed.connect(_on_player_claridad_changed)
 	manager.player.shield_changed.connect(func(v): _shield_label.text = "Escudo: %d" % v)
+	_last_enemy_claridad = manager.enemy.claridad
+	_claridad_bar.max_value = manager.player.max_claridad
+	_claridad_bar.value = manager.player.claridad
 	_refresh_enemy()
 	_on_player_claridad_changed(manager.player.claridad, manager.player.max_claridad)
 
@@ -185,14 +189,42 @@ func _refresh_enemy() -> void:
 		manager.enemy.max_claridad, manager.enemy.disonancia]
 
 
-func _on_enemy_claridad_changed(_value: int, _max_value: int) -> void:
+func _on_enemy_claridad_changed(value: int, _max_value: int) -> void:
+	if value < _last_enemy_claridad:
+		_shake(_enemy_slot)
+	_last_enemy_claridad = value
 	_refresh_enemy()
 
 
 func _on_player_claridad_changed(value: int, max_value: int) -> void:
+	if value < _claridad_bar.value:
+		_shake(_viajero_slot)
+		_flash(_claridad_bar, Color(1.0, 0.4, 0.4))
+	elif value > _claridad_bar.value:
+		_flash(_claridad_bar, Color(0.6, 1.0, 0.6))
 	_claridad_bar.max_value = max_value
-	_claridad_bar.value = value
+	var tween := create_tween()
+	tween.tween_property(_claridad_bar, "value", float(value), 0.25) \
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	_claridad_label.text = "Claridad del Viajero: %d/%d" % [value, max_value]
+
+
+## Juice: sacudida corta al recibir daño y flash de color en la barra.
+func _shake(target: Control) -> void:
+	if target == null:
+		return
+	var origin := target.position
+	var tween := create_tween()
+	for offset in [6.0, -5.0, 3.0, -2.0, 0.0]:
+		tween.tween_property(target, "position:x", origin.x + offset, 0.04)
+
+
+func _flash(target: CanvasItem, color: Color) -> void:
+	if target == null:
+		return
+	target.modulate = color
+	var tween := create_tween()
+	tween.tween_property(target, "modulate", Color.WHITE, 0.35)
 
 
 func _on_energy_changed(current: int, max_energy: int) -> void:

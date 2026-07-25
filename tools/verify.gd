@@ -112,12 +112,17 @@ func _initialize() -> void:
 	if missing_pixel == 0:
 		print("OK: 78 cartas con pixel art en assets/cartas_pixel/")
 
-	# 7. El emblema de la pantalla de título existe (assets/ui/titulo_emblema.png).
-	if FileAccess.file_exists("res://assets/ui/titulo_emblema.png"):
-		print("OK: emblema del título presente en assets/ui/")
-	else:
-		print("FALLO: falta res://assets/ui/titulo_emblema.png")
-		failures += 1
+	# 7. Assets de UI: emblema del título, tema PixelLab y tipografía.
+	var missing_ui := 0
+	for ui_file in ["titulo_emblema.png", "panel_arcano.png", "boton_arcano.png",
+			"barra_claridad.png", "arcana_umbra.ttf"]:
+		var ui_path: String = "res://assets/ui/" + ui_file
+		if not FileAccess.file_exists(ui_path):
+			print("FALLO: falta ", ui_path)
+			failures += 1
+			missing_ui += 1
+	if missing_ui == 0:
+		print("OK: assets de UI presentes en assets/ui/ (emblema, panel, botón, barra, fuente)")
 
 	# 8. IA de intenciones: patrones válidos y ciclado determinista.
 	var ai_failures := 0

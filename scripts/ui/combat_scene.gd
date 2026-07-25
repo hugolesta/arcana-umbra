@@ -4,9 +4,12 @@ extends Control
 
 signal finished(victory: bool)
 
+const SPRITE_DIR := "res://assets/sombras"
+
 var manager: CombatManager
 
 var _enemy_label: Label
+var _enemy_sprite: TextureRect
 var _intent_label: Label
 var _claridad_bar: ProgressBar
 var _claridad_label: Label
@@ -34,15 +37,21 @@ func _ready() -> void:
 	var enemy_name := "Sombra Menor"
 	var enemy_claridad := 18 + _node.floor_index * 2
 	var enemy_attack := 5
+	var sprite_key := "sombra_menor"
 	match _node.node_type:
 		MapNode.NodeType.ELITE:
 			enemy_name = "Sombra Élite"
 			enemy_claridad = 30 + _node.floor_index * 2
 			enemy_attack = 8
+			sprite_key = "sombra_elite"
 		MapNode.NodeType.JEFE_SOMBRA:
 			enemy_name = "Jefe de la Sombra"
 			enemy_claridad = 50 + _node.floor_index * 3
 			enemy_attack = 10
+			sprite_key = "jefe_sombra"
+	var sprite_path := SPRITE_DIR.path_join(sprite_key + ".png")
+	if ResourceLoader.exists(sprite_path):
+		_enemy_sprite.texture = load(sprite_path)
 
 	manager.start_combat(GameState.mazo_permanente, enemy_name, enemy_claridad, enemy_attack)
 	manager.enemy.claridad_changed.connect(_on_enemy_claridad_changed)
@@ -70,6 +79,14 @@ func _build_ui() -> void:
 	_intent_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_intent_label.modulate = Color(1, 0.7, 0.7)
 	layout.add_child(_intent_label)
+
+	# Sprite pixel art de la Sombra (assets/sombras/<tipo>.png).
+	_enemy_sprite = TextureRect.new()
+	_enemy_sprite.custom_minimum_size = Vector2(256, 256)
+	_enemy_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_enemy_sprite.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_enemy_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	layout.add_child(_enemy_sprite)
 
 	layout.add_child(HSeparator.new())
 

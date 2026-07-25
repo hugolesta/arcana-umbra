@@ -69,6 +69,7 @@ Patrones a respetar:
 El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab__*`), solo cuando una tarea lo requiera — no es un addon de Godot, así que no viola la regla de "sin plugins".
 
 - **Iconos de nodos del mapa**: `assets/map_icons/<tipo>.png` — un PNG 64×64 por valor del enum `MapNode.NodeType` en minúscula (`combate.png`, `elite.png`, `descanso.png`, `tienda.png`, `evento.png`, `jefe_sombra.png`). `map_scene.gd` los carga por convención de nombre (`_icon_for`); si falta un icono, el botón cae a solo texto.
+- **Sprites de Sombras (combate)**: `assets/sombras/<tipo>.png` — PNG 128×128: `sombra_menor.png`, `sombra_elite.png`, `jefe_sombra.png`. `combat_scene.gd` los carga por convención de nombre según el tipo de nodo; si falta un sprite, el combate sigue sin imagen.
 - **Estilo fijado**: 64×64 px, paleta oscura mística (violeta/dorado), coherente con `icon.svg` (tarot/ocultismo/sombras). Vista "side", contorno "single color outline". Renderizar con `TEXTURE_FILTER_NEAREST` en la UI.
 - **Uso de créditos**: generar en una sola pasada lo acordado con Hugo (p. ej. `create_map_object` básico = 1 generación por icono). **Nunca** usar `create_ui_asset` para iconos sueltos (consume 20-40 generaciones por panel) ni iterar arte de forma exploratoria sin pedirlo.
 - Los objetos generados en PixelLab se **auto-borran a las 8 horas**: descargar los PNG al repo apenas terminen.

@@ -69,5 +69,16 @@ func _initialize() -> void:
 	if missing_icons == 0:
 		print("OK: 6 iconos de nodo presentes en assets/map_icons/")
 
+	# 4. Los 3 sprites de Sombras existen (assets/sombras/<tipo>.png).
+	var missing_sprites := 0
+	for sprite_name in ["sombra_menor", "sombra_elite", "jefe_sombra"]:
+		var sprite_path := "res://assets/sombras/%s.png" % sprite_name
+		if not FileAccess.file_exists(sprite_path):
+			print("FALLO: falta el sprite ", sprite_path)
+			failures += 1
+			missing_sprites += 1
+	if missing_sprites == 0:
+		print("OK: 3 sprites de Sombras presentes en assets/sombras/")
+
 	print("RESULTADO: %s (%d fallos)" % ["PASA" if failures == 0 else "FALLA", failures])
 	quit(1 if failures > 0 else 0)

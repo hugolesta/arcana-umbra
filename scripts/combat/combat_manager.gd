@@ -18,6 +18,9 @@ const MAX_ENERGY := 3
 var state: State = State.INICIO_TURNO
 var player: Combatant
 var enemy: Combatant
+var ai: ShadowAI
+var current_intent: ShadowAI.Intent = ShadowAI.Intent.ATACAR
+var _charged := false  # ACECHAR: el próximo golpe hace x1.5
 var draw_pile: Array[CardData] = []
 var hand: Array[CardData] = []
 var discard_pile: Array[CardData] = []
@@ -25,12 +28,15 @@ var energy: int = MAX_ENERGY
 var _combat_over := false
 
 
-func start_combat(deck: Array[CardData], enemy_name: String, enemy_claridad: int, enemy_attack: int) -> void:
+func start_combat(deck: Array[CardData], enemy_name: String, enemy_claridad: int, enemy_attack: int, archetype: String = "sombra_menor") -> void:
 	player = Combatant.new("Viajero", GameState.player_max_claridad, 0)
 	player.claridad = GameState.player_claridad
 	enemy = Combatant.new(enemy_name, enemy_claridad, enemy_attack)
+	ai = ShadowAI.new(archetype)
 	player.defeated.connect(_on_player_defeated)
 	enemy.defeated.connect(_on_enemy_defeated)
+	# La intención mostrada se actualiza en vivo al aplicar disonancia.
+	enemy.disonancia_changed.connect(func(_v): enemy_intent_changed.emit(_intent_description()))
 	draw_pile = deck.duplicate()
 	draw_pile.shuffle()
 	hand.clear()
@@ -63,7 +69,7 @@ func end_turn() -> void:
 		return
 	_enter_state(State.TURNO_ENEMIGO)
 	player.reset_shield()
-	player.take_damage(enemy.attack_value())
+	_execute_enemy_intent()
 	_enter_state(State.CHEQUEO_CLARIDAD)
 	if _combat_over:
 		return
@@ -80,8 +86,45 @@ func _enter_state(new_state: State) -> void:
 		energy = MAX_ENERGY
 		energy_changed.emit(energy, MAX_ENERGY)
 		_draw_hand()
-		enemy_intent_changed.emit("La Sombra atacará con %d" % maxi(enemy.base_attack - enemy.disonancia, 1))
+		current_intent = ai.next_intent()
+		enemy_intent_changed.emit(_intent_description())
 		_enter_state(State.JUGADOR_ACCIONA)
+
+
+func _execute_enemy_intent() -> void:
+	# El escudo de la Sombra expira al comenzar su propia acción.
+	enemy.reset_shield()
+	match current_intent:
+		ShadowAI.Intent.ATACAR, ShadowAI.Intent.ATAQUE_FUERTE:
+			player.take_damage(enemy.strike_value(_planned_strike()))
+			_charged = false
+		ShadowAI.Intent.DEFENDER:
+			enemy.add_shield(ShadowAI.intent_value(current_intent, enemy.base_attack))
+		ShadowAI.Intent.ACECHAR:
+			_charged = true
+		ShadowAI.Intent.DRENAR:
+			var drained := enemy.strike_value(ShadowAI.intent_value(current_intent, enemy.base_attack))
+			player.take_damage(drained)
+			enemy.heal(drained)
+
+
+func _planned_strike() -> int:
+	var planned := ShadowAI.intent_value(current_intent, enemy.base_attack)
+	if _charged:
+		planned = int(round(planned * 1.5))
+	return planned
+
+
+func _intent_description() -> String:
+	var value := 0
+	match current_intent:
+		ShadowAI.Intent.ATACAR, ShadowAI.Intent.ATAQUE_FUERTE:
+			value = maxi(_planned_strike() - enemy.disonancia, 1)
+		_:
+			value = ShadowAI.intent_value(current_intent, enemy.base_attack)
+			if current_intent == ShadowAI.Intent.DRENAR:
+				value = maxi(value - enemy.disonancia, 1)
+	return ShadowAI.describe(current_intent, value)
 
 
 func _draw_hand() -> void:

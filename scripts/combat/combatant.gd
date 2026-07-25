@@ -51,8 +51,12 @@ func add_disonancia(amount: int) -> void:
 
 
 func attack_value() -> int:
-	# La disonancia debilita el próximo ataque y luego se disipa a la mitad.
-	var value: int = maxi(base_attack - disonancia, 1)
+	return strike_value(base_attack)
+
+
+## Aplica la disonancia a un golpe planificado y la disipa a la mitad.
+func strike_value(planned: int) -> int:
+	var value: int = maxi(planned - disonancia, 1)
 	disonancia = disonancia / 2
 	disonancia_changed.emit(disonancia)
 	return value

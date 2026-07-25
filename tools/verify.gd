@@ -119,7 +119,34 @@ func _initialize() -> void:
 		print("FALLO: falta res://assets/ui/titulo_emblema.png")
 		failures += 1
 
-	# 8. Animaciones de personajes: carpetas de frames idle/attack (sur).
+	# 8. IA de intenciones: patrones válidos y ciclado determinista.
+	var ai_failures := 0
+	for archetype in ["sombra_menor", "sombra_elite", "jefe_sombra"]:
+		if not ShadowAI.PATTERNS.has(archetype):
+			print("FALLO: falta patrón de IA para ", archetype)
+			failures += 1
+			ai_failures += 1
+	# Élite y Jefe ciclan su patrón en orden exacto (sin azar).
+	for archetype in ["sombra_elite", "jefe_sombra"]:
+		var ai := ShadowAI.new(archetype)
+		var pattern: Array = ShadowAI.PATTERNS[archetype]
+		for cycle in range(2):
+			for expected in pattern:
+				if ai.next_intent() != expected:
+					print("FALLO: %s no cicla su patrón en orden" % archetype)
+					failures += 1
+					ai_failures += 1
+	# Valores de intención coherentes con el ataque base.
+	if ShadowAI.intent_value(ShadowAI.Intent.ATAQUE_FUERTE, 8) <= 8 \
+			or ShadowAI.intent_value(ShadowAI.Intent.DRENAR, 8) <= 0 \
+			or ShadowAI.describe(ShadowAI.Intent.ACECHAR, 0).is_empty():
+		print("FALLO: valores o descripciones de intención incoherentes")
+		failures += 1
+		ai_failures += 1
+	if ai_failures == 0:
+		print("OK: IA de intenciones — 3 arquetipos, ciclado determinista, valores coherentes")
+
+	# 9. Animaciones de personajes: carpetas de frames idle/attack (sur).
 	var missing_strips := 0
 	for character in ["viajero", "sombra_menor", "sombra_elite", "jefe_sombra"]:
 		for anim in ["idle_south", "attack_south"]:

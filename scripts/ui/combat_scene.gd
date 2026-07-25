@@ -65,7 +65,7 @@ func setup(node: MapNode) -> void:
 	_fill_slot_enemy()
 	_fill_slot_viajero()
 
-	manager.start_combat(GameState.mazo_permanente, enemy_name, enemy_claridad, enemy_attack)
+	manager.start_combat(GameState.mazo_permanente, enemy_name, enemy_claridad, enemy_attack, _sprite_key)
 	manager.enemy.claridad_changed.connect(_on_enemy_claridad_changed)
 	manager.enemy.disonancia_changed.connect(func(_v): _refresh_enemy())
 	manager.player.claridad_changed.connect(_on_player_claridad_changed)

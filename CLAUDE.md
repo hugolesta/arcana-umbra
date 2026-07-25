@@ -53,6 +53,8 @@ scripts/cards/card_effect.gd       Efecto base (patrón Strategy)
 scripts/cards/effects/*.gd         DamageEffect, HealEffect, ShieldEffect, DisonanciaEffect
 scripts/combat/combatant.gd        Estado de Viajero/Sombra (claridad, escudo, disonancia)
 scripts/combat/combat_manager.gd   Máquina de estados del combate; emite señales, NO toca UI
+scripts/combat/shadow_ai.gd        IA de intenciones: patrón por arquetipo (sin autoloads,
+                                   testeable desde verify.gd)
 scripts/map/map_generator.gd       DAG: 15 pisos, 3-6 nodos (anchura varía ±1 por piso),
                                    conexiones solo a columnas adyacentes, jefe final único
 scripts/map/map_node.gd            Nodo del mapa (Resource serializable to_dict/from_dict)
@@ -73,6 +75,7 @@ Patrones a respetar:
 - **Disonancia** = debuff sobre la Sombra: cada punto resta 1 a su próximo ataque, luego se disipa a la mitad.
 - **Escudo** = absorbe daño; el del jugador se resetea al terminar su turno.
 - **Integración** = tipo de carta de los Arcanos Mayores y meta-progresión (`cartas_integradas`): las cartas se integran al reflexionar sobre ellas en eventos.
+- **Intenciones de las Sombras** (`shadow_ai.gd`): cada arquetipo cicla un patrón telegrafiado antes del turno del jugador — Atacar, Golpe Fuerte (×1.75), Defender (escudo), Acechar (el próximo golpe hace ×1.5) y Drenar (daña la mitad y se cura). Menor = [atacar, atacar, defender] con 25% de caos; Élite = [atacar, acechar, golpe fuerte, defender]; Jefe = [acechar, golpe fuerte, atacar, drenar], ambos deterministas. La disonancia resta al golpe y la descripción de la intención se re-emite en vivo al cambiar. El escudo de la Sombra expira al comenzar su propia acción.
 - **Esencia** = moneda del run: `ESENCIA_COMBATE/ELITE/JEFE` al vencer Sombras; se gasta en la tienda; se resetea con cada run (viaja en `progress.save`).
 - **Tienda ("El Mercader de Umbrales")**: en un nodo TIENDA (`shop_scene.gd`) se ofrecen 3 cartas al azar (menores 25, mayores 50, **mitad de precio si está integrada** — el journaling paga) y quitar una carta del mazo por 30 (una por visita, nunca por debajo de `MIN_DECK_SIZE`).
 - **Eventos/journaling ("El Espejo del Viajero")**: en un nodo EVENTO se roba una carta del mazo propio (50% invertida), se muestra su significado real (derecho o reverso, datos de Kabbalah) y una pregunta introspectiva según su elemento (`event_scene.gd`). Escribir y guardar la reflexión da `+EVENT_CLARIDAD_REWARD` de claridad e integra la carta; saltar no da nada. El diario persiste **entre runs** en `user://journal.save` (separado de `progress.save`, que se resetea con cada run) y se consulta desde el botón "Diario" del título (`journal_scene.gd`).
@@ -99,4 +102,4 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
 
 ## Fuera de alcance en esta fase (no implementar sin que Hugo lo pida)
 
-IA de enemigos, balance de cartas, UI final, export móvil, monetización.
+Balance de cartas, UI final, export móvil, monetización.

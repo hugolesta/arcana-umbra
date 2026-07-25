@@ -27,13 +27,19 @@ func _process(_delta: float) -> void:
 			failures.append("el Viajero no usa animación de personaje")
 		if _combat.manager.hand.size() != 5:
 			failures.append("mano inicial != 5")
+		if _combat.manager.ai == null or _combat.manager.ai.archetype != "jefe_sombra":
+			failures.append("la IA no usa el arquetipo del nodo")
+		if _combat.manager._intent_description().is_empty():
+			failures.append("no hay intención telegrafiada")
 		if failures.is_empty():
 			_combat.manager.play_card(_combat.manager.hand[0])
 			_combat.manager.end_turn()
-		else:
+			if _combat.manager.state != CombatManager.State.JUGADOR_ACCIONA:
+				failures.append("el turno no volvió al jugador tras la acción enemiga")
+		if not failures.is_empty():
 			for f in failures:
 				print("FALLO: ", f)
 			get_tree().quit(1)
 	if _frames == 30:
-		print("SMOKE COMBATE: OK (animaciones activas, carta jugada, turno resuelto)")
+		print("SMOKE COMBATE: OK (animaciones, intención de la Sombra, carta jugada, turno resuelto)")
 		get_tree().quit(0)

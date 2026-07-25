@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_cd"]
 [ext_resource type="Script" path="res://scripts/cards/card_effect.gd" id="2_ce"]
-[ext_resource type="Texture2D" path="res://assets/cards/10-la-rueda-de-la-fortuna.webp" id="3_tex"]
+[ext_resource type="Texture2D" path="res://assets/cartas_pixel/10-la-rueda-de-la-fortuna.png" id="3_tex"]
 [ext_resource type="Script" path="res://scripts/cards/effects/damage_effect.gd" id="eff_0"]
 [ext_resource type="Script" path="res://scripts/cards/effects/disonancia_effect.gd" id="eff_1"]
 

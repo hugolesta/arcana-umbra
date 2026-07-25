@@ -30,6 +30,7 @@ func _build_content() -> void:
 		image.texture = card.icon
 		image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		image.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		image.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		image.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		box.add_child(image)

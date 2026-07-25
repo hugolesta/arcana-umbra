@@ -18,6 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 OUT_DIR = ROOT / "resources" / "cards"
+PIXEL_DIR = ROOT / "assets" / "cartas_pixel"
 
 # Deben coincidir con los enums de scripts/cards/card_data.gd
 SUITS = {"ESPADAS": 0, "COPAS": 1, "BASTOS": 2, "OROS": 3, "ARCANO_MAYOR": 4}
@@ -70,10 +71,17 @@ def gameplay(card: dict) -> dict:
 
 def build_tres(card: dict) -> str:
     play = gameplay(card)
+    # El icono prefiere el pixel art (assets/cartas_pixel/) si existe;
+    # si no, cae a la imagen Rider-Waite copiada de Kabbalah.
+    img_name = "%02d-%s" % (card["index"], card["slug"])
+    if (PIXEL_DIR / (img_name + ".png")).exists():
+        icon_path = "res://assets/cartas_pixel/%s.png" % img_name
+    else:
+        icon_path = "res://assets/cards/%s.webp" % img_name
     ext = [
         ('Script', "res://scripts/cards/card_data.gd", "1_cd"),
         ('Script', "res://scripts/cards/card_effect.gd", "2_ce"),
-        ('Texture2D', "res://assets/cards/%02d-%s.webp" % (card["index"], card["slug"]), "3_tex"),
+        ('Texture2D', icon_path, "3_tex"),
     ]
     effect_ids = []
     for i, (kind, _target) in enumerate(play["effects"]):

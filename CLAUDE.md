@@ -19,7 +19,12 @@ Todo cambio debe dejar el proyecto en este estado (Godot está en `/Applications
 
 # 2. La suite de verificación pasa: 78 CardData completos + reglas del DAG del mapa
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . -s tools/verify.gd
+
+# 3. Smoke test del combate (escena real con autoloads: animaciones, carta, turno)
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SmokeCombat.tscn
 ```
+
+Nota: los scripts `-s` no pueden tocar código que use el autoload `GameState` (no compila fuera del juego); para tests que lo necesiten, usar una escena como `SmokeCombat.tscn`.
 
 ## Pipeline de datos (cartas)
 
@@ -69,12 +74,17 @@ Patrones a respetar:
 El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab__*`), solo cuando una tarea lo requiera — no es un addon de Godot, así que no viola la regla de "sin plugins".
 
 - **Iconos de nodos del mapa**: `assets/map_icons/<tipo>.png` — un PNG 64×64 por valor del enum `MapNode.NodeType` en minúscula (`combate.png`, `elite.png`, `descanso.png`, `tienda.png`, `evento.png`, `jefe_sombra.png`). `map_scene.gd` los carga por convención de nombre (`_icon_for`); si falta un icono, el botón cae a solo texto.
-- **Sprites de Sombras (combate)**: `assets/sombras/<tipo>.png` — PNG 128×128: `sombra_menor.png`, `sombra_elite.png`, `jefe_sombra.png`. `combat_scene.gd` los carga por convención de nombre según el tipo de nodo; si falta un sprite, el combate sigue sin imagen.
-- **Sprite del Viajero (combate)**: `assets/viajero/viajero.png` — PNG 128×128, se muestra junto a las stats del jugador en `combat_scene.gd`; mismo fallback (sin imagen si falta).
+- **Personajes animados (combate)**: `assets/personajes/<clave>/{idle_south,attack_south}/<n>.png` — carpetas de frames cuadrados numerados desde 0 (el 0 es el frame de referencia; ver `scripts/ui/sprite_strip.gd`). Claves: `viajero`, `sombra_menor`, `sombra_elite`, `jefe_sombra`. `combat_scene.gd` reproduce idle en bucle y dispara attack con las señales (`card_played` → Viajero, `TURNO_ENEMIGO` → Sombra). Personajes creados con `create_character` v3; los `character_id` NO se guardan (los personajes viven en la cuenta PixelLab, listables con `list_characters`).
+- **Sprites estáticos legacy (fallback)**: `assets/sombras/<tipo>.png` y `assets/viajero/viajero.png` (128×128) — se usan si faltan las tiras animadas. No borrarlos: son el fallback de `combat_scene.gd`.
 - **Cartas pixel art**: `assets/cartas_pixel/<NN>-<slug>.png` — PNG 128×192 (formato carta), mismo nombre base que el `.webp` de `assets/cards/`. Por ahora solo los 22 Arcanos Mayores. `generate_tres.py` usa el pixel art como `icon` del CardData **si el PNG existe**; si no, cae al `.webp` de Kabbalah — tras añadir/quitar pixel art hay que regenerar los `.tres`. Los Arcanos Menores siguen pendientes (generarlos solo cuando Hugo lo pida).
 - **UI de título**: `assets/ui/titulo_emblema.png` — emblema 256×256 usado por `title_scene.gd` (pantalla de inicio, construida por código con `StyleBoxFlat`; sin paneles de `create_ui_asset`). Ojo: este PNG tiene **fondo opaco** `#13173a`; `COLOR_BG` de `title_scene.gd` usa ese mismo color para fundirlo. Si se regenera el emblema, revisar el color de fondo real del PNG y ajustar la constante.
 - **Estilo fijado**: 64×64 px, paleta oscura mística (violeta/dorado), coherente con `icon.svg` (tarot/ocultismo/sombras). Vista "side", contorno "single color outline". Renderizar con `TEXTURE_FILTER_NEAREST` en la UI.
-- **Uso de créditos**: generar en una sola pasada lo acordado con Hugo (p. ej. `create_map_object` básico = 1 generación por icono). **Nunca** usar `create_ui_asset` para iconos sueltos (consume 20-40 generaciones por panel) ni iterar arte de forma exploratoria sin pedirlo.
+- **Qué herramienta usar por tipo de asset** (plan Tier 1 activo, pero seguir siendo frugal):
+  - Iconos, emblemas e ilustraciones estáticas (cartas): `create_map_object` básico — 1 generación.
+  - Personajes animables (Viajero, Sombras): `create_character` en modo `v3` (~3 gen, 8 direcciones) + `animate_character` — idle con template (`breathing-idle`, 1 gen/dirección) y acciones custom en v3 (coste según tamaño). El combate solo usa la dirección **south**: animar solo esa salvo que se pida otra cosa.
+  - Retratos para diálogo/eventos: `create_portrait_character` (cuando llegue el journaling).
+  - Paneles 9-slice: `create_ui_asset` (20-40 gen/panel) solo para un set cohesivo aprobado explícitamente por Hugo; para botones sueltos, `StyleBoxFlat` por código.
+- **Uso de créditos**: generar en una sola pasada lo acordado con Hugo. No iterar arte de forma exploratoria sin pedirlo; para regenerar algo, borrar antes la versión anterior (`delete_*`).
 - Los objetos generados en PixelLab se **auto-borran a las 8 horas**: descargar los PNG al repo apenas terminen.
 - `tools/verify.gd` comprueba que los 6 iconos de nodo existan.
 

@@ -119,6 +119,18 @@ func _initialize() -> void:
 		print("FALLO: falta res://assets/ui/titulo_emblema.png")
 		failures += 1
 
+	# 8. Animaciones de personajes: carpetas de frames idle/attack (sur).
+	var missing_strips := 0
+	for character in ["viajero", "sombra_menor", "sombra_elite", "jefe_sombra"]:
+		for anim in ["idle_south", "attack_south"]:
+			var first_frame := "res://assets/personajes/%s/%s/0.png" % [character, anim]
+			if not FileAccess.file_exists(first_frame):
+				print("FALLO: falta la animación ", first_frame)
+				failures += 1
+				missing_strips += 1
+	if missing_strips == 0:
+		print("OK: 8 animaciones de personaje presentes en assets/personajes/")
+
 	print("RESULTADO: %s (%d fallos)" % ["PASA" if failures == 0 else "FALLA", failures])
 	quit(1 if failures > 0 else 0)
 

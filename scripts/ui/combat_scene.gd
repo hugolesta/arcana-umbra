@@ -6,11 +6,15 @@ signal finished(victory: bool)
 
 const SPRITE_DIR := "res://assets/sombras"
 const VIAJERO_SPRITE := "res://assets/viajero/viajero.png"
+const PERSONAJES_DIR := "res://assets/personajes"
 
 var manager: CombatManager
 
 var _enemy_label: Label
-var _enemy_sprite: TextureRect
+var _enemy_slot: Control
+var _enemy_holder: Control
+var _viajero_slot: Control
+var _viajero_holder: Control
 var _intent_label: Label
 var _claridad_bar: ProgressBar
 var _claridad_label: Label
@@ -18,41 +22,48 @@ var _shield_label: Label
 var _energy_label: Label
 var _hand_box: HBoxContainer
 var _node: MapNode
-
-
-func setup(node: MapNode) -> void:
-	_node = node
+var _sprite_key := "sombra_menor"
 
 
 func _ready() -> void:
+	# Solo construye la UI: main.gd llama a setup() DESPUÉS de add_child,
+	# así que el arranque del combate no puede vivir aquí (_node sería null).
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	manager = CombatManager.new()
 	add_child(manager)
 	_build_ui()
 
+
+func setup(node: MapNode) -> void:
+	_node = node
 	manager.hand_changed.connect(_on_hand_changed)
 	manager.energy_changed.connect(_on_energy_changed)
 	manager.enemy_intent_changed.connect(func(intent): _intent_label.text = intent)
 	manager.combat_ended.connect(_on_combat_ended)
+	manager.card_played.connect(func(_card): SpriteStrip.play_once(
+		_viajero_holder, PERSONAJES_DIR.path_join("viajero/attack_south"), 10.0))
+	manager.state_changed.connect(func(state):
+		if state == CombatManager.State.TURNO_ENEMIGO:
+			SpriteStrip.play_once(_enemy_holder,
+				PERSONAJES_DIR.path_join(_sprite_key + "/attack_south"), 10.0))
 
 	var enemy_name := "Sombra Menor"
 	var enemy_claridad := 18 + _node.floor_index * 2
 	var enemy_attack := 5
-	var sprite_key := "sombra_menor"
+	_sprite_key = "sombra_menor"
 	match _node.node_type:
 		MapNode.NodeType.ELITE:
 			enemy_name = "Sombra Élite"
 			enemy_claridad = 30 + _node.floor_index * 2
 			enemy_attack = 8
-			sprite_key = "sombra_elite"
+			_sprite_key = "sombra_elite"
 		MapNode.NodeType.JEFE_SOMBRA:
 			enemy_name = "Jefe de la Sombra"
 			enemy_claridad = 50 + _node.floor_index * 3
 			enemy_attack = 10
-			sprite_key = "jefe_sombra"
-	var sprite_path := SPRITE_DIR.path_join(sprite_key + ".png")
-	if ResourceLoader.exists(sprite_path):
-		_enemy_sprite.texture = load(sprite_path)
+			_sprite_key = "jefe_sombra"
+	_fill_slot_enemy()
+	_fill_slot_viajero()
 
 	manager.start_combat(GameState.mazo_permanente, enemy_name, enemy_claridad, enemy_attack)
 	manager.enemy.claridad_changed.connect(_on_enemy_claridad_changed)
@@ -81,13 +92,10 @@ func _build_ui() -> void:
 	_intent_label.modulate = Color(1, 0.7, 0.7)
 	layout.add_child(_intent_label)
 
-	# Sprite pixel art de la Sombra (assets/sombras/<tipo>.png).
-	_enemy_sprite = TextureRect.new()
-	_enemy_sprite.custom_minimum_size = Vector2(256, 256)
-	_enemy_sprite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_enemy_sprite.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_enemy_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	layout.add_child(_enemy_sprite)
+	# Hueco para la Sombra: animación de personaje o imagen estática (setup()).
+	_enemy_slot = CenterContainer.new()
+	_enemy_slot.custom_minimum_size = Vector2(256, 256)
+	layout.add_child(_enemy_slot)
 
 	layout.add_child(HSeparator.new())
 
@@ -100,14 +108,9 @@ func _build_ui() -> void:
 	player_row.add_theme_constant_override("separation", 12)
 	layout.add_child(player_row)
 
-	if ResourceLoader.exists(VIAJERO_SPRITE):
-		var viajero := TextureRect.new()
-		viajero.texture = load(VIAJERO_SPRITE)
-		viajero.custom_minimum_size = Vector2(128, 128)
-		viajero.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		viajero.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		viajero.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		player_row.add_child(viajero)
+	_viajero_slot = CenterContainer.new()
+	_viajero_slot.custom_minimum_size = Vector2(128, 128)
+	player_row.add_child(_viajero_slot)
 
 	var stats := VBoxContainer.new()
 	stats.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -144,6 +147,36 @@ func _build_ui() -> void:
 	end_turn.custom_minimum_size.y = 56
 	end_turn.pressed.connect(func(): manager.end_turn())
 	layout.add_child(end_turn)
+
+
+func _fill_slot_enemy() -> void:
+	_enemy_holder = SpriteStrip.make_animated_control(
+		PERSONAJES_DIR.path_join(_sprite_key + "/idle_south"), 256.0)
+	if _enemy_holder:
+		_enemy_slot.add_child(_enemy_holder)
+		return
+	_add_static_fallback(_enemy_slot, SPRITE_DIR.path_join(_sprite_key + ".png"), 256.0)
+
+
+func _fill_slot_viajero() -> void:
+	_viajero_holder = SpriteStrip.make_animated_control(
+		PERSONAJES_DIR.path_join("viajero/idle_south"), 128.0)
+	if _viajero_holder:
+		_viajero_slot.add_child(_viajero_holder)
+		return
+	_add_static_fallback(_viajero_slot, VIAJERO_SPRITE, 128.0)
+
+
+func _add_static_fallback(slot: Control, texture_path: String, size_px: float) -> void:
+	if not ResourceLoader.exists(texture_path):
+		return
+	var rect := TextureRect.new()
+	rect.texture = load(texture_path)
+	rect.custom_minimum_size = Vector2(size_px, size_px)
+	rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	slot.add_child(rect)
 
 
 func _refresh_enemy() -> void:

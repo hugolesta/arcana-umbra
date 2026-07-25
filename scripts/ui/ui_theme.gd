@@ -40,7 +40,9 @@ static func build() -> Theme:
 		var pressed := _nine_slice(BUTTON_PATH, 18, BUTTON_REGION)
 		pressed.modulate_color = Color(0.8, 0.8, 0.85)
 		var disabled := _nine_slice(BUTTON_PATH, 18, BUTTON_REGION)
-		disabled.modulate_color = Color(0.5, 0.5, 0.55, 0.7)
+		# Alpha alto: sobre los fondos ilustrados (mapa/combate) un botón
+		# deshabilitado muy transparente se pierde contra la escena.
+		disabled.modulate_color = Color(0.55, 0.55, 0.6, 0.92)
 		theme.set_stylebox("normal", "Button", normal)
 		theme.set_stylebox("hover", "Button", hover)
 		theme.set_stylebox("pressed", "Button", pressed)

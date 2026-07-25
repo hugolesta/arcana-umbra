@@ -210,6 +210,17 @@ func _initialize() -> void:
 	if zodiac_failures == 0:
 		print("OK: Zodiac.sign_for() correcto en las 26 fechas límite")
 
+	# 12. Fondos ambientales del mapa y el combate existen.
+	var missing_bg := 0
+	for bg_file in ["mapa_bosque.png", "combate_santuario.png"]:
+		var bg_path: String = "res://assets/backgrounds/" + bg_file
+		if not FileAccess.file_exists(bg_path):
+			print("FALLO: falta ", bg_path)
+			failures += 1
+			missing_bg += 1
+	if missing_bg == 0:
+		print("OK: fondos ambientales presentes en assets/backgrounds/")
+
 	print("RESULTADO: %s (%d fallos)" % ["PASA" if failures == 0 else "FALLA", failures])
 	quit(1 if failures > 0 else 0)
 

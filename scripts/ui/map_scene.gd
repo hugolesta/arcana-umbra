@@ -10,17 +10,28 @@ const FLOOR_HEIGHT := 150.0
 const NODE_SIZE := Vector2(96, 96)
 const TOP_BAR_HEIGHT := 72.0
 const ICON_DIR := "res://assets/map_icons"
+const BACKGROUND_PATH := "res://assets/backgrounds/mapa_bosque.png"
 
 var _canvas: Control
 
 
 func _ready() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
+	SceneBackground.add_to(self, BACKGROUND_PATH)
 	_build_top_bar()
 	_build_scrollable_map()
 
 
 func _build_top_bar() -> void:
+	# Fondo opaco propio (ColorRect, no stylebox: HBoxContainer no pinta
+	# "panel"): la barra debe leerse encima de la ilustración de fondo.
+	var bar_bg := ColorRect.new()
+	bar_bg.color = UITheme.COLOR_BG
+	bar_bg.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	bar_bg.custom_minimum_size.y = TOP_BAR_HEIGHT
+	bar_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(bar_bg)
+
 	var bar := HBoxContainer.new()
 	bar.set_anchors_preset(Control.PRESET_TOP_WIDE)
 	bar.custom_minimum_size.y = TOP_BAR_HEIGHT

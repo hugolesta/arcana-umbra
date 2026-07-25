@@ -7,6 +7,7 @@ signal finished(victory: bool)
 const SPRITE_DIR := "res://assets/sombras"
 const VIAJERO_SPRITE := "res://assets/viajero/viajero.png"
 const PERSONAJES_DIR := "res://assets/personajes"
+const BACKGROUND_PATH := "res://assets/backgrounds/combate_santuario.png"
 
 var manager: CombatManager
 
@@ -30,6 +31,7 @@ func _ready() -> void:
 	# Solo construye la UI: main.gd llama a setup() DESPUÉS de add_child,
 	# así que el arranque del combate no puede vivir aquí (_node sería null).
 	set_anchors_preset(Control.PRESET_FULL_RECT)
+	SceneBackground.add_to(self, BACKGROUND_PATH)
 	manager = CombatManager.new()
 	add_child(manager)
 	_build_ui()

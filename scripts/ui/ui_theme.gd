@@ -53,7 +53,18 @@ static func build() -> Theme:
 		# debe quedar DENTRO del filigrana, no encima.
 		theme.set_stylebox("panel", "Panel", _nine_slice(PANEL_PATH, 56, Rect2(), 46))
 		theme.set_stylebox("panel", "PanelContainer", _nine_slice(PANEL_PATH, 56, Rect2(), 46))
-		theme.set_stylebox("panel", "AcceptDialog", _nine_slice(PANEL_PATH, 56, Rect2(), 46))
+
+	# AcceptDialog NO usa el panel ornamentado: coloca su Label y su Button
+	# con márgenes de layout internos fijos que ignoran content_margin, así
+	# que la filigrana del marco arcano queda encima del texto/botón. Un
+	# StyleBoxFlat liso con borde dorado respeta la paleta sin ese problema.
+	var dialog_panel := StyleBoxFlat.new()
+	dialog_panel.bg_color = COLOR_BG
+	dialog_panel.border_color = COLOR_GOLD
+	dialog_panel.set_border_width_all(3)
+	dialog_panel.set_corner_radius_all(12)
+	dialog_panel.set_content_margin_all(20)
+	theme.set_stylebox("panel", "AcceptDialog", dialog_panel)
 
 	if ResourceLoader.exists(BAR_PATH):
 		# El asset trae dos piezas; la barra fina vive en esta región del PNG.

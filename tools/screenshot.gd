@@ -1,8 +1,9 @@
 extends Node
 ## Capturas de pantalla reales del juego para inspección visual. Uso:
 ##   ARCANA_TEST=1 ARCANA_SHOT_DIR=/ruta godot --path . res://tools/Screenshot.tscn
-## Abre la ventana, recorre título -> mapa -> combate -> mazo -> evento y
-## guarda un PNG por pantalla en ARCANA_SHOT_DIR (o user://shots).
+## Abre la ventana, recorre título -> mapa -> combate (+ diálogo de fin de
+## combate) -> mazo -> evento -> tienda -> diario y guarda un PNG por
+## pantalla en ARCANA_SHOT_DIR (o user://shots).
 
 var _main: Node
 var _dir := "user://shots"
@@ -27,15 +28,22 @@ func _run() -> void:
 	node.floor_index = 4
 	_main._start_combat(node)
 	await _shot("03_combate")
+	# Diálogos (AcceptDialog): NO usan el panel ornamentado del tema, así que
+	# necesitan verificación visual aparte (ver ui_theme.gd).
+	_main._current.manager.enemy.take_damage(9999)
+	await _shot("03b_combate_dialogo_fin")
+	_main.show_map()
 	_main.show_deck_builder()
 	await _shot("04_mazo")
+	_main._current._show_card_detail(GameState.all_cards[0])
+	await _shot("04b_mazo_dialogo_carta")
 	_main._start_event(node)
 	await _shot("05_evento")
 	_main._start_shop(node)
 	await _shot("06_tienda")
 	_main.show_journal()
 	await _shot("07_diario")
-	print("CAPTURAS: 7 guardadas en ", _dir)
+	print("CAPTURAS: 9 guardadas en ", _dir)
 	get_tree().quit()
 
 

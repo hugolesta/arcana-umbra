@@ -29,9 +29,10 @@ ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . r
 # (Menor >=85%, Élite >=50%, Jefe 30-95%)
 ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SimBalance.tscn
 
-# 7. Capturas reales de las 7 pantallas (título, mapa, combate, mazo, evento,
-#    tienda, diario). OBLIGATORIO tras cualquier cambio de UI: el headless NO
-#    detecta texto desbordado, sprites diminutos ni temas que no se aplican.
+# 7. Capturas reales de 9 pantallas (título, mapa, combate + su diálogo de fin,
+#    mazo + su diálogo de detalle de carta, evento, tienda, diario). OBLIGATORIO
+#    tras cualquier cambio de UI: el headless NO detecta texto desbordado,
+#    sprites diminutos, temas que no se aplican ni diálogos mal encuadrados.
 ARCANA_TEST=1 ARCANA_SHOT_DIR=/tmp/shots /Applications/Godot.app/Contents/MacOS/Godot \
   --path . res://tools/Screenshot.tscn --resolution 720x1280
 ```
@@ -103,6 +104,7 @@ El arte pixel se genera con las **herramientas MCP de PixelLab** (`mcp__pixellab
   - El tema **debe aplicarse por escena** en `_swap_to()`: la herencia de temas se corta en `Main`, que es un `Node` plano, así que `get_window().theme` por sí solo no viste nada.
   - **Nada de overrides `StyleBoxFlat`** en botones (`add_theme_stylebox_override`): pisan el botón arcano del tema. Si un botón debe verse distinto, cambiar el tema.
   - El `content_margin` de un `StyleBoxTexture` **no desplaza** a los hijos de un `PanelContainer`; hace falta un `MarginContainer` explícito (~60px, el ancho de la filigrana) o el texto se dibuja encima del marco.
+  - `AcceptDialog` posiciona su `Label` y su `Button` con márgenes de layout **internos y fijos** que ignoran `content_margin` por completo — el panel ornamentado (con filigrana ancha) queda encima del texto y del botón "OK". Por eso `AcceptDialog` en `ui_theme.gd` usa un `StyleBoxFlat` liso con borde dorado en vez del panel arcano de `create_ui_asset`; no intentar volver a asignarle el panel.
   - `Main` es un `Node`, así que las escenas `Control` mostraban el gris por defecto de Godot: hay un `ColorRect` de fondo global en `CanvasLayer` layer −10 (`_build_background`).
   - Los lienzos de PixelLab dejan mucho aire alrededor del arte: `sprite_strip.gd` escala y centra por `get_used_rect()`, no por el tamaño del frame, o los personajes salen diminutos y descentrados.
 - **Estilo fijado**: 64×64 px, paleta oscura mística (violeta/dorado), coherente con `icon.svg` (tarot/ocultismo/sombras). Vista "side", contorno "single color outline". Renderizar con `TEXTURE_FILTER_NEAREST` en la UI.

@@ -2,9 +2,9 @@ extends Node
 ## Capturas de pantalla reales del juego para inspección visual. Uso:
 ##   ARCANA_TEST=1 ARCANA_SHOT_DIR=/ruta godot --path . res://tools/Screenshot.tscn
 ## Abre la ventana, recorre título -> intro (amnesia) -> identidad -> mapa ->
-## combate (+ diálogo de fin de combate) -> mazo -> evento -> tienda ->
-## diario -> perfil (con signo zodiacal) y guarda un PNG por pantalla en
-## ARCANA_SHOT_DIR (o user://shots).
+## mundo explorable -> cueva -> combate (+ diálogo de fin de combate) ->
+## mazo -> evento -> tienda -> diario -> perfil (con signo zodiacal) y
+## guarda un PNG por pantalla en ARCANA_SHOT_DIR (o user://shots).
 
 var _main: Node
 var _dir := "user://shots"
@@ -35,6 +35,10 @@ func _run() -> void:
 	node.node_type = MapNode.NodeType.JEFE_SOMBRA
 	node.floor_index = 4
 	_main._start_combat(node)
+	await _shot("02b_mundo_explorable")
+	_main._start_cave(node)
+	await _shot("02c_cueva")
+	_main._start_combat_real(node)
 	await _shot("03_combate")
 	# Diálogos (AcceptDialog): NO usan el panel ornamentado del tema, así que
 	# necesitan verificación visual aparte (ver ui_theme.gd).
@@ -53,7 +57,7 @@ func _run() -> void:
 	await _shot("07_diario")
 	_main.show_profile(_main.show_title)
 	await _shot("08_perfil")
-	print("CAPTURAS: 12 guardadas en ", _dir)
+	print("CAPTURAS: 14 guardadas en ", _dir)
 	get_tree().quit()
 
 

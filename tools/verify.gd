@@ -163,6 +163,17 @@ func _initialize() -> void:
 	if missing_strips == 0:
 		print("OK: 8 animaciones de personaje presentes en assets/personajes/")
 
+	# 9b. Animación de caminar del Viajero (4 direcciones, mundo explorable).
+	var missing_walk := 0
+	for direction in ["south", "north", "east", "west"]:
+		var first_frame := "res://assets/personajes/viajero/walk_%s/0.png" % direction
+		if not FileAccess.file_exists(first_frame):
+			print("FALLO: falta la animación ", first_frame)
+			failures += 1
+			missing_walk += 1
+	if missing_walk == 0:
+		print("OK: 4 animaciones de caminar del Viajero presentes en assets/personajes/viajero/")
+
 	# 10. Los 12 iconos zodiacales existen (assets/zodiaco/<signo>.png).
 	var missing_zodiac := 0
 	const ZODIAC_SIGNS := [
@@ -220,6 +231,78 @@ func _initialize() -> void:
 			missing_bg += 1
 	if missing_bg == 0:
 		print("OK: fondos ambientales presentes en assets/backgrounds/")
+
+	# 13. Tileset de césped/cueva presentes (mundo explorable).
+	var missing_tiles := 0
+	for tile_file in ["grass_world.tres", "cave.tres"]:
+		var tile_path: String = "res://assets/tiles/" + tile_file
+		if not FileAccess.file_exists(tile_path):
+			print("FALLO: falta ", tile_path)
+			failures += 1
+			missing_tiles += 1
+	if missing_tiles == 0:
+		print("OK: tilesets de mundo/cueva presentes en assets/tiles/")
+
+	# 14. WorldGenerator: dimensiones en rango, seeds distintas dan mundos
+	# distintos, y la entrada de cueva nunca coincide con el spawn ni queda
+	# a distancia trivial (el mundo es un grid abierto: cualquier celda es
+	# alcanzable caminando, así que solo hace falta comprobar el no-solape).
+	var world_failures := 0
+	var seen_entrances := {}
+	for i in range(20):
+		var world := WorldGenerator.new(1000 + i)
+		if world.width < WorldGenerator.MIN_SIZE or world.width > WorldGenerator.MAX_SIZE \
+				or world.height < WorldGenerator.MIN_SIZE or world.height > WorldGenerator.MAX_SIZE:
+			print("FALLO: dimensiones de mundo fuera de rango ", world.width, "x", world.height)
+			failures += 1
+			world_failures += 1
+		if world.cave_entrance == world.spawn:
+			print("FALLO: la entrada de cueva coincide con el spawn (seed ", world.rng_seed, ")")
+			failures += 1
+			world_failures += 1
+		if not world.is_inside(world.cave_entrance):
+			print("FALLO: la entrada de cueva queda fuera del grid (seed ", world.rng_seed, ")")
+			failures += 1
+			world_failures += 1
+		seen_entrances[world.cave_entrance] = true
+	if seen_entrances.size() < 2:
+		print("FALLO: 20 seeds distintas produjeron la misma entrada de cueva")
+		failures += 1
+		world_failures += 1
+	if world_failures == 0:
+		print("OK: WorldGenerator — dimensiones válidas, cueva sin solape en 20 seeds")
+
+	# 15. CaveGenerator (autómata celular): el altar siempre queda en una
+	# celda de piso conectada a la entrada por un camino de piso (BFS de 4
+	# direcciones), y esa distancia es sustancial (evita cavernas triviales
+	# donde el altar quede pegado a la entrada).
+	var cave_failures := 0
+	for i in range(20):
+		var cave := CaveGenerator.new(2000 + i)
+		if cave.width < CaveGenerator.MIN_SIZE or cave.width > CaveGenerator.MAX_SIZE \
+				or cave.height < CaveGenerator.MIN_SIZE or cave.height > CaveGenerator.MAX_SIZE:
+			print("FALLO: dimensiones de cueva fuera de rango ", cave.width, "x", cave.height)
+			failures += 1
+			cave_failures += 1
+		if not cave.is_floor(cave.altar):
+			print("FALLO: el altar no queda sobre piso tallado (seed ", cave.rng_seed, ")")
+			failures += 1
+			cave_failures += 1
+		if not cave.is_floor(cave.entrance):
+			print("FALLO: la entrada de la cueva no es piso (seed ", cave.rng_seed, ")")
+			failures += 1
+			cave_failures += 1
+		var reachable: Dictionary = cave._flood_fill_distances(cave.entrance)
+		if not reachable.has(cave.altar):
+			print("FALLO: el altar no es alcanzable por BFS desde la entrada (seed ", cave.rng_seed, ")")
+			failures += 1
+			cave_failures += 1
+		elif reachable[cave.altar] < 5:
+			print("FALLO: el altar queda trivialmente cerca de la entrada (seed ", cave.rng_seed, ")")
+			failures += 1
+			cave_failures += 1
+	if cave_failures == 0:
+		print("OK: CaveGenerator — dimensiones válidas, altar alcanzable por BFS en 20 seeds")
 
 	print("RESULTADO: %s (%d fallos)" % ["PASA" if failures == 0 else "FALLA", failures])
 	quit(1 if failures > 0 else 0)

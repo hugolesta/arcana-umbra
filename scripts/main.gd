@@ -3,6 +3,8 @@ extends Node
 
 const TITLE_SCENE := "res://scenes/TitleScene.tscn"
 const MAP_SCENE := "res://scenes/MapScene.tscn"
+const WORLD_SCENE := "res://scenes/WorldScene.tscn"
+const CAVE_SCENE := "res://scenes/CaveScene.tscn"
 const COMBAT_SCENE := "res://scenes/CombatScene.tscn"
 const DECK_SCENE := "res://scenes/DeckBuilderScene.tscn"
 const EVENT_SCENE := "res://scenes/EventScene.tscn"
@@ -129,7 +131,22 @@ func _start_event(node: MapNode) -> void:
 		show_map())
 
 
+## Antes de resolver el combate por cartas, el jugador explora un mundo de
+## césped generado al azar (WorldScene) y luego una cueva (CaveScene) hasta
+## alcanzar el altar; recién ahí se invoca CombatScene, sin cambios.
 func _start_combat(node: MapNode) -> void:
+	var world: Node = _swap_to(WORLD_SCENE)
+	world.cave_entered.connect(_start_cave.bind(node))
+	world.back_requested.connect(show_map)
+
+
+func _start_cave(node: MapNode) -> void:
+	var cave: Node = _swap_to(CAVE_SCENE)
+	cave.altar_reached.connect(_start_combat_real.bind(node))
+	cave.back_requested.connect(show_map)
+
+
+func _start_combat_real(node: MapNode) -> void:
 	var combat: Node = _swap_to(COMBAT_SCENE)
 	combat.setup(node)
 	combat.finished.connect(_on_combat_finished.bind(node))

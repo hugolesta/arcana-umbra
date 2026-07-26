@@ -29,9 +29,10 @@ ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . r
 # (Menor >=85%, Élite >=50%, Jefe 30-95%)
 ARCANA_TEST=1 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tools/SimBalance.tscn
 
-# 7. Capturas reales de 11 pantallas (título, identidad, mapa, combate + su
-#    diálogo de fin, mazo + su diálogo de detalle de carta, evento, tienda,
-#    diario, perfil). OBLIGATORIO tras cualquier cambio de UI: el headless NO
+# 7. Capturas reales de 12 pantallas (título, intro de amnesia, identidad,
+#    mapa, combate + su diálogo de fin, mazo + su diálogo de detalle de
+#    carta, evento, tienda, diario, perfil). OBLIGATORIO tras cualquier
+#    cambio de UI: el headless NO
 #    detecta texto desbordado, sprites diminutos, temas que no se aplican,
 #    diálogos mal encuadrados ni widgets que no pintan su texto.
 ARCANA_TEST=1 ARCANA_SHOT_DIR=/tmp/shots /Applications/Godot.app/Contents/MacOS/Godot \
@@ -70,6 +71,7 @@ scripts/ui/*.gd                    Escenas de UI: construyen sus nodos por códi
 scripts/ui/profile_button.gd       Avatar circular del Viajero (título/mapa) -> abre ProfileScene
 scripts/ui/profile_scene.gd        Perfil: retrato, nombre y signo (fijos), resumen de progreso
 scripts/ui/identity_scene.gd       Primer "nuevo viaje": nombre + fecha de nacimiento (una sola vez)
+scripts/ui/intro_scene.gd          Guion narrativo de amnesia (una sola vez, antes de IdentityScene)
 scripts/autoload/zodiac.gd         Zodiac.sign_for(mes,día): signo occidental (sin autoloads,
                                    testeable desde verify.gd)
 resources/cards/*.tres             78 cartas GENERADAS (no editar a mano)

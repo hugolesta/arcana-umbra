@@ -1,10 +1,10 @@
 extends Node
 ## Capturas de pantalla reales del juego para inspección visual. Uso:
 ##   ARCANA_TEST=1 ARCANA_SHOT_DIR=/ruta godot --path . res://tools/Screenshot.tscn
-## Abre la ventana, recorre título -> identidad -> mapa -> combate (+ diálogo
-## de fin de combate) -> mazo -> evento -> tienda -> diario -> perfil (con
-## signo zodiacal) y guarda un PNG por pantalla en ARCANA_SHOT_DIR
-## (o user://shots).
+## Abre la ventana, recorre título -> intro (amnesia) -> identidad -> mapa ->
+## combate (+ diálogo de fin de combate) -> mazo -> evento -> tienda ->
+## diario -> perfil (con signo zodiacal) y guarda un PNG por pantalla en
+## ARCANA_SHOT_DIR (o user://shots).
 
 var _main: Node
 var _dir := "user://shots"
@@ -22,6 +22,8 @@ func _ready() -> void:
 
 func _run() -> void:
 	await _shot("01_titulo")
+	_main.show_intro()
+	await _shot("01a_intro")
 	_main.show_identity()
 	await _shot("01b_identidad")
 	# Simula confirmar el formulario: nombre + una fecha de cada mitad del
@@ -51,7 +53,7 @@ func _run() -> void:
 	await _shot("07_diario")
 	_main.show_profile(_main.show_title)
 	await _shot("08_perfil")
-	print("CAPTURAS: 11 guardadas en ", _dir)
+	print("CAPTURAS: 12 guardadas en ", _dir)
 	get_tree().quit()
 
 

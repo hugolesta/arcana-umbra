@@ -10,6 +10,7 @@ const JOURNAL_SCENE := "res://scenes/JournalScene.tscn"
 const SHOP_SCENE := "res://scenes/ShopScene.tscn"
 const PROFILE_SCENE := "res://scenes/ProfileScene.tscn"
 const IDENTITY_SCENE := "res://scenes/IdentityScene.tscn"
+const INTRO_SCENE := "res://scenes/IntroScene.tscn"
 
 var _current: Node
 var _fade: ColorRect
@@ -60,7 +61,12 @@ func _on_new_run_requested() -> void:
 		GameState.start_new_run()
 		show_map()
 	else:
-		show_identity()
+		show_intro()
+
+
+func show_intro() -> void:
+	var intro: Node = _swap_to(INTRO_SCENE)
+	intro.finished.connect(show_identity)
 
 
 func show_identity() -> void:

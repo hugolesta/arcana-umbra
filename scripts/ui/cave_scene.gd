@@ -10,6 +10,7 @@ signal back_requested
 
 const PERSONAJES_DIR := "res://assets/personajes/viajero"
 const TILE_SET_PATH := "res://assets/tiles/cave.tres"
+const WATER_TILE_SET_PATH := "res://assets/tiles/cave_water.tres"
 const VIAJERO_FALLBACK := "res://assets/viajero/viajero.png"
 const ALTAR_ICON_PATH := "res://assets/map_icons/evento.png"
 const TILE_PX := 32.0
@@ -21,6 +22,7 @@ const CAMERA_ZOOM := 1.1
 
 var _generator: CaveGenerator
 var _tile_map: TileMapLayer
+var _water_tile_map: TileMapLayer
 var _player: CharacterBody2D
 var _player_sprite: AnimatedSprite2D
 var _world_root: Node2D
@@ -45,6 +47,12 @@ func _build_cave() -> void:
 	_tile_map.tile_set = load(TILE_SET_PATH)
 	_world_root.add_child(_tile_map)
 	_paint_cave()
+
+	if _generator.has_lagoon and ResourceLoader.exists(WATER_TILE_SET_PATH):
+		_water_tile_map = TileMapLayer.new()
+		_water_tile_map.tile_set = load(WATER_TILE_SET_PATH)
+		_world_root.add_child(_water_tile_map)
+		_paint_lagoon()
 
 	_altar_marker = _make_altar_marker()
 	_altar_marker.position = _cell_to_world(_generator.altar)
@@ -75,6 +83,41 @@ func _paint_cave() -> void:
 				floor_cells.append(cell)
 	_tile_map.set_cells_terrain_connect(all_cells, 0, 0, false)
 	_tile_map.set_cells_terrain_connect(floor_cells, 0, 1)
+
+
+## Capa aparte sobre el piso: Wang set propio de 2 terrenos (piso/agua). Se
+## pinta TODO el grid como "Piso" primero (ignore_empty_terrains=false: sin
+## esto Godot no resuelve nada en un grid vacío) y luego el agua encima —
+## para que esto pinte agua de verdad (y no quede en terreno "Piso" pese a
+## la segunda llamada, bug detectado antes de que CaveGenerator garantizara
+## un núcleo sólido en _grow_lagoon_blob), el blob de agua necesita tener
+## sus celdas centrales rodeadas de agua en las 4 esquinas: con un blob
+## disperso el Wang set de 2 terrenos no encuentra combinación de agua pura
+## para celdas "sueltas" y cae a piso. Al final se borran las celdas de piso
+## que no bordean agua: la capa queda vacía en el resto del mapa (se sigue
+## viendo el piso de cave.tres debajo) y solo pinta la laguna + su anillo.
+func _paint_lagoon() -> void:
+	var all_cells: Array[Vector2i] = []
+	var water_cells: Array[Vector2i] = []
+	for x in range(_generator.width):
+		for y in range(_generator.height):
+			var cell := Vector2i(x, y)
+			all_cells.append(cell)
+			if _generator.is_water(cell):
+				water_cells.append(cell)
+	_water_tile_map.set_cells_terrain_connect(all_cells, 0, 0, false)
+	_water_tile_map.set_cells_terrain_connect(water_cells, 0, 1, false)
+	for cell in all_cells:
+		if not _generator.is_water(cell) and not _adjacent_to_water(cell):
+			_water_tile_map.erase_cell(cell)
+
+
+func _adjacent_to_water(cell: Vector2i) -> bool:
+	for dx in range(-1, 2):
+		for dy in range(-1, 2):
+			if _generator.is_water(cell + Vector2i(dx, dy)):
+				return true
+	return false
 
 
 func _make_altar_marker() -> Node2D:

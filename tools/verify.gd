@@ -232,9 +232,9 @@ func _initialize() -> void:
 	if missing_bg == 0:
 		print("OK: fondos ambientales presentes en assets/backgrounds/")
 
-	# 13. Tileset de césped/cueva presentes (mundo explorable).
+	# 13. Tileset de césped/cueva/laguna presentes (mundo explorable).
 	var missing_tiles := 0
-	for tile_file in ["grass_world.tres", "cave.tres"]:
+	for tile_file in ["grass_world.tres", "cave.tres", "cave_water.tres"]:
 		var tile_path: String = "res://assets/tiles/" + tile_file
 		if not FileAccess.file_exists(tile_path):
 			print("FALLO: falta ", tile_path)
@@ -301,8 +301,32 @@ func _initialize() -> void:
 			print("FALLO: el altar queda trivialmente cerca de la entrada (seed ", cave.rng_seed, ")")
 			failures += 1
 			cave_failures += 1
+		if cave.is_water(cave.entrance) or cave.is_water(cave.altar):
+			print("FALLO: la laguna se solapa con entrada/altar (seed ", cave.rng_seed, ")")
+			failures += 1
+			cave_failures += 1
 	if cave_failures == 0:
 		print("OK: CaveGenerator — dimensiones válidas, altar alcanzable por BFS en 20 seeds")
+
+	# 16. Laguna: el mecanismo se activa en al menos algunas de 40 seeds
+	# (si nunca coloca agua, algo rompió _try_place_lagoon en silencio) y
+	# nunca dejó el altar inalcanzable cuando sí colocó agua.
+	var lagoon_count := 0
+	var lagoon_failures := 0
+	for i in range(40):
+		var cave := CaveGenerator.new(3000 + i)
+		if cave.has_lagoon:
+			lagoon_count += 1
+			if not cave._flood_fill_distances(cave.entrance).has(cave.altar):
+				print("FALLO: laguna dejó el altar inalcanzable (seed ", cave.rng_seed, ")")
+				failures += 1
+				lagoon_failures += 1
+	if lagoon_count == 0:
+		print("FALLO: ninguna de 40 seeds generó laguna (mecanismo posiblemente roto)")
+		failures += 1
+		lagoon_failures += 1
+	if lagoon_failures == 0:
+		print("OK: laguna presente en %d/40 seeds, altar siempre alcanzable" % lagoon_count)
 
 	print("RESULTADO: %s (%d fallos)" % ["PASA" if failures == 0 else "FALLA", failures])
 	quit(1 if failures > 0 else 0)

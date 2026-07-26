@@ -10,8 +10,12 @@ const MIN_SIZE := 18
 const MAX_SIZE := 26
 const INITIAL_WALL_CHANCE := 0.45
 const SMOOTH_ITERATIONS := 5
+const LAGOON_SEED_ATTEMPTS := 12
+const LAGOON_MIN_RADIUS := 2
+const LAGOON_MAX_RADIUS := 4
+const LAGOON_GROWTH_CHANCE := 0.55
 
-enum Tile { WALL, FLOOR }
+enum Tile { WALL, FLOOR, WATER }
 
 var width: int
 var height: int
@@ -19,6 +23,7 @@ var entrance: Vector2i
 var altar: Vector2i
 var tiles: Array = []  # Array[Array[Tile]], [x][y]
 var rng_seed: int
+var has_lagoon := false
 
 
 func _init(p_seed: int = -1) -> void:
@@ -40,6 +45,63 @@ func _init(p_seed: int = -1) -> void:
 	var distances := _flood_fill_distances(entrance)
 	altar = _farthest_cell(distances)
 	_carve_open_circle(altar, 1)
+
+	_try_place_lagoon(rng)
+
+
+## Elige un punto al azar dentro del área de piso conectada (lejos de
+## entrada/altar) y hace crecer ahí un blob orgánico de agua (mismo espíritu
+## que el autómata celular: crecimiento por vecindad con algo de ruido, no
+## un círculo perfecto). Si el agua resultante corta el único camino entre
+## entrada y altar, se descarta esa laguna — "siempre que el espacio lo
+## permita" significa que nunca se sacrifica la alcanzabilidad garantizada.
+func _try_place_lagoon(rng: RandomNumberGenerator) -> void:
+	var floor_cells := _flood_fill_distances(entrance).keys()
+	if floor_cells.size() < 40:
+		return  # cueva demasiado chica: no hay margen para una laguna y el altar
+
+	var backup: Array = tiles.duplicate(true)
+	for attempt in range(LAGOON_SEED_ATTEMPTS):
+		var seed_cell: Vector2i = floor_cells[rng.randi_range(0, floor_cells.size() - 1)]
+		if seed_cell.distance_to(entrance) < 4.0 or seed_cell.distance_to(altar) < 4.0:
+			continue
+		var radius := rng.randi_range(LAGOON_MIN_RADIUS, LAGOON_MAX_RADIUS)
+		var lagoon_cells := _grow_lagoon_blob(seed_cell, radius, rng)
+		if lagoon_cells.is_empty():
+			continue
+		for cell in lagoon_cells:
+			tiles[cell.x][cell.y] = Tile.WATER
+		var distances := _flood_fill_distances(entrance)
+		if distances.has(altar):
+			has_lagoon = true
+			return
+		tiles = backup.duplicate(true)  # esta laguna tapó el único paso: descartar e intentar otra semilla
+
+
+## Genera un blob desde seed_cell: el núcleo (radio - 1) es SIEMPRE agua
+## sólida —imprescindible para que el Wang set de 2 terrenos resuelva esas
+## celdas como agua pura (4 esquinas iguales); un blob dev todas las celdas
+## con probabilidad decreciente dejaba demasiadas celdas "sueltas" con pocos
+## vecinos de agua, que el algoritmo de conexión resolvía como piso en vez
+## de agua (bug detectado inspeccionando terrain_peering_bit por celda: la
+## forma dispersa nunca alcanzaba las 4 esquinas necesarias). Solo el anillo
+## más externo (entre radius-1 y radius) tiene ruido, para una silueta
+## orgánica sin sacrificar la masa sólida del centro. Nunca invade pared ni
+## el círculo abierto de entrada/altar.
+func _grow_lagoon_blob(seed_cell: Vector2i, radius: int, rng: RandomNumberGenerator) -> Array:
+	var blob: Array = []
+	var core_radius: float = maxf(radius - 1.0, 1.0)
+	for dx in range(-radius, radius + 1):
+		for dy in range(-radius, radius + 1):
+			var cell := seed_cell + Vector2i(dx, dy)
+			var dist := Vector2(dx, dy).length()
+			if dist > radius or not is_floor(cell):
+				continue
+			if cell.distance_to(entrance) < 3.0 or cell.distance_to(altar) < 3.0:
+				continue
+			if dist <= core_radius or rng.randf() < LAGOON_GROWTH_CHANCE:
+				blob.append(cell)
+	return blob
 
 
 func _randomize_noise(rng: RandomNumberGenerator) -> void:
@@ -154,3 +216,9 @@ func is_floor(cell: Vector2i) -> bool:
 	if not is_inside(cell):
 		return false
 	return tiles[cell.x][cell.y] == Tile.FLOOR
+
+
+func is_water(cell: Vector2i) -> bool:
+	if not is_inside(cell):
+		return false
+	return tiles[cell.x][cell.y] == Tile.WATER

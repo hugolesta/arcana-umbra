@@ -8,6 +8,7 @@ signal new_run_requested
 signal deck_requested
 signal journal_requested
 signal profile_requested
+signal options_requested
 
 const EMBLEM_PATH := "res://assets/ui/titulo_emblema.png"
 
@@ -72,6 +73,7 @@ func _ready() -> void:
 	layout.add_child(_make_button(
 		"Diario (%d)" % GameState.journal_entries.size(),
 		func(): journal_requested.emit()))
+	layout.add_child(_make_button("Opciones", func(): options_requested.emit()))
 
 
 func _make_button(text: String, on_pressed: Callable) -> Button:

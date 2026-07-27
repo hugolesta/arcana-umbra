@@ -13,6 +13,13 @@ const SHOP_SCENE := "res://scenes/ShopScene.tscn"
 const PROFILE_SCENE := "res://scenes/ProfileScene.tscn"
 const IDENTITY_SCENE := "res://scenes/IdentityScene.tscn"
 const INTRO_SCENE := "res://scenes/IntroScene.tscn"
+const OPTIONS_SCENE := "res://scenes/OptionsScene.tscn"
+
+## Kill switch de código además del toggle de OptionsScene (GameState.
+## explorable_world_enabled): en false, _start_combat va SIEMPRE directo a
+## CombatScene sin importar la preferencia guardada. CombatManager/
+## CombatScene no dependen de ninguno de los dos.
+const ENABLE_EXPLORABLE_WORLD := true
 
 var _current: Node
 var _fade: ColorRect
@@ -56,6 +63,7 @@ func show_title() -> void:
 	title.deck_requested.connect(show_deck_builder.bind(true))
 	title.journal_requested.connect(show_journal)
 	title.profile_requested.connect(show_profile.bind(show_title))
+	title.options_requested.connect(show_options)
 
 
 func _on_new_run_requested() -> void:
@@ -81,6 +89,11 @@ func show_identity() -> void:
 func show_journal() -> void:
 	var journal: Node = _swap_to(JOURNAL_SCENE)
 	journal.back_requested.connect(show_title)
+
+
+func show_options() -> void:
+	var options: Node = _swap_to(OPTIONS_SCENE)
+	options.back_requested.connect(show_title)
 
 
 func show_map() -> void:
@@ -135,6 +148,9 @@ func _start_event(node: MapNode) -> void:
 ## césped generado al azar (WorldScene) y luego una cueva (CaveScene) hasta
 ## alcanzar el altar; recién ahí se invoca CombatScene, sin cambios.
 func _start_combat(node: MapNode) -> void:
+	if not ENABLE_EXPLORABLE_WORLD or not GameState.explorable_world_enabled:
+		_start_combat_real(node)
+		return
 	var world: Node = _swap_to(WORLD_SCENE)
 	world.cave_entered.connect(_start_cave.bind(node))
 	world.back_requested.connect(show_map)

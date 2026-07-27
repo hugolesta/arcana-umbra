@@ -42,6 +42,10 @@ var identity_defined: bool = false
 var map_grid: Array = []  # Array de pisos; cada piso es Array[MapNode]
 var current_node_coord: Vector2i = Vector2i(-1, -1)
 
+# Preferencia de UI: mundo explorable (WorldScene/CaveScene) antes del
+# combate por cartas. Activada por defecto; persiste entre sesiones.
+var explorable_world_enabled: bool = true
+
 # Diario del Viajero: persiste entre runs (no se borra al reiniciar el mapa).
 var journal_entries: Array = []
 
@@ -141,6 +145,11 @@ static func _is_valid_birth_date(month: int, day: int) -> bool:
 	return day <= DAYS_IN_MONTH[month - 1]
 
 
+func set_explorable_world_enabled(enabled: bool) -> void:
+	explorable_world_enabled = enabled
+	save_progress()
+
+
 func card_price(card: CardData) -> int:
 	var price := 50 if card.suit == CardData.Suit.ARCANO_MAYOR else 25
 	if cartas_integradas.has(card.card_name):
@@ -235,6 +244,7 @@ func save_progress() -> void:
 		"birth_day": birth_day,
 		"zodiac_sign": zodiac_sign,
 		"identity_defined": identity_defined,
+		"explorable_world_enabled": explorable_world_enabled,
 		"map": map_data,
 		"current_node": [current_node_coord.x, current_node_coord.y],
 	}
@@ -272,6 +282,7 @@ func load_progress() -> bool:
 	birth_day = int(data.get("birth_day", 0))
 	zodiac_sign = str(data.get("zodiac_sign", ""))
 	identity_defined = bool(data.get("identity_defined", false))
+	explorable_world_enabled = bool(data.get("explorable_world_enabled", true))
 	map_grid.clear()
 	for floor_dicts in data.get("map", []):
 		var floor_nodes: Array = []

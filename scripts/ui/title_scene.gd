@@ -17,11 +17,15 @@ const COLOR_BG := Color("13173a")
 const COLOR_PANEL := Color("2d1b4e")
 const COLOR_GOLD := Color("c9a227")
 
+# Retrato del Viajero en el título: busto grande con marco (a diferencia del
+# ícono circular chico de MapScene). ~220px de alto en la pantalla 720x1280.
+const PORTRAIT_SIZE := 220.0
+
 
 func _ready() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 
-	var profile := ProfileButton.new()
+	var profile := ProfileButton.new(PORTRAIT_SIZE)
 	profile.set_anchors_preset(Control.PRESET_TOP_LEFT)
 	profile.position = Vector2(20, 20)
 	profile.profile_requested.connect(func(): profile_requested.emit())
@@ -64,11 +68,16 @@ func _ready() -> void:
 	layout.add_child(spacer)
 
 	var has_run := not GameState.map_grid.is_empty() and GameState.current_node_coord.x >= 0
+	# La acción principal de la pantalla ("Continuar viaje" si hay un run en
+	# curso, si no "Comenzar viaje") usa el botón "primary" más dorado/
+	# radiante; el resto usa el botón arcano estándar del tema.
 	if has_run:
-		layout.add_child(_make_button("Continuar viaje", func(): continue_requested.emit()))
-	layout.add_child(_make_button(
-		"Nuevo viaje" if has_run else "Comenzar viaje",
-		func(): new_run_requested.emit()))
+		layout.add_child(_make_button(
+			"Continuar viaje", func(): continue_requested.emit(), true))
+		layout.add_child(_make_button("Nuevo viaje", func(): new_run_requested.emit()))
+	else:
+		layout.add_child(_make_button(
+			"Comenzar viaje", func(): new_run_requested.emit(), true))
 	layout.add_child(_make_button("Ver mazo", func(): deck_requested.emit()))
 	layout.add_child(_make_button(
 		"Diario (%d)" % GameState.journal_entries.size(),
@@ -76,12 +85,17 @@ func _ready() -> void:
 	layout.add_child(_make_button("Opciones", func(): options_requested.emit()))
 
 
-func _make_button(text: String, on_pressed: Callable) -> Button:
+func _make_button(text: String, on_pressed: Callable, primary: bool = false) -> Button:
 	# Sin overrides de estilo: el botón arcano del tema global (ui_theme.gd)
-	# es quien viste estos botones.
+	# es quien viste estos botones. La variante "primary" se selecciona con
+	# una theme_type_variation (nunca add_theme_stylebox_override, que pisa
+	# el StyleBoxTexture del tema).
 	var button := Button.new()
 	button.text = text
 	button.custom_minimum_size.y = 64
 	button.add_theme_font_size_override("font_size", 24)
+	if primary:
+		button.theme_type_variation = UITheme.PRIMARY_BUTTON_VARIATION
+		button.custom_minimum_size.y = 88
 	button.pressed.connect(on_pressed)
 	return button
